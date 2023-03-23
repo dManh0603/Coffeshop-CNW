@@ -45,8 +45,25 @@ app.engine('hbs', handlebars.engine({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
-// Routes init
+// Catch requests
 route(app);
+
+// Handle 404 error
+app.use(function (req, res, next) {
+    res.status(404);
+    // respond with html page
+    if (process.env.NODE_ENV === 'PROD') {
+        res.render('_404', { url: req.url });
+        return;
+    }
+
+    // respond with json
+    if (process.env.NODE_ENV === 'DEV') {
+        res.json({ error: 'Not found', url: req.url });
+        return;
+    }
+});
+
 
 app.listen(port, () => {
     console.log(`App listening at port ${port}`)
