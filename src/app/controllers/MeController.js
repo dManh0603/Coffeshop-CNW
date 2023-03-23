@@ -1,41 +1,41 @@
-const Course = require('../models/Course');
+const Product = require('../models/Product');
 const { multipleMongooseToObject, } = require('../../util/mongoose');
 class MeController {
-    // [GET] /me/stored/courses
-    storedCourses(req, res, next) {
+    // [GET] /me/stored/products
+    storedProducts(req, res, next) {
         // resolve sorting
         Promise.all([
-            Course.find({}).sortable(req),
-            Course.countDocumentsDeleted()])
-            .then(([courses, deletedCount]) =>
-                res.render('me/stored-courses', {
+            Product.find({}).sortable(req),
+            Product.countDocumentsDeleted()])
+            .then(([products, deletedCount]) =>
+                res.render('me/stored-products', {
                     deletedCount,
-                    courses: multipleMongooseToObject(courses),
+                    products: multipleMongooseToObject(products),
                 })
             )
             .catch(next);
 
-        // Course.countDocumentsDeleted()
+        // Product.countDocumentsDeleted()
         //     .then((deletedCount) => {
         //         console.log(deletedCount);
         //     })
         //     .catch(() => { });
 
-        // Course.find()
-        //     .then((courses) => {
-        //         res.render('me/stored-courses', {
-        //             courses: multipleMongooseToObject(courses)
+        // Product.find()
+        //     .then((products) => {
+        //         res.render('me/stored-products', {
+        //             products: multipleMongooseToObject(products)
         //         });
         //     })
         //     .catch(next);
     }
 
-    // [GET] /me/trash/courses
-    trashCourses(req, res, next) {
-        Course.findDeleted({})
-            .then((courses) => {
-                res.render('me/trash-courses', {
-                    courses: multipleMongooseToObject(courses)
+    // [GET] /me/trash/products
+    trashProducts(req, res, next) {
+        Product.findDeleted({})
+            .then((products) => {
+                res.render('me/trash-products', {
+                    products: multipleMongooseToObject(products)
                 });
             })
             .catch(next);

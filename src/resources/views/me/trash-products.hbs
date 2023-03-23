@@ -1,7 +1,7 @@
 <div class="container">
     <div>
         <i class="fa-solid fa-arrow-left" style="color: #e67519;"></i>
-        <a href="/me/stored/courses">Danh sách khóa học</a>
+        <a href="/me/stored/products">Danh sách khóa học</a>
         <h3>Khóa học đã xóa</h3>
 
     </div>
@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            {{#each courses}}
+            {{#each products}}
             <tr>
                 <th scope="row">{{sum @index 1}}</th>
                 <td>{{this.name}}</td>
@@ -25,7 +25,7 @@
                 <td>{{this.deletedAt}}</td>
                 <td>
                     <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Khôi phục</a>
-                    <a href="" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#delete-course-modal"
+                    <a href="" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#delete-product-modal"
                         data-bs-id="{{this._id}}">Xóa vĩnh viễn</a>
                 </td>
             </tr>
@@ -40,7 +40,7 @@
 </div>
 
 {{!-- Delete confirm --}}
-<div id="delete-course-modal" class="modal" tabindex="-1">
+<div id="delete-product-modal" class="modal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -51,22 +51,22 @@
                 <p>Hành động này không thể khôi phục. Bạn chắc chắn muốn xóa khóa học này ?</p>
             </div>
             <div class="modal-footer">
-                <button id="btn-delete-course" type="button" class="btn btn-danger">Xóa vĩnh viễn</button>
+                <button id="btn-delete-product" type="button" class="btn btn-danger">Xóa vĩnh viễn</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
             </div>
         </div>
     </div>
 </div>
 
-<form method="POST" name="delete-course-form"></form>
-<form method="POST" name="restore-course-form"></form>
+<form method="POST" name="delete-product-form"></form>
+<form method="POST" name="restore-product-form"></form>
 
 <script>
     $(document).ready(function () {
-        let courseId;
-        const $deleteForm = $('form[name="delete-course-form"]');
-        const $restoreForm = $('form[name="restore-course-form"]');
-        const $deleteModal = $('#delete-course-modal');
+        let productId;
+        const $deleteForm = $('form[name="delete-product-form"]');
+        const $restoreForm = $('form[name="restore-product-form"]');
+        const $deleteModal = $('#delete-product-modal');
         const $restoreBtn = $('.btn-restore');
 
         // When delete button was clicked
@@ -74,21 +74,21 @@
             // Button that triggered the modal
             const button = $(event.relatedTarget);
             // Extract info from data-bs-* attributes
-            courseId = button.data('bs-id');
+            productId = button.data('bs-id');
         });
 
         // When confirmed the delete
-        const $btnDeleteCourse = $('#btn-delete-course');
+        const $btnDeleteCourse = $('#btn-delete-product');
         $btnDeleteCourse.click(function () {
-            $deleteForm.attr('action', '/courses/' + courseId + '/destroy?_method=DELETE');
+            $deleteForm.attr('action', '/products/' + productId + '/destroy?_method=DELETE');
             $deleteForm.submit();
         });
 
         // When restore button clicked
         $restoreBtn.click(function (e) {
             e.preventDefault();
-            const courseId = $(this).data('id')
-            $restoreForm.attr('action', '/courses/' + courseId + '/restore?_method=PATCH');
+            const productId = $(this).data('id')
+            $restoreForm.attr('action', '/products/' + productId + '/restore?_method=PATCH');
             $restoreForm.submit();
         });
     });

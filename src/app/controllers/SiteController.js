@@ -1,14 +1,14 @@
-const Course = require('../models/Course');
+const Product = require('../models/Product');
 const { multipleMongooseToObject, } = require('../../util/mongoose');
 class SiteController {
 
     // [GET] /
     index(req, res, next) {
-        Course.find({})
-            .then(courses => {
+        Product.find({})
+            .then(products => {
                 res.render('home', {
                     title: 'Home page',
-                    courses: multipleMongooseToObject(courses),
+                    products: multipleMongooseToObject(products),
                 });
             })
             .catch(e => {

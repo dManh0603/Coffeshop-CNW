@@ -4,7 +4,7 @@ const mongooseDelete = require('mongoose-delete');
 const AutoIncrement = require('mongoose-sequence')(mongoose);
 const slug = require('mongoose-slug-generator');
 
-const CourseSchema = new Schema({
+const ProductSchema = new Schema({
     id: Number,
     name: { type: String, maxLength: 600, },
     slug: { type: String, slug: 'name', unique: true, },
@@ -14,7 +14,7 @@ const CourseSchema = new Schema({
 });
 
 // Custom query helpers
-CourseSchema.query.sortable = function (req) {
+ProductSchema.query.sortable = function (req) {
     if (req.query.hasOwnProperty('_sort')) {
         const isValidType = ['asc', 'desc'].includes(req.query.type);
         return this.sort({
@@ -28,10 +28,10 @@ CourseSchema.query.sortable = function (req) {
 mongoose.plugin(slug);
 
 //Add plugin for Course models
-CourseSchema.plugin(AutoIncrement);
-CourseSchema.plugin(mongooseDelete, {
+ProductSchema.plugin(AutoIncrement);
+ProductSchema.plugin(mongooseDelete, {
     overrideMethods: 'all',
     deletedAt: true,
 });
 
-module.exports = mongoose.model('Course', CourseSchema);
+module.exports = mongoose.model('Product', ProductSchema);
