@@ -6,7 +6,7 @@ class SiteController {
     index(req, res, next) {
         Product.find({})
             .then(products => {
-                res.render('home', {
+                res.render('site/home', {
                     title: 'Home page',
                     products: multipleMongooseToObject(products),
                 });
@@ -18,7 +18,12 @@ class SiteController {
 
     // [GET] /search
     search(req, res) {
-        res.render('search');
+        res.render('site/search');
+    }
+
+    // [GET] /contact
+    contact(req, res) {
+        res.render('site/contact');
     }
 }
 
