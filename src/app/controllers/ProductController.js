@@ -1,6 +1,6 @@
 const Product = require('../models/Product');
 const { mongooseToObject } = require('../../util/mongoose');
-const formidable = require('formidable');
+const googleDrive = require('../models/GoolgeDrive');
 
 class ProductController {
 
@@ -18,37 +18,21 @@ class ProductController {
     create(req, res, next) {
         res.render('products/create');
     }
+
     // [POST] /products/store
     store(req, res, next) {
+        const formData = req.body;
 
-        const form = formidable({ multiples: false });
-        let formData, files;
-
-        form.parse(req, (err, fields, parsedFiles) => {
-            if (err) {
-                res.writeHead(err.httpCode || 400, { 'Content-Type': 'text/plain' });
-                res.end(String(err));
-                return;
-            }
-
-            const productImage = parsedFiles.productImage;
-            console.log(productImage.filepath)
-            // res.writeHead(200, { 'Content-Type': 'application/json' });
-
-            res.json({ fields, parsedFiles });
-        });
-
-
-
-        // const product = new Product(formData);
-        // product.save()
-        //     .then(() => {
-        //         console.log('Create successfully');
-        //         res.redirect('/me/stored/products');
-        //     })
-        //     .catch(e => {
-
-        //     });
+        const product = new Product(formData);
+        product.save()
+            .then(() => {
+                console.log('Create successfully');
+                res.redirect('/me/stored/products');
+            })
+            .catch(e => {
+                console.error(e)
+                next()
+            });
     }
 
     // [GET] /products/:id/edit
