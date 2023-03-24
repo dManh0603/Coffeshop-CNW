@@ -32,10 +32,10 @@ app.use(express.json());
 // Express's method override for form's put/patch method
 app.use(methodOverride('_method'));
 
-// HTTP logger
-if (process.env.NODE_ENV === 'DEV') {
-    app.use(morgan('combined'));
-}
+// // HTTP logger
+// if (process.env.NODE_ENV === 'DEV') {
+//     app.use(morgan('combined'));
+// }
 
 // Template engine
 app.engine('hbs', handlebars.engine({
