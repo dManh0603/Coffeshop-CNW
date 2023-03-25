@@ -1,5 +1,6 @@
 const Product = require('../models/Product');
 const { mongooseToObject } = require('../../util/mongoose');
+const googleDrive = require('../models/GoolgeDrive');
 
 class ProductController {
 
@@ -17,9 +18,11 @@ class ProductController {
     create(req, res, next) {
         res.render('products/create');
     }
+
     // [POST] /products/store
     store(req, res, next) {
         const formData = req.body;
+
         const product = new Product(formData);
         product.save()
             .then(() => {
@@ -27,9 +30,9 @@ class ProductController {
                 res.redirect('/me/stored/products');
             })
             .catch(e => {
-
+                console.error(e)
+                next()
             });
-
     }
 
     // [GET] /products/:id/edit
