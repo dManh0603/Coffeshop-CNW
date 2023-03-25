@@ -24,32 +24,32 @@ const drive = google.drive({
 const googleDrive = {
   async toGoogle(req, res, next) {
     try {
-      const { path: filePath, mimetype } = req.file;
+      if (req.file === undefined) {
+        next()
+      } else {
+        const { path: filePath, mimetype } = req.file;
+        const createdFile = await drive.files.create({
+          requestBody: {
+            name: path.basename(filePath),
+            mimeType: mimetype,
+          },
+          media: {
+            mimeType: mimetype,
+            body: fs.createReadStream(filePath),
+          },
+        });
 
-      const createdFile = await drive.files.create({
-        requestBody: {
-          name: path.basename(filePath),
-          mimeType: mimetype,
-        },
-        media: {
-          mimeType: mimetype,
-          body: fs.createReadStream(filePath),
-        },
-      });
+        const fileId = createdFile.data.id;
+        req.body.imageId = fileId;
+        await googleDrive.setFilePublic(fileId);
 
-      const fileId = createdFile.data.id;
-      req.body.imageId = fileId;
-      await googleDrive.setFilePublic(fileId);
-
-      const file = await drive.files.get({ fileId });
-
-      console.log('File Properties:', file.data);
-      // res.json(req.body);
-      next()
-      // res.send('File uploaded successfully!');
+        // const file = await drive.files.get({ fileId });
+        // console.log('File Properties:', file.data);
+        // res.json(req.body);
+        next()
+      }
     } catch (error) {
       console.error(error);
-      res.status(500).send('An error occurred while uploading the file');
       next();
     }
   },
@@ -69,13 +69,15 @@ const googleDrive = {
     }
   },
 
-  async deleteFile(fileId) {
+  async deleteFile(req, res, next) {
     try {
-      console.log('2', fileId);
+      const fileId = req.body.oldImageId;
       const deleteFile = await drive.files.delete({
         fileId: fileId
       })
-      console.log(deleteFile.data, deleteFile.status);
+      console.log('delete file:', deleteFile.data, deleteFile.status);
+      next();
+      // res.redirect('me/stored/products');
     } catch (error) {
       console.error(error);
     }

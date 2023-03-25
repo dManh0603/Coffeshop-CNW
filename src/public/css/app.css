@@ -13,7 +13,12 @@ a {
   text-decoration: none !important
 }
 
-.checkbox-select-all-options{
+.checkbox-select-all-options {
   max-width: 33.33vw;
   margin: 0 16px
+}
+
+.product-image {
+  max-width: 300px;
+  max-height: 300px;
 }
