@@ -71,11 +71,13 @@ const googleDrive = {
 
   async deleteFile(req, res, next) {
     try {
+      // console.log('delete:', req.body);
       const fileId = req.body.oldImageId;
       const deleteFile = await drive.files.delete({
         fileId: fileId
       })
-      console.log('delete file:', deleteFile.data, deleteFile.status);
+      // console.log('delete file:', deleteFile.data, deleteFile.status);
+
       next();
       // res.redirect('me/stored/products');
     } catch (error) {

@@ -1,6 +1,5 @@
 const Product = require('../models/Product');
 const { mongooseToObject } = require('../../util/mongoose');
-const googleDrive = require('../models/GoolgeDrive');
 
 class ProductController {
 
@@ -91,10 +90,16 @@ class ProductController {
 
     // [DELETE] /products/:id/destroy
     destroy(req, res, next) {
-        res.json(req.params)
-        // Product.deleteOne({ _id: req.params.id })
-        //     .then(() => res.redirect('back'))
-        //     .catch(next)
+        Product.findByIdAndDelete(req.params.id, (err, product) => {
+            if (err) {
+                console.error(err);
+            } else {
+                // write the imageId to be deleted and give it to the next function
+                req.body.oldImageId = product.imageId;
+                next()
+            }
+        })
+
     }
 
     // [PATCH] /products/:id/restore
