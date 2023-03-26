@@ -8,8 +8,9 @@ const sortMiddleware = require('./app/middlewares/sortMiddleware');
 const app = express();
 const port = 3030;
 
-const route = require('./routes');
+const route = require('./routes/config');
 const db = require('./config/db');
+
 
 // Load evironment variables in .env file
 require('dotenv').config();
@@ -45,6 +46,7 @@ app.engine('hbs', handlebars.engine({
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));
 
+
 // Catch requests
 route(app);
 
@@ -64,7 +66,7 @@ app.use(function (req, res, next) {
     }
 });
 
-
 app.listen(port, () => {
     console.log(`App listening at port ${port}`)
 })
+
