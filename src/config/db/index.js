@@ -5,6 +5,7 @@ async function connect() {
             useNewUrlParser: true,
             useUnifiedTopology: true,
 
+            dbName: "cnw"
         });
         console.log('Connect db successfully');
     } catch (error) {

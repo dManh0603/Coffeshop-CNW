@@ -8,7 +8,6 @@ function route(app) {
     // Router
     app.use('/me', meRouter);
     app.use('/products', productsRouter);
-    app.use("/cart", cartRouter);
     app.use('/', siteRouter);
 }
 

@@ -8,7 +8,7 @@ const sortMiddleware = require('./app/middlewares/sort');
 const app = express();
 const port = 3030;
 
-const route = require('./routes');
+const route = require('./routes/config');
 const db = require('./config/db');
 
 
