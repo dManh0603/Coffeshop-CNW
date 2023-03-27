@@ -180,10 +180,16 @@ body {
   z-index: 99;
 
 }
+.selected {
+  background-color: var(--primary-2);
+  width: 30%;
+}
 
 /* ============ */
 /* ---Slider--- */
 /* ============ */
+
+
 .carousel {
   position: relative;
   margin-top:100px;
@@ -191,6 +197,7 @@ body {
 
 .carousel-inner {
   max-height: 600px;
+  
 }
 
 .carousel-caption {
@@ -298,16 +305,48 @@ body {
   height: 600px;
 }
 
+@media screen and (max-width: 699px) {
+  .menushop {
+    height: 700px;
+  }
+  .menushop .menushop__coffee {
+    height: 700px;
+  }
+  
+  .menushop img {
+    height: 700px;
+  }
+}
+
+@media (min-width: 700px) and (max-width: 769px) {
+  .menushop {
+    height: 850px;
+  }
+  .menushop .menushop__coffee {
+    height: 850px;
+  }
+  
+  .menushop img {
+    height: 850px;
+  }
+}
+
+
+
 
 /* ======================= */
 /* ---Our Special thing--- */
 /* ======================= */
-.coffee__beans img {
-  max-height: 400px;
-  object-fit: cover;
-
+@media (max-width: 1000px) {
+  .ourspecial__content__description {
+    overflow-y: scroll;
+    height: 100px;
+  }
 }
 
+/* ======================== */
+/* ---Banner CoffeeBeans--- */
+/* ======================== */
 .coffee__beans {
   position: relative;
 }
@@ -329,8 +368,9 @@ body {
 .coffee__beans img {
   max-height: 400px;
   object-fit: cover;
-
 }
+
+
 
 /* ======================= */
 /* ------Contact us------- */
@@ -439,14 +479,13 @@ footer {
 /* ======================= */
 /* ---------PAGES--------- */
 /* ======================= */
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  
-}
+
+
+/* ======================= */
+/* -----SignUp/SignIn----- */
+/* ======================= */
 .account {
-  background-image: url(/images/slider2.jpg);
+  background-image: url(https://lh3.googleusercontent.com/pw/AMWts8Ao2p2c_uPrgWCOVPqUfu6EbmWrIpBmdt3JBC0Fo0DBPizDHPY29j-tt-dP8PNsba7mLNcPSWS1jjNTdjrBP7P3iQHtiG2h2w33064YP_U2KJKDWBZBl0e0WmV2wITa74YXpNSRvzjdQC814xQ25CYA=w1341-h893-s-no?authuser=0);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -454,12 +493,14 @@ html, body {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 .login {
-  width: 400px;
+  width: 450px;
   margin: 100px auto;
-  background-color: #ffffff72;
+  background-color: #ffffff90;
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0px 0px 20px #00000040;
@@ -475,12 +516,12 @@ html, body {
   flex-direction: column;
 }
 
-.login .input__box {
+.login .login__form-group {
   position: relative;
-  margin: 20px 0;
+  margin: 10px 0;
 }
 
-.login .input__box input {
+.login .login__form-group input {
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
@@ -490,25 +531,14 @@ html, body {
   background: transparent;
 }
 
-.login .input__box label {
-  position: absolute;
-  top: 0;
-  left: 0;
-  font-size: 16px;
-  color: #8B4513;
-  pointer-events: none;
-  transition: 0.5s;
+.login .login__form-group input:focus {
+  border-color: #8B4513;
+  box-shadow: 0px 0px 10px #8B4513;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-.login .input__box input:focus ~ label,
-.login .input__box input:valid ~ label {
-  top: -20px;
-  left: 0;
-  color: #8B4513;
-  font-size: 12px;
-}
 
-.login .form__group {
+.login .login__form-next {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
@@ -517,13 +547,13 @@ html, body {
   font-size: 14px;
 }
 
-.login .form__group a {
+.login .login__form-next a{
   color: #8B4513;
   text-decoration: none;
   transition: 0.5s;
 }
 
-.login .form__group a:hover {
+.login .login__form-next a:hover {
   color: #000;
 }
 

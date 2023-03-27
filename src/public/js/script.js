@@ -9,7 +9,7 @@ function scrollFunction() {
   }
 }
 
-//  cuộn trang về đầu trang
+// Cuộn trang về đầu trang
 function topFunction() {
   document.body.scrollTop = 0; 
   document.documentElement.scrollTop = 0; 
