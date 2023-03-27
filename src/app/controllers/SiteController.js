@@ -29,6 +29,10 @@ class SiteController {
   about(req, res) {
     res.render("site/about");
   }
+  // [GET] /menu
+  menu(req, res) {
+    res.render("site/menu");
+  }
 }
 
 module.exports = new SiteController();
