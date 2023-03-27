@@ -1,4 +1,4 @@
-<div class="mt-4">
+{{!-- <div class="mt-4">
     <div class="row">
         {{#each products}}
         <div class="col-sm-6 col-lg-4">
@@ -16,4 +16,305 @@
         </div>
         {{/each}}
     </div>
-</div>
+</div> --}}
+
+<!-- Slider -->
+    <div id="carouselExampleCaptions" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://lh3.googleusercontent.com/pw/AMWts8Ao2p2c_uPrgWCOVPqUfu6EbmWrIpBmdt3JBC0Fo0DBPizDHPY29j-tt-dP8PNsba7mLNcPSWS1jjNTdjrBP7P3iQHtiG2h2w33064YP_U2KJKDWBZBl0e0WmV2wITa74YXpNSRvzjdQC814xQ25CYA=w1341-h893-s-no?authuser=0" class="d-block w-100" alt="...">
+                <div class="carousel-caption mb-md-5">
+                    <h1><span style="color: var(--primary-1);">TIME FOR A</span> COFFEE</h1>
+                    <p>Some representative placeholder content for the first slide.</p>
+                    <button type="button" class="btn2">Order now</button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://photos.google.com/share/AF1QipNd4eKCSiKgWbSeEaOFrUAh5E7AVYXwMJrA1B-hAMjydGdkAgXZl9miPZj7aKcVYQ/photo/AF1QipM6Vj5LJh7KeFZHGWIu90RDhB9Z50jLC7tN5haS?key=Vk5fM1RvazdPLU9mN3Zfel9MajZhcXRsaXdyZ0dR&download" class="d-block w-100" alt="...">
+                <div class="carousel-caption mb-md-5">
+                    <h1><span style="color: var(--primary-1);">TIME FOR A</span> COFFEE</h1>
+                    <p>Some representative placeholder content for the second slide.</p>
+                    <button type="button" class="btn2">Order now</button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="/images/slider3.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption mb-md-5">
+                    <h1><span style="color: var(--primary-1);">TIME FOR A</span> COFFEE</h1>
+                    <p>Some representative placeholder content for the third slide.</p>
+                    <button type="button" class="btn2">Order now</button>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+
+    <!-- Our services -->
+    <div class="ourservices d-flex justify-content-center align-items-center m-5">
+        <div class="container m-5">
+            <h2 class="text-center">OUR<span style="color: var(--primary-1);"> SERVICES</span></h2>
+            <p class="text-center pb-2">Some representative placeholder content for the first slide.</p>
+            <div class="row justify-content-center">
+                <div class="col-sm-5 col-md-6 col-lg-4 col-xl-3 m-3 m-md-5">
+                    <div class="card border-0">
+                        <img src="/images/beans coffee.jpg" class="img-thumbnail mx-auto d-block" alt="...">
+                        <div class="card-body text-center">
+                            <h3>BEAN</h3>
+                            <p>Bean very good</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5 col-md-6 col-lg-4 col-xl-3 m-3 m-md-5">
+                    <div class="card border-0">
+                        <img src="/images/drinkscoffee.jpg" class="img-thumbnail mx-auto d-block" alt="">
+                        <div class="card-body text-center">
+                            <h3>COFFEE</h3>
+                            <p>Bean very good</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-5 col-md-6 col-lg-4 col-xl-3 m-3 m-md-5">
+                    <div class="card border-0">
+                        <img src="/images/breakfast3.jpg" class="img-thumbnail mx-auto d-block" alt="">
+                        <div class="card-body text-center">
+                            <h3>BREAKFAST</h3>
+                            <p>Bean very good</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MENU -->
+    <banner class="container-fluid menushop">
+        <div class="row">
+            <div class="col-lg-8 col-sm-12 p-0">
+                <div class="container-fluid menushop__coffee text-light bg-dark">
+                    <h2 class="text-center p-3" style="color: var(--primary-1);">MENU</h2>
+                    <div class="menu-btn d-flex justify-content-center">
+                        <button type="button" class="btn2 m-2">Coffee beans</button>
+                        <button type="button" class="btn1 m-2">Drinks</button>
+                        <button type="button" class="btn2 m-2">Breakfast</button>
+                    </div>
+                    <div class="container mt-3">
+                        <div class="row mx-3" style="color: var(--primary-1)">
+                            <div class="col-md-6 d-flex flex-wrap">
+                                <div class="row menushop__products mx-2">
+                                    <div class="col-10 menushop__products--list">
+                                        <h4>1/Capuccino</h4>
+                                        <p>Some representative placeholder content for the first slide.</p>
+                                    </div>
+                                    <div class="col-2 menushop__products--price">
+                                        <h4>$5,5</h4>
+                                        <i style="color:red;" class="fa-solid fa-heart"><span
+                                                style="color: var(--primary-1)"> 60</span></i>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="row menushop__products mx-2">
+                                    <div class="col-10 menushop__products--list">
+                                        <h4>2/Fappuccino</h4>
+                                        <p>Some representative placeholder content for the first slide.</p>
+                                    </div>
+                                    <div class="col-2 menushop__products--price">
+                                        <h4>$6,0</h4>
+                                        <i style="color:red;" class="fa-solid fa-heart"><span
+                                                style="color: var(--primary-1)"> 75</span></i>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="row menushop__products mx-2">
+                                    <div class="col-10 menushop__products--list">
+                                        <h4>3/Espresso</h4>
+                                        <p>Some representative placeholder content for the first slide.</p>
+                                    </div>
+                                    <div class="col-2 menushop__products--price">
+                                        <h4>$5,5</h4>
+                                        <i style="color:red;" class="fa-solid fa-heart"><span
+                                                style="color: var(--primary-1)"> 50</span></i>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                            <div class="col-md-6 d-flex flex-wrap p-2">
+                                <div class="row menushop__products mx-2">
+                                    <div class="col-10 menushop__products--list">
+                                        <h4>4/Mocha</h4>
+                                        <p>Some representative placeholder content for the first slide.</p>
+                                    </div>
+                                    <div class="col-2 menushop__products--price">
+                                        <h4>$5,0</h4>
+                                        <i style="color:red;" class="fa-solid fa-heart"><span
+                                                style="color: var(--primary-1)"> 60</span></i>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="row menushop__products mx-2">
+                                    <div class="col-10 menushop__products--list">
+                                        <h4>5/Cafe Latte</h4>
+                                        <p>Some representative placeholder content for the first slide.</p>
+                                    </div>
+                                    <div class="col-2 menushop__products--price">
+                                        <h4>$5,5</h4>
+                                        <i style="color:red;" class="fa-solid fa-heart"><span
+                                                style="color: var(--primary-1)"> 70</span></i>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="row menushop__products mx-2">
+                                    <div class="col-10 menushop__products--list">
+                                        <h4>6/Macchiato</h4>
+                                        <p>Some representative placeholder content for the first slide.</p>
+                                    </div>
+                                    <div class="col-2 menushop__products--price">
+                                        <h4>$6,5</h4>
+                                        <i style="color:red;" class="fa-solid fa-heart"><span
+                                                style="color: var(--primary-1)"> 90</span></i>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 d-none d-lg-block p-0">
+                <img src="/images/bannermenu.jpg" class="w-100" alt="">
+            </div>
+        </div>
+    </banner>
+
+    <!-- Chitiet -->
+    <div class="ourspecial d-flex justify-content-center align-items-center">
+        <div class="container m-5">
+            <h2 class="text-center">OUR<span style="color: var(--primary-1);"> SPECIAL THINGS</span></h2>
+            <p class="text-center pb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                laboris nisi ut aliquip ex ea commodo consequat.
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </p>
+            <div class="row no-gutters">
+                <div class="col-6 ourspecial__image--left bg1 p-0">
+                    <img src="/images/goodcoffeebeans.jpg" class="w-100" alt="">
+                </div>
+                <div
+                    class="col-6 ourspecial__content--right bg1 p-0 d-flex justify-content-center align-items-center flex-column">
+                    <h3 class="ourspecial__content__title" style="color:var(--primary-1);">GOOD COFFEE BEANS</h3>
+                    <p class="ourspecial__content__description mx-5">Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. </p>
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div
+                    class="col-6 ourspecial__content--left bg1 p-0 d-flex justify-content-center align-items-center flex-column">
+                    <h3 class="ourspecial__content__title" style="color:var(--primary-1);">GOOD COFFEE BEANS</h3>
+                    <p class="ourspecial__content__description mx-5">Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. </p>
+                </div>
+                <div class="col-6 ourspecial__image--right bg1 p-0">
+                    <img src="/images/spething1.jpg" class="w-100" alt="">
+                </div>
+            </div>
+            <div class="row no-gutters">
+                <div class="col-6 ourspecial__image--left bg1 p-0">
+                    <img src="/images/specialthing2.jpg" class="w-100" alt="">
+                </div>
+                <div
+                    class="col-6 ourspecial__content--right bg1 p-0 d-flex justify-content-center align-items-center flex-column">
+                    <h3 class="ourspecial__content__title" style="color:var(--primary-1);">GOOD INGREDIENTS</h3>
+                    <p class="ourspecial__content__description mx-5">Lorem ipsum dolor sit amet, consectetur adipiscing
+                        elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                        pariatur. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coffee beans -->
+    <div class="coffee__beans">
+        <banner class="banner container-fluid">
+            <div class="row">
+                <img src="/images/banner beans.jpg" class="img-fluid w-100" alt="">
+                <div class="coffee__beans--caption">
+                    <h2 class="coffee__beans--caption-title"><span style="color: #ffffff;"> ARABICA</span><span
+                            style="color: var(--primary-1);"> COFFEE
+                            BEANS</span></h2>
+                    <p class="coffee__beans--caption-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                        do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                        laboris nisi ut aliquip ex ea commodo consequat.
+                    </p>
+                    <button type="button" class="btn1 coffee__beans--caption-btn">Order now</button>
+                </div>
+            </div>
+        </banner>
+    </div>
+
+    <!-- Contact Us -->
+    <div class="contact__wrapper">
+        <div class="container">
+            <h2 class="text-center mt-3">CONTACT US</h2>
+            <div class="row m-4">
+                <div class="col-md-6 contact__wrapper__info">
+                </div>
+                <div class="col-md-6 contact__wrapper__send">
+                    <form class="contact__form">
+                        <div class="contact__form__row m-2">
+                            <div class="contact__form__group col-md-6">
+
+                                <input type="text" class="form-control" id="contact__form__input-name"
+                                    placeholder="Name*">
+                            </div>
+                            <div class="contact__form__group col-md-6">
+
+                                <input type="email" class="form-control" id="contact__form__input-email"
+                                    placeholder="Email*">
+                            </div>
+                        </div>
+                        <div class="contact__form__group m-2 cooperation">
+
+                            <input type="text" class="form-control" id="contact__form__input-cooperation"
+                                placeholder="Cooperation*">
+                        </div>
+                        <div class="contact__form__group m-2">
+
+                            <textarea class="form-control" id="contact__form__input-message" rows="5"
+                                placeholder="Message*"></textarea>
+                        </div>
+                        <button type="submit" class="btn5 btn5-full">Send</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
