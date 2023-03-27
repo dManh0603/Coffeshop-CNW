@@ -40,7 +40,7 @@ app.use(methodOverride('_method'));
 // Template engine
 app.engine('hbs', handlebars.engine({
     extname: '.hbs',
-    helpers: require('./helpers/HbsHelpers'),
+    helpers: require('./helpers/HbsHelper'),
 }));
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views'));

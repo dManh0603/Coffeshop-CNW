@@ -17,12 +17,14 @@ const upload = multer({ storage });
 
 router.get('/create', productController.create)
 router.post('/handle-form-actions', productController.handleFormActions)
-router.post('/store', upload.single('picture'), googleDrive.toGoogle,productController.store)
+router.post('/store', upload.single('picture'), googleDrive.toGoogle, productController.store)
 router.get('/:id/edit', productController.edit)
-router.put('/:id', productController.update)
+router.put('/:id', upload.single('picture'), googleDrive.toGoogle, productController.update, googleDrive.deleteFile, (req, res) =>
+    res.redirect('/me/stored/products'));
 router.patch('/:id/restore', productController.restore)
 router.delete('/:id', productController.delete)
-router.delete('/:id/destroy', productController.destroy)
+router.delete('/:id/destroy', productController.destroy, googleDrive.deleteFile, (req, res) =>
+    res.redirect('/me/stored/products'));
 router.get('/:slug', productController.show)
 
 
