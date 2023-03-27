@@ -20,14 +20,12 @@ a {
 
 /* @media screen and (min-width: 610px) and (max-width: 1000px) */
 
-
 :root {
   --primary-1: rgb(236, 196, 36);
   --primary-2: rgba(10, 0, 0, 0.9);
-  --primary-3: #8B4513;
+  --primary-3: #8b4513;
   --primary-4: rgb(240, 142, 56);
   --secondary: rgb(245, 238, 230);
-  
 }
 
 body {
@@ -49,7 +47,7 @@ body {
 }
 
 .btn1:hover {
-  color:#ffffff;
+  color: #ffffff;
   background-color: var(--primary-4);
   font-weight: bold;
   transform: scale(1.1);
@@ -66,7 +64,7 @@ body {
 }
 
 .btn2:hover {
-  color:#ffffff;
+  color: #ffffff;
   background-color: var(--primary-4);
   font-weight: bold;
   border: none;
@@ -86,26 +84,26 @@ body {
 }
 
 .btn3:hover {
-  color:#ffffff;
+  color: #ffffff;
   background-color: var(--primary-4);
   font-weight: bold;
   transform: scale(1.1);
 }
-  
+
 .btn4 {
   position: absolute;
   top: 0;
   right: 0;
   width: 50px;
   height: 100%;
-  background-color:black;
-  color:#ffffff;
+  background-color: black;
+  color: #ffffff;
   border: none;
   cursor: pointer;
 }
 
 .btn4:hover {
-  color:#ffffff;
+  color: #ffffff;
   background-color: rgba(113, 108, 105, 0.174);
   font-weight: bold;
 }
@@ -159,7 +157,6 @@ body {
   transform-origin: top;
 }
 
-
 /* ================ */
 /* ---Background--- */
 /* ================ */
@@ -167,18 +164,16 @@ body {
   background-color: var(--secondary);
 }
 
-
 /* ============ */
 /* ---navbar--- */
 /* ============ */
-.navbar{
+.navbar {
   height: 100px;
   top: 0;
   left: 0;
   right: 0;
-  position:fixed;
+  position: fixed;
   z-index: 99;
-
 }
 
 /* ============ */
@@ -186,7 +181,7 @@ body {
 /* ============ */
 .carousel {
   position: relative;
-  margin-top:100px;
+  margin-top: 100px;
 }
 
 .carousel-inner {
@@ -209,7 +204,6 @@ body {
     top: 150px;
     left: 500px;
   }
-
 }
 
 @media only screen and (max-width: 900px) {
@@ -238,28 +232,22 @@ body {
   p {
     display: none;
   }
-
 }
-
-
 
 .carousel image {
   width: 100%;
   height: auto;
 }
 
-
 .carousel-indicators [data-bs-target] {
   width: 10px;
   height: 10px;
   border-radius: 100%;
-
 }
 
 .carousel-inner .carousel-item button {
   margin-bottom: 5rem;
 }
-
 
 .carousel-caption {
   text-align: left;
@@ -298,14 +286,12 @@ body {
   height: 600px;
 }
 
-
 /* ======================= */
 /* ---Our Special thing--- */
 /* ======================= */
 .coffee__beans img {
   max-height: 400px;
   object-fit: cover;
-
 }
 
 .coffee__beans {
@@ -323,13 +309,12 @@ body {
 
 .coffee__beans--caption p {
   max-width: 100%;
-  color:#ffffff;
+  color: #ffffff;
 }
 
 .coffee__beans img {
   max-height: 400px;
   object-fit: cover;
-
 }
 
 /* ======================= */
@@ -339,7 +324,6 @@ body {
   .form-row {
     display: flex;
     flex-wrap: wrap;
-    
   }
 
   .form-group.col-md-6 {
@@ -354,7 +338,6 @@ body {
   .form-group:last-child {
     margin-bottom: 0;
   }
-
 }
 
 /* ======================= */
@@ -364,52 +347,50 @@ body {
 footer {
   background-color: var(--primary-1);
   max-height: 600px;
-  
 }
 
 .footer__top,
 .footer__bottom {
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
-  margin-bottom: 10px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .footer__top {
   display: flex;
   flex-direction: column;
-  background-color: var(--primary-2);; 
+  background-color: var(--primary-2);
   padding: 20px;
 }
 
 .footer__top img {
-  width: 150px; 
-  margin-right: 10px; 
+  width: 150px;
+  margin-right: 10px;
   border-radius: 100px;
 }
 
 .footer__top p {
-  color: #ffffff; 
-  margin: 0; 
+  color: #ffffff;
+  margin: 0;
 }
 
-
 .input-wrapper {
-  background-color:black;
+  background-color: black;
   position: relative;
   display: inline-block;
 }
-  
-  input {
-    background-color:black;
-    padding-right: 60px;
-    color:#ffffff;
-    border: none;
-  }
+
+input {
+  background-color: black;
+  padding-right: 60px;
+  color: #ffffff;
+  border: none;
+}
 
 .footer__bottom {
-  background-color:var(--primary-1);
-  color:#ffffff;
+  background-color: var(--primary-1);
+  color: #ffffff;
 }
 
 /* ======================= */
@@ -435,15 +416,14 @@ footer {
   background-color: #1e1d1d;
 }
 
-
 /* ======================= */
 /* ---------PAGES--------- */
 /* ======================= */
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
-  
 }
 .account {
   background-image: url(/images/slider2.jpg);
@@ -467,7 +447,7 @@ html, body {
 
 .login h2 {
   text-align: center;
-  color: #8B4513;
+  color: #8b4513;
 }
 
 .login form {
@@ -485,7 +465,7 @@ html, body {
   padding: 10px 0;
   font-size: 16px;
   border: none;
-  border-bottom: 2px solid #8B4513;
+  border-bottom: 2px solid #8b4513;
   outline: none;
   background: transparent;
 }
@@ -495,7 +475,7 @@ html, body {
   top: 0;
   left: 0;
   font-size: 16px;
-  color: #8B4513;
+  color: #8b4513;
   pointer-events: none;
   transition: 0.5s;
 }
@@ -504,7 +484,7 @@ html, body {
 .login .input__box input:valid ~ label {
   top: -20px;
   left: 0;
-  color: #8B4513;
+  color: #8b4513;
   font-size: 12px;
 }
 
@@ -513,12 +493,12 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #8B4513;
+  color: #8b4513;
   font-size: 14px;
 }
 
 .login .form__group a {
-  color: #8B4513;
+  color: #8b4513;
   text-decoration: none;
   transition: 0.5s;
 }
@@ -527,8 +507,8 @@ html, body {
   color: #000;
 }
 
-.beans{
-  position:absolute;
+.beans {
+  position: absolute;
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -537,86 +517,85 @@ html, body {
   align-items: center;
   z-index: 1001;
   pointer-events: none;
-
 }
 
-.beans .set{
+.beans .set {
   position: absolute;
   width: 100%;
   height: 100%;
-  top:0;
+  top: 0;
   left: 0;
   pointer-events: none;
 }
 
-.beans .set div{
+.beans .set div {
   position: absolute;
   display: block;
 }
 
-.beans .set div:nth-child(1){
-  left:20%;
+.beans .set div:nth-child(1) {
+  left: 20%;
   animation: animate 20s linear infinite;
 }
 
-.beans .set div:nth-child(2){
-  left:50%;
+.beans .set div:nth-child(2) {
+  left: 50%;
   animation: animate 14s linear infinite;
 }
 
-.beans .set div:nth-child(3){
-  left:70%;
+.beans .set div:nth-child(3) {
+  left: 70%;
   animation: animate 12s linear infinite;
 }
 
-.beans .set div:nth-child(4){
-  left:5%;
+.beans .set div:nth-child(4) {
+  left: 5%;
   animation: animate 15s linear infinite;
 }
 
-.beans .set div:nth-child(5){
-  left:85%;
+.beans .set div:nth-child(5) {
+  left: 85%;
   animation: animate 18s linear infinite;
 }
 
-.beans .set div:nth-child(6){
-  left:90%;
+.beans .set div:nth-child(6) {
+  left: 90%;
   animation: animate 12s linear infinite;
 }
 
-.beans .set div:nth-child(7){
-  left:15%;
+.beans .set div:nth-child(7) {
+  left: 15%;
   animation: animate 14s linear infinite;
 }
 
-.beans .set div:nth-child(8){
-  left:60%;
+.beans .set div:nth-child(8) {
+  left: 60%;
   animation: animate 15s linear infinite;
 }
 
 @keyframes animate {
-  0%{
+  0% {
     opacity: 0;
     top: -10%;
     transform: translateX(20px) rotate(0deg);
   }
-  10%{
+  10% {
     opacity: 1;
   }
-  20%{
+  20% {
     transform: translateX(-20%) rotate(45deg);
   }
-  40%{
+  40% {
     transform: translateX(-20%) rotate(90deg);
   }
-  60%{
+  60% {
     transform: translateX(-20%) rotate(180deg);
   }
-  80%{
+  80% {
     transform: translateX(-20%) rotate(45deg);
   }
-  100%{
-    top:110%;
+  100% {
+    top: 110%;
     transform: translateX(20%) rotate(225deg);
   }
 }
