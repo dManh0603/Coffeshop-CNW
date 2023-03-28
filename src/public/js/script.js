@@ -11,6 +11,7 @@ function scrollFunction() {
 
 // Cuộn trang về đầu trang
 function topFunction() {
+  console.log('clicked')
   document.body.scrollTop = 0; 
   document.documentElement.scrollTop = 0; 
 }
