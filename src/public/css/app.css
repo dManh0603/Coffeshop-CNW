@@ -21,6 +21,8 @@ a {
 /* @media screen and (min-width: 610px) and (max-width: 1000px) */
 
 
+
+
 :root {
   --primary-1: rgb(236, 196, 36);
   --primary-2: rgba(10, 0, 0, 0.9);
@@ -159,7 +161,27 @@ body {
   transform-origin: top;
 }
 
+.menu-btn button {
+  border: 1px solid var(--primary-1);
+  color: var(--primary-1);
+  background-color: transparent;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 20vh;
+}
 
+.menu-btn button.active {
+  background-color: var(--primary-1);
+  color: white;
+  border: none;
+  color: var(--primary-2);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 20vh;
+}
 /* ================ */
 /* ---Background--- */
 /* ================ */
@@ -167,12 +189,11 @@ body {
   background-color: var(--secondary);
 }
 
-
 /* ============ */
 /* ---navbar--- */
 /* ============ */
 .navbar{
-  height: 100px;
+  height: 80px;
   top: 0;
   left: 0;
   right: 0;
@@ -183,9 +204,7 @@ body {
 .selected {
   background-color: var(--primary-2);
   width: 30%;
-}
-
-
+} 
 
 
 /* ============ */
@@ -193,7 +212,7 @@ body {
 /* ============ */
 .carousel {
   position: relative;
-  margin-top:100px;
+  margin-top:80px;
 }
 
 .carousel-inner {
@@ -250,7 +269,6 @@ body {
 }
 
 
-
 .carousel image {
   width: 100%;
   height: auto;
@@ -293,6 +311,7 @@ body {
 /* ================== */
 /* -------Menu------- */
 /* ================== */
+
 .menushop {
   max-height: 600px;
 }
@@ -304,49 +323,45 @@ body {
 .menushop img {
   object-fit: cover;
   height: 600px;
-}
+} */
 
-@media screen and (max-width: 699px) {
-  .menushop {
-    max-height: 700px;
+/* Thanh cuộn dọc */
+  .menushop__coffee--content {
+    overflow-y: scroll;
+    height: 400px;
   }
   
-  .menushop .menushop__coffee {
-    height: 700px;
+  .menushop__coffee--content::-webkit-scrollbar {
+    width: 10px;
+    background-color: transparent;
   }
   
-  .menushop img {
-    object-fit: cover;
-    height: 700px;
-  }
-}
-
-@media screen and (min-width: 700px) and (max-width: 769px){
-  .menushop {
-    max-height: 850px;
-  }
-  
-  .menushop .menushop__coffee {
-    height: 850px;
-  }
-  
-  .menushop img {
-    object-fit: cover;
-    height: 850px;
+  .menushop__coffee--content::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 999px;
   }
 
-}
+
 
 /* ======================= */
 /* ---Our Special thing--- */
 /* ======================= */
-@media (max-width: 1000px) {
+
   .ourspecial__content__description {
     overflow-y: scroll;
     height: 100px;
   }
-}
-
+  .ourspecial__content__description::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+  }
+  
+  .ourspecial__content__description::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background-color: rgb(241, 220, 196);
+  }
+  
 
 
 /* ========================= */
@@ -466,11 +481,11 @@ footer {
   bottom: 30px;
   right: 20px;
   z-index: 99;
-  font-size: 10px;
+  font-size: 15px;
   border: none;
   outline: none;
-  background-color: #a7a0a041;
-  color: white;
+  background-color: #a7a0a060;
+  color: var(--primary-1);
   cursor: pointer;
   padding: 15px;
   border-radius: 10px;
@@ -484,12 +499,7 @@ footer {
 /* ======================= */
 /* ---------PAGES--------- */
 /* ======================= */
-/* html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  
-} */
+
 .account {
   background-image: url(https://lh3.googleusercontent.com/pw/AMWts8Ao2p2c_uPrgWCOVPqUfu6EbmWrIpBmdt3JBC0Fo0DBPizDHPY29j-tt-dP8PNsba7mLNcPSWS1jjNTdjrBP7P3iQHtiG2h2w33064YP_U2KJKDWBZBl0e0WmV2wITa74YXpNSRvzjdQC814xQ25CYA=w1341-h893-s-no?authuser=0);
   background-repeat: no-repeat;
@@ -655,4 +665,8 @@ footer {
     top:110%;
     transform: translateX(20%) rotate(225deg);
   }
-}
+} 
+
+
+
+

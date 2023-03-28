@@ -1,3 +1,80 @@
+// =====================//
+// ---scrollToTopBtn---//
+// ====================//
+// Khi người dùng cuộn trang, kiểm tra vị trí và hiển thị nút khi cần thiết
+
+
+// window.onscroll = function() {scrollFunction()};
+
+// function scrollFunction() {
+//   if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+//     document.getElementById("scrollToTopBtn").style.display = "block";
+//   } else {
+//     document.getElementById("scrollToTopBtn").style.display = "none";
+//   }
+// }
+
+// Cuộn trang về đầu trang
+// function topFunction() {
+//   console.log('clicked')
+//   document.body.scrollTop = 0; 
+//   document.documentElement.scrollTop = 0; 
+// }
+
+// ===================//
+// -------BgNav-------//
+// ==================//
+
+// Lấy phần tử nút navbar-toggler và danh sách các nav-link
+// const navbarToggler = document.querySelector(".navbar-toggler");
+// const navLinks = document.querySelectorAll(".nav-link");
+
+// Thêm sự kiện click vào nút navbar-toggler
+// navbarToggler.addEventListener("click", function() {
+    // Thêm lớp "selected" cho các nav-link được chọn
+//     navLinks.forEach(function(navLink) {
+//         navLink.classList.toggle("selected");
+//     });
+// });
+
+
+// ===================//
+// -------MENU-------//
+// ==================//
+// const menuBtns = document.querySelectorAll('.menu-btn button');
+// Lấy tất cả nội dung
+// const menuContents = document.querySelectorAll('.menushop__coffee--content > div');
+
+// Ẩn mọi nội dung, trừ nút 2
+// menuContents.forEach((menuContent, index) => {
+//     if (index !== 1) {
+//         menuContent.style.display = 'none';
+//     }
+// });
+
+// Thiết lập thao tác cho mỗi nút
+// menuBtns.forEach((menuBtn, index) => {
+    // menuBtn.addEventListener('click', () => {
+        // Ẩn tất cả nội dung
+        // menuContents.forEach((menuContent) => {
+            // menuContent.style.display = 'none';
+        // });
+
+        // Hiển thị nội dung tương ứng với nút được chọn
+        // menuContents[index].style.display = 'block';
+
+        // Xóa active khỏi tất cả các nút
+        // menuBtns.forEach((menuBtn) => {
+            // menuBtn.classList.remove('active');
+        // });
+        // Thêm active vào nút đã được chọn
+        // menuBtn.classList.add('active');
+    // });
+// });
+
+
+
+
 // Khi người dùng cuộn trang, kiểm tra vị trí và hiển thị nút khi cần thiết
 window.onscroll = function() {scrollFunction()};
 
@@ -9,12 +86,13 @@ function scrollFunction() {
   }
 }
 
-// Cuộn trang về đầu trang
+// Khi người dùng nhấp vào nút, cuộn trang về đầu trang
 function topFunction() {
-  console.log('clicked')
-  document.body.scrollTop = 0; 
-  document.documentElement.scrollTop = 0; 
+  document.body.scrollTop = 0; // For Safari
+  document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+
+
 
 // Lấy phần tử nút navbar-toggler và danh sách các nav-link
 const navbarToggler = document.querySelector(".navbar-toggler");
@@ -28,4 +106,37 @@ navbarToggler.addEventListener("click", function() {
     });
 });
 
+// ===================//
+// -------MENU-------//
+// ==================//
+const menuBtns = document.querySelectorAll('.menu-btn button');
+// Lấy tất cả các nội dung
+const menuContents = document.querySelectorAll('.menushop__coffee--content > div');
 
+// Ẩn tất cả nội dung, ngoại trừ nội dung đầu tiên
+menuContents.forEach((menuContent, index) => {
+    if (index !== 1) {
+        menuContent.style.display = 'none';
+    }
+});
+
+// Thiết lập sự kiện cho mỗi nút
+menuBtns.forEach((menuBtn, index) => {
+    menuBtn.addEventListener('click', () => {
+        // Ẩn tất cả nội dung
+        menuContents.forEach((menuContent) => {
+            menuContent.style.display = 'none';
+        });
+
+        // Hiển thị nội dung tương ứng với nút được nhấn
+        menuContents[index].style.display = 'block';
+
+        // Xóa lớp active khỏi tất cả các nút
+        menuBtns.forEach((menuBtn) => {
+            menuBtn.classList.remove('active');
+        });
+
+        // Thêm lớp active vào nút đã được nhấn
+        menuBtn.classList.add('active');
+    });
+});
