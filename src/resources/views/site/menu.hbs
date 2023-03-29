@@ -11,10 +11,30 @@
                     <h5 class="card-title">
                         {{this.name}}</h5>
                     <p class="card-text">{{this.description}}</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <div class="row">
+                        <div class="col">
+                            {{this.price}} đ
+                        </div>
+                        <div class="col">
+                            <a href="/cart/add/{{this.slug}}" class="btn btn-primary addToCardBtn">Thêm vào giỏ hàng</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         {{/each}}
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        const $addToCartBtn = $('.addToCardBtn');
+        $addToCartBtn.click(function (e) {
+            e.preventDefault();
+            const $clickedBtn = $(e.target).closest('a');
+            const url = $clickedBtn.attr('href');
+            console.log(url);
+        })
+    })
+
+</script>

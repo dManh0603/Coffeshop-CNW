@@ -17,6 +17,7 @@ class SiteController {
         Product.find({})
             .then(products => {
                 res.render('site/menu', {
+                    layout:'blank',
                     title: 'Menu page',
                     products: multipleMongooseToObject(products),
                 });

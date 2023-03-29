@@ -1,10 +1,19 @@
-<div class="mt-4">
-    <div class="row">
-        <div class="col-lg-3">
-            what's up about {{product.name}}
-        </div>
-        <div class="col-lg-9">
-            Write some thing about you today ...
+<div class="row mt-4">
+    <div class="col">
+        <div class="card mt-2">
+            <a href="/products/{{product.slug}}">
+                <img src="{{getImage product.imageId}}" class="card-img-top" alt="...">
+            </a>
+            <div class="card-body">
+                <h5 class="card-title">
+                    {{product.name}}</h5>
+                <p class="card-text">{{product.description}}</p>
+            </div>
         </div>
     </div>
+    <div class="col">
+        something here
+    </div>
+
+
 </div>
