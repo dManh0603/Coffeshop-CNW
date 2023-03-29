@@ -24,5 +24,9 @@ module.exports = {
         <i class="fa-solid ${icon} ms-2"></i>
       </a>`
     return new Handlebars.SafeString(output);
+  },
+  
+  getImage: (imageId) => {
+    return `https://drive.google.com/uc?id=${imageId}&export=download`
   }
 }

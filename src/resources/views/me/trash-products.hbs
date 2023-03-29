@@ -26,7 +26,7 @@
                 <td>
                     <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Khôi phục</a>
                     <a href="" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#delete-product-modal"
-                        data-bs-id="{{this._id}}">Xóa vĩnh viễn</a>
+                        data-id="{{this._id}}">Xóa vĩnh viễn</a>
                 </td>
             </tr>
 
@@ -74,7 +74,7 @@
             // Button that triggered the modal
             const button = $(event.relatedTarget);
             // Extract info from data-bs-* attributes
-            productId = button.data('bs-id');
+            productId = button.data('id');
         });
 
         // When confirmed the delete
