@@ -1,0 +1,67 @@
+.icon-hover:hover {
+  border-color: #3b71ca !important;
+  background-color: white !important;
+  color: #3b71ca !important;
+}
+
+.icon-hover:hover i {
+  color: #3b71ca !important;
+}
+
+.toppings {
+  display: flex;
+  /* flex-direction: column; */
+  flex-wrap: wrap;
+}
+
+.topping {
+  border: 1px solid gray;
+  margin: 16px;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.purchase {
+  text-align: center;
+  width: 100%;
+  border: 2px solid gray;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.purchase:hover {
+  background-color: rgb(187, 90, 0);
+  transition: all 0.2s ease-in-out;
+}
+.purchase:hover a {
+  color: white;
+  transition: all 0.2s ease-in-out;
+}
+
+.topping.active {
+  background-color: rgb(187, 90, 0);
+  color: white;
+}
+
+.title {
+  font-size: larger;
+  font-weight: 600;
+}
+
+.similar-products {
+  cursor: pointer;
+}
+
+.container .card img {
+  border-radius: 0;
+  border: none;
+  padding: 4px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
