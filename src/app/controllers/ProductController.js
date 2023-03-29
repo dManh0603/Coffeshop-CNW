@@ -1,6 +1,7 @@
 const Product = require('../models/Product');
 const { mongooseToObject } = require('../../util/mongoose');
 
+
 class ProductController {
 
     // [GET] /products/:slug
