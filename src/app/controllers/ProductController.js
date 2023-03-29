@@ -6,7 +6,6 @@ class ProductController {
 
     // [GET] /products/:slug
     show(req, res) {
-
         Product.findOne({ slug: req.params.slug })
             .then(product => {
                 res.render('products/show', { product: mongooseToObject(product) });

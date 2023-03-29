@@ -2,20 +2,6 @@ const Product = require('../models/Product');
 const { multipleMongooseToObject, } = require('../../util/mongoose');
 class SiteController {
 
-    // [GET] /
-    index(req, res, next) {
-        Product.find({})
-            .then(products => {
-                res.render('site/home', {
-                    title: 'Home page',
-                    products: multipleMongooseToObject(products),
-                });
-            })
-            .catch(e => {
-                next(e);
-            })
-    }
-
     // [GET] /search
     search(req, res) {
         res.render('site/search');
@@ -25,16 +11,25 @@ class SiteController {
     contact(req, res) {
         res.render('site/contact');
     }
-   
-     // [GET] /menu
+
+    // [GET] /menu
     menu(req, res) {
-        res.render('site/menu');
+        Product.find({})
+            .then(products => {
+                res.render('site/menu', {
+                    title: 'Menu page',
+                    products: multipleMongooseToObject(products),
+                });
+            })
+            .catch(e => {
+                next(e);
+            })
     }
-     // [GET] /about
+    // [GET] /about
     about(req, res) {
         res.render('site/about');
     }
-     // [GET] /signin
+    // [GET] /signin
     signin(req, res) {
         res.render('site/signin');
     }
