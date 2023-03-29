@@ -1,20 +1,19 @@
-.icon-hover:hover {
+.product_detail .icon-hover:hover {
   border-color: #3b71ca !important;
   background-color: white !important;
   color: #3b71ca !important;
 }
 
-.icon-hover:hover i {
+.product_detail .icon-hover:hover i {
   color: #3b71ca !important;
 }
 
-.toppings {
+.product_detail .toppings {
   display: flex;
-  /* flex-direction: column; */
   flex-wrap: wrap;
 }
 
-.topping {
+.product_detail .topping {
   border: 1px solid gray;
   margin: 16px;
   border-radius: 8px;
@@ -24,7 +23,7 @@
   cursor: pointer;
 }
 
-.purchase {
+.product_detail .purchase {
   text-align: center;
   width: 100%;
   border: 2px solid gray;
@@ -46,7 +45,7 @@
   color: white;
 }
 
-.title {
+.product_detail .title {
   font-size: larger;
   font-weight: 600;
 }
@@ -61,7 +60,11 @@
   padding: 4px;
 }
 
-a {
+.relevant_product a {
   text-decoration: none;
   color: black;
+}
+
+.relevant_product a:hover {
+  scale: 1;
 }
