@@ -1,0 +1,70 @@
+.product_detail .icon-hover:hover {
+  border-color: #3b71ca !important;
+  background-color: white !important;
+  color: #3b71ca !important;
+}
+
+.product_detail .icon-hover:hover i {
+  color: #3b71ca !important;
+}
+
+.product_detail .toppings {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.product_detail .topping {
+  border: 1px solid gray;
+  margin: 16px;
+  border-radius: 8px;
+  padding: 8px;
+  text-align: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.product_detail .purchase {
+  text-align: center;
+  width: 100%;
+  border: 2px solid gray;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.purchase:hover {
+  background-color: rgb(187, 90, 0);
+  transition: all 0.2s ease-in-out;
+}
+.purchase:hover a {
+  color: white;
+  transition: all 0.2s ease-in-out;
+}
+
+.topping.active {
+  background-color: rgb(187, 90, 0);
+  color: white;
+}
+
+.product_detail .title {
+  font-size: larger;
+  font-weight: 600;
+}
+
+.similar-products {
+  cursor: pointer;
+}
+
+.container .card img {
+  border-radius: 0;
+  border: none;
+  padding: 4px;
+}
+
+.relevant_product a {
+  text-decoration: none;
+  color: black;
+}
+
+.relevant_product a:hover {
+  scale: 1;
+}
