@@ -19,24 +19,35 @@
                         <h2>Sign-up</h2>
                         <form class="login__form">
                             <div class="login__form-group">
-                                <input type="tel" id="phone" placeholder="Phone" pattern="[0-9]{10}" required>
+                                <input type="tel" id="phone" pattern="[0-9]{10}" required>
+                                <label for="phone">Phone</label>
                             </div>
                             <div class="login__form-group">
-                                <input type="text" id="name" placeholder="Username" required>
+                                <input type="text" id="user_name" required>
+                                <label for="phone">Username</label>
                             </div>
                             <div class="login__form-group">
-                                <input type="password" id="password" placeholder="Password" minlength="8" required>
+                                <input type="text" id="first_name" required>
+                                <label for="phone">First_name</label>
                             </div>
                             <div class="login__form-group">
-                                <input type="password" id="confirm_password" placeholder="Confirm_password"
-                                    minlength="8" required>
+                                <input type="text" id="last_name" required>
+                                <label for="phone">Last_name</label>
+                            </div>
+                            <div class="login__form-group">
+                                <input type="password" id="password" minlength="8" required>
+                                <label for="phone">Password</label>
+                            </div>
+                            <div class="login__form-group">
+                                <input type="password" id="confirm_password" minlength="8" required>
+                                <label for="phone">Confirm_password</label>
                             </div>
                             <div class="login__form-group">
                                 <button type="submit" class="btn5 btn5-full">Sign-up</button>
                             </div>
                             <div class="login__form-next">
-                                <a href="#">Sign-in</a>
-                                <i class="fa-solid fa-house"></i>
+                                <a href="/signin">Sign-in</a>
+                                <a href="/home"><i class="fa-solid fa-house"></i></a>
                             </div>
                         </form>
                     </div>
