@@ -7,6 +7,10 @@ const slug = require('mongoose-slug-generator');
 const ProductSchema = new Schema({
     id: Number,
     name: { type: String, maxLength: 600, },
+    description: { type: String },
+    price: { type: Number },
+    isPublished: { type: String, maxLength: 8, },
+    imageId: { type: String, unique: true },
     slug: { type: String, slug: 'name', unique: true, },
 }, {
     _id: false,

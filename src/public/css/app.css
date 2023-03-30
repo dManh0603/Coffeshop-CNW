@@ -13,7 +13,7 @@ a {
   text-decoration: none !important
 }
 
-.checkbox-select-all-options{
+.checkbox-select-all-options {
   max-width: 33.33vw;
   margin: 0 16px
 } */
@@ -30,6 +30,10 @@ a {
   --primary-4: rgb(240, 142, 56);
   --secondary: rgb(245, 238, 230);
   
+}
+
+.page_body {
+  margin-top: 100px;
 }
 
 body {
@@ -221,7 +225,6 @@ body {
   width: 22vh;
   height: 25vh;
   border: none;
-  border-radius: 0;
   background-color: var(--primary-2);
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
