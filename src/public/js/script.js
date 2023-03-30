@@ -1,5 +1,19 @@
+// =====================//
+// ---Navbar Active---//
+// ====================//
+// Lấy đường dẫn của trang hiện thời
+var path = window.location.pathname;
 
-
+// Tìm các phần tử nav-link và thêm 'active' vào phần tử tương ứng với đường dẫn hiện tại
+var navbarLinks = document.querySelectorAll(".nav-link");
+for (var i = 0; i < navbarLinks.length; i++) {
+  var href = navbarLinks[i].getAttribute("href");
+  if (href === path) {
+    navbarLinks[i].classList.add("active");
+  } else {
+    navbarLinks[i].classList.remove("active");
+  }
+}
 
 // =====================//
 // ---scrollToTopBtn---//
