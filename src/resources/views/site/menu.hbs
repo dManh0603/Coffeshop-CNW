@@ -64,9 +64,16 @@
                 success: function (response) {
                     // Generate the HTML for each product
                     var productsHtml = "";
-                    for (var i = 0; i < response.products.length; i++) {
-                        var product = response.products[i];
-                        var productHtml = `
+                    if (response.products.length === 0) {
+                        productsHtml = `
+                            <div class="col-sm-6 col-lg-4">
+                                <h1>No product found</h1>
+                            </div>
+                        `
+                    } else {
+                        for (var i = 0; i < response.products.length; i++) {
+                            var product = response.products[i];
+                            var productHtml = `
                                 <div class="col-sm-6 col-lg-4">
                                     <div class="card mt-2">
                                     <a href="/products/${product.slug}">
@@ -84,7 +91,8 @@
                                     </div>
                                     </div>
                                 </div>
-                                `;
+                            `;
+                        }
                         productsHtml += productHtml;
                     }
 
