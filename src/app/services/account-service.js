@@ -1,4 +1,4 @@
-const AccountDocument = require("../models/account-document");
+const AccountDocument = require("../models/Account");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
