@@ -98,10 +98,10 @@
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 40px;
-  transform: translateX(-40px);
+  transform: translateX(-60px);
   font-size: 1.3em;
   position: fixed;
-  top: 50%;
+  top: 40%;
 }
 
 .menu_left > ul li a {
@@ -176,6 +176,15 @@
     align-items: center;
     justify-content: center;
   }
+  .sidebar_menu .menu_list {
+    display: none;
+  }
+  .sidebar_menu .menu_selector {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 767px) and (max-width: 991px) {
   .sidebar_menu .menu_list {
     display: none;
   }
