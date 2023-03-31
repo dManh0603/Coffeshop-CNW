@@ -76,3 +76,9 @@
   console.log(url); }) })
 
 </script>
+<script>
+  let category = document.querySelectorAll(".category");
+  category.forEach((element) => { element.addEventListener("click", function ()
+  { category.forEach((e) => e.classList.remove("active"));
+  this.classList.add("active"); }); });
+</script>
