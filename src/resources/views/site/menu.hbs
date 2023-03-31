@@ -1,8 +1,45 @@
 <link rel="stylesheet" href="/css/menu.css" />
-<div class="menu_container">
-  <h1 class="menu_title pt-5 text-center">Danh mục sản phẩm</h1>
-  <div class="menu_body">
-    <div class="row">
+<div class="menu_container py-5">
+  <h1 class="menu_title py-4 text-center">Danh mục sản phẩm</h1>
+  <div class="menu_row row">
+    <div class="menu_left col-lg-3 col-md-3 col-sm-12 col-xs-12 stikySidebar">
+      <aside class="sidebar_menu">
+        <ul class="menu_list">
+          <li>
+            <i class="icon"></i><a
+              href="#"
+              class="category active text-decoration-none"
+            > Tất cả </a>
+          </li>
+          <li>
+            <i class="icon"></i><a
+              href="#"
+              class="category text-decoration-none"
+            >
+              Cà Phê Việt Nam
+            </a>
+          </li>
+          <li>
+            <i class="icon"></i><a
+              href="#"
+              class="category text-decoration-none"
+            > Cà Phê Máy </a>
+          </li>
+          <li>
+            <i class="icon"></i><a
+              href="#"
+              class="category text-decoration-none"
+            > Tất cả </a>
+          </li>
+        </ul>
+        <select class="menu_selector">
+          <option value="null">Tất cả</option>
+          <option value="null">Cà Phê Việt Nam</option>
+          <option value="null">Cà Phê Máy</option>
+        </select>
+      </aside>
+    </div>
+    <div class="menu_right col-lg-9 col-md-9 col-sm-12 col-xs-12 row">
       {{#each products}}
         <div class="menu_item col-sm-12 col-md-6 col-lg-4">
           <div class="card mt-5">
