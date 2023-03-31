@@ -16,7 +16,7 @@
                             {{this.price}} đ
                         </div>
                         <div class="col">
-                            <a href="/cart/add/{{this.slug}}" class="btn btn-primary addToCardBtn">Thêm vào giỏ hàng</a>
+                            <a href="/cart/add/{{this.slug}}" data-slug="{{this.slug}}" class="btn btn-primary addToCardBtn">Thêm vào giỏ hàng</a>
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,18 @@
             e.preventDefault();
             const $clickedBtn = $(e.target).closest('a');
             const url = $clickedBtn.attr('href');
-            console.log(url);
+            const data = {
+                slug: $clickedBtn.data('slug')
+            };
+            fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+                .then(response => response.json())
+                .then(data => console.log('console:', data))
+                .catch(error => console.error(error));
+
         })
     })
 
