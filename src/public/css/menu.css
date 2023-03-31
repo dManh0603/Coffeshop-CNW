@@ -25,21 +25,32 @@
 
 .menu_item:hover .addToCartBtn {
   transform: translateY(0);
-  display: block;
 }
-.card-item-top {
-  height: 80px;
-  scale: 1;
+.menu_item:hover .item_title {
+  transform: translateY(0);
+}
+
+.menu_item:hover .item_price {
+  transform: translateY(0);
+}
+.card-img-top {
+  padding: 8px;
   transition: all 0.2s ease-in-out;
   overflow: hidden;
 }
 
-.menu_item:hover .card-item-top {
-  scale: 1.1;
+.menu_item:hover .card-img-top {
+  padding: 0;
 }
 
 .card-body {
   overflow: hidden;
+}
+
+.item_title,
+.item_price {
+  transform: translateY(50px);
+  transition: all 0.3s ease-in-out;
 }
 
 .addToCartBtn {
@@ -52,7 +63,6 @@
   padding: 4px;
   transform: translateY(50px);
   transition: all 0.2s ease-in;
-  display: none;
 }
 
 .addToCartBtn:hover {
