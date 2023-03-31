@@ -17,6 +17,9 @@ const ProductSchema = new Schema({
     timestamps: true,
 });
 
+// Add text index on the name field
+ProductSchema.index({ name: 'text' });
+
 // Custom query helpers
 ProductSchema.query.sortable = function (req) {
     if (req.query.hasOwnProperty('_sort')) {

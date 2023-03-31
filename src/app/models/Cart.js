@@ -29,4 +29,4 @@ const cartSchema = new mongoose.Schema({
 
 cartSchema.plugin(AutoIncrement, {inc_field: 'cart_id'});
 
-module.exports = mongoose.model('Cart', cartSchema);
+module.exports = mongoose.model('Cart', cartSchema); 
