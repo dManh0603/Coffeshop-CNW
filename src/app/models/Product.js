@@ -32,7 +32,7 @@ ProductSchema.query.sortable = function (req) {
 mongoose.plugin(slug);
 
 //Add plugin for Course models
-ProductSchema.plugin(AutoIncrement);
+ProductSchema.plugin(AutoIncrement, {inc_field: 'product_id'});
 ProductSchema.plugin(mongooseDelete, {
     overrideMethods: 'all',
     deletedAt: true,
