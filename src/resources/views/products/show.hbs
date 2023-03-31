@@ -1,19 +1,88 @@
-<div class="row mt-4">
-    <div class="col">
-        <div class="card mt-2">
-            <a href="/products/{{product.slug}}">
-                <img src="{{getImage product.imageId}}" class="card-img-top" alt="...">
-            </a>
-            <div class="card-body">
-                <h5 class="card-title">
-                    {{product.name}}</h5>
-                <p class="card-text">{{product.description}}</p>
+ <link rel="stylesheet" href="/css/product_detail.css">
+ <section class="product_detail py-5">
+      <div class="container">
+        <div class="row gx-5">
+          <aside class="col-lg-6">
+            <div class="border rounded-4 mb-3 d-flex justify-content-center">
+                <img
+                  style="max-width: 100%; max-height: 100vh; margin: auto"
+                  class="rounded-4 fit"
+                  src="{{getImage product.imageId}}"
+                />
+              </a>
             </div>
+           
+            <!-- thumbs-wrap.// -->
+            <!-- gallery-wrap .end// -->
+          </aside>
+          <main class="col-lg-6">
+            <div class="ps-lg-3">
+              <h4 class="title text-dark pb-3">
+                {{product.name}}
+              </h4>
+
+              <div class="mb-3">
+                <span class="h5">{{product.price}} Đ</span>
+                <span class="text-muted">/cốc</span>
+              </div>
+
+              <p>
+               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Error doloribus eligendi provident veritatis nulla autem ducimus dolore molestiae odit quo aperiam officia, iste asperiores officiis laudantium beatae sed maiores in.
+              </p>
+
+              <div class="row">
+                <dt class="col-3">Loại:</dt>
+                <dd class="col-9">Cà Phê</dd>
+
+                <dt class="col-3">Xuất xứ:</dt>
+                <dd class="col-9">Việt Nam</dd>
+
+                <dt class="col-3">Nguyên liệu: </dt>
+                <dd class="col-9">Cafe, Sữa, Đá</dd>
+
+              </div>
+
+              <hr />
+
+              <div class="row mb-4">
+                <div class="col-md-4 col-12 pb-3">
+                  <label class="mb-2 fw-bolder">Chọn Size</label>
+                  <select
+                    class="form-select border border-secondary"
+                    style="height: 35px"
+                  >
+                    <option>Nhỏ (S)</option>
+                    <option>Vừa (M)</option>
+                    <option>Lớn (L)</option>
+                  </select>
+                </div>
+                <!-- col.// -->
+                <div class="toppings col-md-12 col-12 mb-3 row-cols-3">
+                  <label class="col-12 mb-2 d-block fw-bolder ">Chọn Topping</label>
+            <div class="topping"> Kem Phô Mai Macchiato</div>
+            <div class="topping"> Shot Espresso</div>
+            <div class="topping"> Trân châu trắng</div>
+            <div class="topping"> Sốt Caramel</div>
+            <div class="topping"> Thạch Cà Phê</div>
+                </div>
+              </div>
+              <div class="purchase">
+              <a href="#" class="btn shadow-1">
+                <i class="me-1 fa fa-shopping-basket"></i> Mua hàng
+              </a>
+              </div>
+            </div>
+          </main>
         </div>
-    </div>
-    <div class="col">
-        something here
-    </div>
+      </div>
+    </section>
 
-
-</div>
+        <script>
+      let topping = document.querySelectorAll(".topping");
+      topping.forEach((element) => {
+        element.addEventListener("click", function () {
+          this.classList.toggle("active");
+        });
+      });
+   
+    </script>
