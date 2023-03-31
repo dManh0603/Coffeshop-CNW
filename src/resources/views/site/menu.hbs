@@ -1,6 +1,6 @@
 <h1 class="pt-5 text-center">MENU</h1>
 <div class="menu_body mt-4">
-  <div class="row">
+  <div class="row p-sm-5 p-md-10">
     {{#each products}}
       <div class="menu_item col-sm-6 col-lg-3">
         <div class="card mt-5">
@@ -12,20 +12,18 @@
             />
           </a>
           <div class="card-body">
-            <h5 class="card-title">
+            <h5 class="item_title">
               {{this.name}}</h5>
             <p class="card-text d-none">{{this.description}}</p>
+            <p class="item_price">
+              {{this.price}}
+              đ
+            </p>
             <div class="row">
-              <div class="col">
-                {{this.price}}
-                đ
-              </div>
-              <div class="col">
-                <a
-                  href="/cart/add/{{this.slug}}"
-                  class="btn btn-primary addToCardBtn"
-                >Thêm vào giỏ hàng</a>
-              </div>
+              <a
+                href="/cart/add/{{this.slug}}"
+                class="btn btn-primary addToCardBtn"
+              >Thêm vào giỏ hàng</a>
             </div>
           </div>
         </div>
