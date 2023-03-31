@@ -8,6 +8,7 @@
 
 .menu_container {
   background-color: var(--secondary);
+  text-align: center;
 }
 .menu_title {
   color: var(--primary-3);
@@ -18,18 +19,21 @@
   padding: 0 15vw;
 }
 
+.menu_item {
+  transition: all 0.2s ease-in-out;
+}
+
 .menu_item:hover .addToCartBtn {
   transform: translateY(0);
+  display: block;
 }
 .card-item-top {
+  height: 80px;
   scale: 1;
   transition: all 0.2s ease-in-out;
   overflow: hidden;
 }
 
-.menu_item:hover .addToCartBtn {
-  transform: translateY(0);
-}
 .menu_item:hover .card-item-top {
   scale: 1.1;
 }
@@ -48,6 +52,7 @@
   padding: 4px;
   transform: translateY(50px);
   transition: all 0.2s ease-in;
+  display: none;
 }
 
 .addToCartBtn:hover {
