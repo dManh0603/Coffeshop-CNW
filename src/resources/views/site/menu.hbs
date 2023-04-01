@@ -28,10 +28,9 @@
                                     {{this.price}} đ
                                 </div>
                                 <div class="col">
-                                    <a data-slug="{{this.slug}}"
-                                        class="btn btn-primary addToCardBtn">
-                                Thêm vào giỏ hàng
-                            </a>
+                                    <a data-slug="{{this.slug}}" class="btn btn-primary addToCardBtn">
+                                        Thêm vào giỏ hàng
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -48,8 +47,7 @@
 <script>
     $(document).ready(function () {
         const $addToCartBtn = $('.addToCardBtn');
-        const $cartIcon = $('.fa-cart-shopping')
-
+        const $cartIcon = $('.fa-cart-shopping');
         const $searchForm = $('#search-form');
 
         // Search function
@@ -134,7 +132,7 @@
                     console.error(error);
                 }
             });
+        })
 
     })
-
 </script>
