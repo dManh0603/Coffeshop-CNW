@@ -16,7 +16,8 @@
                             {{this.price}} đ
                         </div>
                         <div class="col">
-                            <a href="/cart/add/{{this.slug}}" data-slug="{{this.slug}}" class="btn btn-primary addToCardBtn">Thêm vào giỏ hàng</a>
+                            <a href="/cart/add/{{this.slug}}" data-slug="{{this.slug}}"
+                                class="btn btn-primary addToCardBtn">Thêm vào giỏ hàng</a>
                         </div>
                     </div>
                 </div>
@@ -31,19 +32,25 @@
         const $addToCartBtn = $('.addToCardBtn');
         $addToCartBtn.click(function (e) {
             e.preventDefault();
-            const $clickedBtn = $(e.target).closest('a');
+            const $clickedBtn = $(this);
+            const slug = $clickedBtn.data('slug');
             const url = $clickedBtn.attr('href');
             const data = {
-                slug: $clickedBtn.data('slug')
+                slug
             };
-            fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(data)
-            })
-                .then(response => response.json())
-                .then(data => console.log('console:', data))
-                .catch(error => console.error(error));
+            $.ajax({
+                url: '/cart/add/' + slug,
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: function (response) {
+                    console.log('console:', response);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
 
         })
     })
