@@ -31,7 +31,7 @@
                     </td>
                     <td>{{this.totalCost}}</td>
                     <td>
-                        <a class="btn btn-outline-danger btn-sm">Delete</a>
+                        <a class="btn btn-outline-danger btn-sm delete-btn" data-slug="{{this.slug}}">Delete</a>
                     </td>
                 </tr>
                 {{/each}}
@@ -48,6 +48,8 @@
 
 <script>
     $(document).ready(function () {
+
+        // On add item on session
         $('.item-quantity').change(function () {
             // Get the productSlug and new quantity from the input field
             const productSlug = $(this).data('slug');
@@ -68,6 +70,33 @@
                 },
                 error: function (xhr, status, error) {
                     console.error(error);
+                }
+            });
+        });
+
+
+        // On delete item in session
+        $(".delete-btn").on("click", function (e) {
+            e.preventDefault();
+            const slug = $(this).data("slug");
+            const $tr = $(this).closest("tr");
+            // Send a DELETE request to the server with the slug data
+            $.ajax({
+                url: "/cart/delete/" + slug,
+                type: "DELETE",
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    $('#cart-counter').text(response.currentQuantity);
+                    $tr.remove();
+                    // Check if there are any rows left in the table
+                    if ($('.table tbody tr').length === 0) {
+                        $('.card-body').html('<p class="text-muted text-center p-5">There are no item in the cart</p>');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    // Handle error
                 }
             });
         });

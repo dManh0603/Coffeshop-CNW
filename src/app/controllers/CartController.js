@@ -88,6 +88,34 @@ class CartController {
             currentQuantity
         })
     }
+
+    // [DELETE] /cart/delete/:slug
+    deleteItem(req, res, next) {
+        try {
+            const slug = req.params.slug;
+            const cart = req.session.cart;
+            console.log('1',slug);
+            for (let i = 0; i < cart.length; i++) {
+                if (cart[i].productSlug == slug) {
+                    cart.splice(i, 1);
+                    break;
+                }
+            }
+            console.log('2',cart)
+            
+            // Save the updated session object
+            req.session.save(() => {
+                const currentQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
+                res.json({
+                    success: true,
+                    currentQuantity
+                });
+            });
+        } catch (error) {
+            res.error(error);
+        }
+    }
+
 }
 
 
