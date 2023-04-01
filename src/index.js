@@ -3,7 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars');
 const methodOverride = require('method-override');
-const sortMiddleware = require('./app/middlewares/sortMiddleware');
+const sortMiddleware = require('./app/middlewares/sort');
 const session = require('express-session');
 const { v4: uuidv4 } = require('uuid');
 

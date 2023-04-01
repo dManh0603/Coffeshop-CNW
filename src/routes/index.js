@@ -1,8 +1,8 @@
-const meRouter = require('./me');
-const productsRouter = require('./product');
-const siteRouter = require('./site');
-const cartRouter = require('./cart')
-const authRoute = require("./authRoute");
+const meRouter = require('./MeRouter');
+const productsRouter = require('./ProductRouter');
+const siteRouter = require('./SiteRouter');
+const cartRouter = require('./CartRouter')
+const authRoute = require("./AuthRouter");
 
 function route(app) {
     // Router

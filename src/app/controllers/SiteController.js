@@ -15,9 +15,20 @@ class SiteController {
       });
   }
 
-  // [GET] /search
+  // [GET] /search?q=
   search(req, res) {
-    res.render("site/search");
+    Product.find({ $text: { $search: req.query.q } })
+      .then((products) => {
+        res.json({
+          success: true,
+          msg: "Search results",
+          products: multipleMongooseToObject(products),
+        });
+      })
+      .catch((e) => {
+        console.error(e);
+        next(e);
+      });
   }
 
   // [GET] /contact

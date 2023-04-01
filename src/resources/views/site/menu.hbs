@@ -1,30 +1,47 @@
 <h1>MENU</h1>
 <div class="mt-4">
     <div class="row">
-        {{#each products}}
-        <div class="col-sm-6 col-lg-4">
-            <div class="card mt-2">
-                <a href="/products/{{this.slug}}">
-                    <img src="{{getImage this.imageId}}" class="card-img-top" alt="...">
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title">
-                        {{this.name}}</h5>
-                    <p class="card-text">{{this.description}}</p>
-                    <div class="row">
-                        <div class="col">
-                            {{this.price}} đ
-                        </div>
-                        <div class="col">
-                            <a data-slug="{{this.slug}}" class="btn btn-primary addToCardBtn">
+        <div class="col ms-4">
+            <form id="search-form" action="/search">
+                <div class="mb-3">
+                    <label for="search-input" class="form-label">Từ khóa</label>
+                    <input type="text" name="q" class="form-control" id="search-input" placeholder="Nhập từ khóa ...">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+            </form>
+        </div>
+        <div class="col">
+            <div class="row" id="showed-products">
+                {{#each products}}
+                <div class="col-sm-6 col-lg-4">
+                    <div class="card mt-2">
+                        <a href="/products/{{this.slug}}">
+                            <img src="{{getImage this.imageId}}" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{this.name}}</h5>
+                            <p class="card-text">{{this.description}}</p>
+                            <div class="row">
+                                <div class="col">
+                                    {{this.price}} đ
+                                </div>
+                                <div class="col">
+                                    <a data-slug="{{this.slug}}"
+                                        class="btn btn-primary addToCardBtn">
                                 Thêm vào giỏ hàng
                             </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                {{/each}}
             </div>
+
         </div>
-        {{/each}}
+
     </div>
 </div>
 
@@ -33,6 +50,67 @@
         const $addToCartBtn = $('.addToCardBtn');
         const $cartIcon = $('.fa-cart-shopping')
 
+        const $searchForm = $('#search-form');
+
+        // Search function
+        $searchForm.submit(function (e) {
+            // Prevent the form from submitting and reloading the page
+            e.preventDefault();
+
+            // Get the search query from the input field
+            const query = $('input[name="q"]').val();
+
+            // Send a GET request to the server with the search query
+            $.ajax({
+                url: "/search?q=" + query,
+                type: "GET",
+                dataType: "json",
+                success: function (response) {
+                    // Generate the HTML for each product
+                    var productsHtml = "";
+                    if (response.products.length === 0) {
+                        productsHtml = `
+                            <div class="col-sm-6 col-lg-4">
+                                <h1>No product found</h1>
+                            </div>
+                        `
+                    } else {
+                        for (var i = 0; i < response.products.length; i++) {
+                            var product = response.products[i];
+                            var productHtml = `
+                                <div class="col-sm-6 col-lg-4">
+                                    <div class="card mt-2">
+                                    <a href="/products/${product.slug}">
+                                        <img src="https://drive.google.com/uc?id=${product.imageId}&export=download" class="card-img-top" alt="...">
+                                    </a>
+                                    <div class="card-body">
+                                        <h5 class="card-title">${product.name}</h5>
+                                        <p class="card-text">${product.description}</p>
+                                        <div class="row">
+                                        <div class="col">${product.price} đ</div>
+                                        <div class="col">
+                                            <a href="/cart/add/${product.slug}" data-slug="${product.slug}" class="btn btn-primary addToCardBtn">Thêm vào giỏ hàng</a>
+                                        </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                        productsHtml += productHtml;
+                    }
+
+                    // Append the HTML for all the products to the showed-products div
+                    $("#showed-products").html(productsHtml);
+                },
+
+                error: function (xhr, status, error) {
+                    // Handle errors
+                    console.log("Error:", error);
+                }
+            });
+        })
+        // Add to cart function
         $addToCartBtn.click(function (e) {
             e.preventDefault();
             const $clickedBtn = $(this);
@@ -57,7 +135,6 @@
                 }
             });
 
-        })
     })
 
 </script>
