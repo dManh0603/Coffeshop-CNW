@@ -186,6 +186,12 @@ body {
   cursor: pointer;
   width: 20vh;
 }
+
+.btn__dropitem:hover{
+  background-color: var(--secondary);
+  color: var(--primary-1);
+}
+
 /* ================ */
 /* ---Background--- */
 /* ================ */
@@ -236,7 +242,11 @@ body {
 .dropdown-item:hover {
   background-color: var(--secondary);
   color: var(--primary-1);
+  /* transition: none;
+  animation: none;
+  transform: scale(0.78); */
 }
+
 
 /* ============ */
 /* ---Slider--- */
