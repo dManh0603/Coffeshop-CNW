@@ -4,12 +4,17 @@ const morgan = require('morgan');
 const handlebars = require('express-handlebars');
 const methodOverride = require('method-override');
 const sortMiddleware = require('./app/middlewares/sortMiddleware');
-
-const app = express();
-const port = 3030;
+const session = require('express-session');
+const { v4: uuidv4 } = require('uuid');
 
 const route = require('./routes');
 const db = require('./config/db');
+
+// Generate a random UUID to use as the secret key
+const secret = uuidv4();
+const app = express();
+const port = 3030;
+
 
 
 // Load evironment variables in .env file
@@ -32,6 +37,13 @@ app.use(express.json());
 
 // Express's method override for form's put/patch method
 app.use(methodOverride('_method'));
+
+// Set up session middleware
+app.use(session({
+    secret: secret,
+    resave: false,
+    saveUninitialized: false,
+}));
 
 // // HTTP logger
 // if (process.env.NODE_ENV === 'DEV') {
