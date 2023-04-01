@@ -27,5 +27,4 @@ router.delete('/:id', productController.delete)
 router.delete('/:id/destroy', productController.destroy, googleDrive.deleteFile, (req, res) =>
     res.redirect('/me/stored/products'));
 
-
 module.exports = router;

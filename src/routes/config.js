@@ -9,6 +9,7 @@ function route(app) {
     app.use('/me', meRouter);
     app.use('/products', productsRouter);
     app.use('/', siteRouter);
+    app.use('/auth/', authRoute);
 }
 
 module.exports = route;
