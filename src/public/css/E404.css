@@ -13,8 +13,8 @@ a {
 }
 
 a:hover {
-  scale: 1.3;
-  transition: all 0.5s ease-in-out;
+  font-weight: bolder;
+  transition: all 0.2s ease-in-out;
   text-shadow: #1e1d1d;
 }
 

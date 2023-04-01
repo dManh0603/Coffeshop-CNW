@@ -1,4 +1,61 @@
+:root {
+  --primary-1: rgb(236, 196, 36);
+  --primary-2: rgba(10, 0, 0, 0.9);
+  --primary-3: #8b4513;
+  --primary-4: rgb(240, 142, 56);
+  --secondary: rgb(245, 238, 230);
+}
+
 .create_container {
-  padding: 4vw 12vw;
-  padding-top: 2vw;
+  padding: 4vw 24vw;
+  padding-top: 4vw;
+  color: #8b4513;
+  background-color: var(--secondary);
+}
+
+.create_title {
+  text-align: center;
+  font-size: xx-large;
+  padding: 0px 12px;
+}
+
+::placeholder {
+  color: gray;
+  opacity: 0.8;
+}
+
+.form-control {
+  border-radius: 4px;
+  color: #8b4513;
+}
+
+.form-control:focus {
+  border-color: var(--primary-1);
+  box-shadow: 0 0 0 0.4rem rgba(236, 196, 36, 0.521);
+}
+
+button {
+  margin: 0 auto;
+}
+
+button.btn {
+  background-color: var(--primary-1);
+  border: 1px solid rgba(0, 0, 0, 0.199);
+  box-shadow: 0 0 0 0.1rem rgba(97, 97, 97, 0.521);
+}
+
+.create_btn:hover {
+  color: var(--primary-1);
+  background-color: #8b4513;
+}
+
+@media only screen and (max-width: 992px) {
+  .create_container {
+    padding: 4vw 16vw;
+    padding-top: 4vw;
+  }
+  .create_title {
+    font-size: x-large;
+    padding-bottom: 4vh;
+  }
 }

@@ -20,16 +20,12 @@ a {
 
 /* @media screen and (min-width: 610px) and (max-width: 1000px) */
 
-
-
-
 :root {
   --primary-1: rgb(236, 196, 36);
   --primary-2: rgba(10, 0, 0, 0.9);
-  --primary-3: #8B4513;
+  --primary-3: #8b4513;
   --primary-4: rgb(240, 142, 56);
   --secondary: rgb(245, 238, 230);
-  
 }
 
 .page_body {
@@ -55,7 +51,7 @@ body {
 }
 
 .btn1:hover {
-  color:#ffffff;
+  color: #ffffff;
   background-color: var(--primary-4);
   font-weight: bold;
   transform: scale(1.1);
@@ -72,7 +68,7 @@ body {
 }
 
 .btn2:hover {
-  color:#ffffff;
+  color: #ffffff;
   background-color: var(--primary-4);
   font-weight: bold;
   border: none;
@@ -92,26 +88,26 @@ body {
 }
 
 .btn3:hover {
-  color:#ffffff;
+  color: #ffffff;
   background-color: var(--primary-4);
   font-weight: bold;
   transform: scale(1.1);
 }
-  
+
 .btn4 {
   position: absolute;
   top: 0;
   right: 0;
   width: 50px;
   height: 100%;
-  background-color:black;
-  color:#ffffff;
+  background-color: black;
+  color: #ffffff;
   border: none;
   cursor: pointer;
 }
 
 .btn4:hover {
-  color:#ffffff;
+  color: #ffffff;
   background-color: rgba(113, 108, 105, 0.174);
   font-weight: bold;
 }
@@ -202,20 +198,18 @@ body {
 /* ============ */
 /* ---navbar--- */
 /* ============ */
-.navbar{
+.navbar {
   max-height: 80px;
   top: 0;
   left: 0;
   right: 0;
-  position:fixed;
+  position: fixed;
   z-index: 99;
-
 }
 .selected {
   background-color: rgba(33, 37, 41, 1);
   width: 50%;
-} 
-
+}
 
 /* Thêm CSS cho dropdown */
 .dropdown-toggle::after {
@@ -253,13 +247,12 @@ body {
 /* ============ */
 .carousel {
   position: relative;
-  margin-top:60px;
+  margin-top: 60px;
 }
 
 .carousel-inner {
   max-height: 600px;
 }
-
 
 .carousel-caption {
   position: absolute;
@@ -267,7 +260,7 @@ body {
   left: 15%;
 }
 
-@media screen and (min-width: 601px) and (max-width: 1000px){
+@media screen and (min-width: 601px) and (max-width: 1000px) {
   .carousel-inner {
     max-height: 450px;
   }
@@ -292,27 +285,22 @@ body {
   p {
     display: none;
   }
-
 }
-
 
 .carousel image {
   width: 100%;
   height: auto;
 }
 
-
 .carousel-indicators [data-bs-target] {
   width: 10px;
   height: 10px;
   border-radius: 100%;
-
 }
 
 .carousel-inner .carousel-item button {
   margin-bottom: 5rem;
 }
-
 
 .carousel-caption {
   text-align: left;
@@ -326,7 +314,7 @@ body {
   justify-content: flex-end;
 }
 
-.container .card{
+.container .card {
   height: 20rem;
 }
 
@@ -353,43 +341,39 @@ body {
 }
 
 /* Thanh cuộn dọc */
-  .menushop__coffee--content {
-    overflow-y: scroll;
-    height: 400px;
-  }
-  
-  .menushop__coffee--content::-webkit-scrollbar {
-    width: 10px;
-    background-color: transparent;
-  }
-  
-  .menushop__coffee--content::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    background-color: rgba(0,0,0,0.2);
-    border-radius: 999px;
-  }
+.menushop__coffee--content {
+  overflow-y: scroll;
+  height: 400px;
+}
 
+.menushop__coffee--content::-webkit-scrollbar {
+  width: 10px;
+  background-color: transparent;
+}
 
+.menushop__coffee--content::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 999px;
+}
 
 /* ======================= */
 /* ---Our Special thing--- */
 /* ======================= */
 
-  .ourspecial__content__description {
-    overflow-y: scroll;
-    height: 100px;
-  }
-  .ourspecial__content__description::-webkit-scrollbar {
-    width: 5px;
-    background-color: transparent;
-  }
-  
-  .ourspecial__content__description::-webkit-scrollbar-thumb {
-    border-radius: 5px;
-    background-color: rgb(241, 220, 196);
-  }
-  
+.ourspecial__content__description {
+  overflow-y: scroll;
+  height: 100px;
+}
+.ourspecial__content__description::-webkit-scrollbar {
+  width: 5px;
+  background-color: transparent;
+}
 
+.ourspecial__content__description::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgb(241, 220, 196);
+}
 
 /* ========================= */
 /* ---Banner Coffee Beans--- */
@@ -410,13 +394,12 @@ body {
 
 .coffee__beans--caption p {
   max-width: 100%;
-  color:#ffffff;
+  color: #ffffff;
 }
 
 .coffee__beans img {
   max-height: 400px;
   object-fit: cover;
-
 }
 
 /* ======================= */
@@ -426,7 +409,6 @@ body {
   .contact__form__row {
     display: flex;
     flex-wrap: wrap;
-    
   }
 
   .contact__form__group .col-md-6 {
@@ -441,24 +423,21 @@ body {
   .contact__form__group:last-child {
     margin-bottom: 0;
   }
-
 }
 
 /* ======================= */
 /* --------Footer--------- */
 /* ======================= */
 
-
 footer {
   max-height: 600px;
-  
 }
 
 .footer__top,
 .footer__bottom {
-  display: flex; 
-  justify-content: center; 
-  align-items: center; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .footer__top {
@@ -470,33 +449,32 @@ footer {
 }
 
 .footer__top img {
-  width: 150px; 
+  width: 150px;
   border-radius: 100px;
 }
 
 .footer__top h5 {
-  color: #ffffff; 
-  margin: 5px; 
+  color: #ffffff;
+  margin: 5px;
 }
 
-
 .input-wrapper {
-  background-color:black;
+  background-color: black;
   position: relative;
   display: inline-block;
 }
-  
-  input {
-    height: 5vh;
-    width: 50vh;
-    background-color:black;
-    padding-right: 60px;
-    color:#ffffff;
-    border: 1px solid var(--primary-2);
-  }
+
+input {
+  height: 5vh;
+  width: 50vh;
+  background-color: black;
+  padding-right: 60px;
+  color: #ffffff;
+  border: 1px solid var(--primary-2);
+}
 
 .footer__bottom {
-  background-color:var(--primary-1);
+  background-color: var(--primary-1);
   color: var(--primary-2);
   height: 50px;
   margin: 0;
@@ -523,7 +501,6 @@ footer {
 #scrollToTopBtn:hover {
   background-color: #1e1d1d;
 }
-
 
 /* ======================= */
 /* ---------PAGES--------- */
@@ -553,7 +530,7 @@ footer {
 
 .login h2 {
   text-align: center;
-  color: #8B4513;
+  color: #8b4513;
 }
 
 .login form {
@@ -571,29 +548,28 @@ footer {
   padding: 10px 0;
   font-size: 16px;
   border: none;
-  border-bottom: 2px solid #8B4513;
+  border-bottom: 2px solid #8b4513;
   outline: none;
   background: transparent;
 }
 
 .login .login__form-group input:focus {
-  border-color: #8B4513;
-  box-shadow: 0px 0px 10px #8B4513;
+  border-color: #8b4513;
+  box-shadow: 0px 0px 10px #8b4513;
   transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
-
 
 .login .login__form-next {
   margin-top: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  color: #8B4513;
+  color: #8b4513;
   font-size: 14px;
 }
 
-.login .login__form-next a{
-  color: #8B4513;
+.login .login__form-next a {
+  color: #8b4513;
   text-decoration: none;
   transition: 0.5s;
 }
@@ -601,10 +577,6 @@ footer {
 .login .login__form-next a:hover {
   color: #000;
 }
-
-
-
-
 
 .account {
   background-image: url(https://lh3.googleusercontent.com/pw/AMWts8DycaX_3uynN56pCHdiOrQEdRmWdNin7ucqP1aHcEarkcRqMYY8yZBB3PZbA9_4W711c0qUuzR_pK1TsFrGdFNHe2GvONaOp_NysETLEUGWdVEH4U4vQ3AIUXzw3kup05_X_om7UlSVuo5cpczeTItR=w1339-h893-s-no?authuser=0);
@@ -619,8 +591,6 @@ footer {
   padding: 0;
 }
 
-
-
 .login {
   position: absolute;
   top: 50%;
@@ -628,13 +598,11 @@ footer {
   width: 400px;
   padding: 40px;
   transform: translate(-50%, -50%);
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
   border-radius: 20px;
 }
-
-
 
 .login h2 {
   margin: 0 0 30px;
@@ -643,10 +611,9 @@ footer {
   text-align: center;
 }
 
-.login .login__form-group{
+.login .login__form-group {
   position: relative;
 }
-
 
 .login .login__form-group input {
   width: 100%;
@@ -654,7 +621,7 @@ footer {
   font-size: 16px;
   color: #fff;
   margin-bottom: 10px;
-  border: rgba(0,0,0,0.6);
+  border: rgba(0, 0, 0, 0.6);
   border-radius: 3px;
   outline: none;
   background: #ffffff76;
@@ -666,13 +633,13 @@ footer {
 
 .login .login__form-group label {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
   padding: 5px 5px 5px 10px;
   font-size: 16px;
   color: #2d2d08;
   pointer-events: none;
-  transition: .5s;
+  transition: 0.5s;
 }
 
 .login .login__form-group input:focus ~ label,
@@ -681,7 +648,6 @@ footer {
   left: 0;
   color: var(--primary-1);
   font-size: 12px;
-  
 }
 
 .login .login__form-next {
@@ -693,7 +659,7 @@ footer {
   font-size: 14px;
 }
 
-.login .login__form-next a{
+.login .login__form-next a {
   color: #fff;
   text-decoration: none;
   transition: 0.5s;
@@ -703,9 +669,8 @@ footer {
   color: var(--primary-1);
 }
 
-
-.beans{
-  position:absolute;
+.beans {
+  position: absolute;
   width: 100%;
   height: 100vh;
   overflow: hidden;
@@ -714,90 +679,85 @@ footer {
   align-items: center;
   z-index: 1001;
   pointer-events: none;
-
 }
 
-.beans .set{
+.beans .set {
   position: absolute;
   width: 100%;
   height: 100%;
-  top:0;
+  top: 0;
   left: 0;
   pointer-events: none;
 }
 
-.beans .set div{
+.beans .set div {
   position: absolute;
   display: block;
 }
 
-.beans .set div:nth-child(1){
-  left:20%;
+.beans .set div:nth-child(1) {
+  left: 20%;
   animation: animate 20s linear infinite;
 }
 
-.beans .set div:nth-child(2){
-  left:50%;
+.beans .set div:nth-child(2) {
+  left: 50%;
   animation: animate 14s linear infinite;
 }
 
-.beans .set div:nth-child(3){
-  left:70%;
+.beans .set div:nth-child(3) {
+  left: 70%;
   animation: animate 12s linear infinite;
 }
 
-.beans .set div:nth-child(4){
-  left:5%;
+.beans .set div:nth-child(4) {
+  left: 5%;
   animation: animate 15s linear infinite;
 }
 
-.beans .set div:nth-child(5){
-  left:85%;
+.beans .set div:nth-child(5) {
+  left: 85%;
   animation: animate 18s linear infinite;
 }
 
-.beans .set div:nth-child(6){
-  left:90%;
+.beans .set div:nth-child(6) {
+  left: 90%;
   animation: animate 12s linear infinite;
 }
 
-.beans .set div:nth-child(7){
-  left:15%;
+.beans .set div:nth-child(7) {
+  left: 15%;
   animation: animate 14s linear infinite;
 }
 
-.beans .set div:nth-child(8){
-  left:60%;
+.beans .set div:nth-child(8) {
+  left: 60%;
   animation: animate 15s linear infinite;
 }
 
 @keyframes animate {
-  0%{
+  0% {
     opacity: 0;
     top: -10%;
     transform: translateX(20px) rotate(0deg);
   }
-  10%{
+  10% {
     opacity: 1;
   }
-  20%{
+  20% {
     transform: translateX(-20%) rotate(45deg);
   }
-  40%{
+  40% {
     transform: translateX(-20%) rotate(90deg);
   }
-  60%{
+  60% {
     transform: translateX(-20%) rotate(180deg);
   }
-  80%{
+  80% {
     transform: translateX(-20%) rotate(45deg);
   }
-  100%{
-    top:110%;
+  100% {
+    top: 110%;
     transform: translateX(20%) rotate(225deg);
   }
-} 
-
-
-
-
+}
