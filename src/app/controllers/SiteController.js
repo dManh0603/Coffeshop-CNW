@@ -17,6 +17,20 @@ class SiteController {
 
   // [GET] /search?q=
   search(req, res) {
+    if (req.query.q === '') {
+      Product.find({})
+        .then((products) => {
+          res.json({
+            success: true,
+            products: multipleMongooseToObject(products),
+          });
+        })
+        .catch((e) => {
+          next(e);
+        });
+      return;
+    }
+
     Product.find({ $text: { $search: req.query.q } })
       .then((products) => {
         res.json({
@@ -30,6 +44,7 @@ class SiteController {
         next(e);
       });
   }
+
 
   // [GET] /contact
   contact(req, res) {
