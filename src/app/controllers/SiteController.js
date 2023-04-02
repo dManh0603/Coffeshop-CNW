@@ -17,7 +17,7 @@ class SiteController {
 
   // [GET] /search?q=
   search(req, res) {
-    if (req.query.q === "") {
+    if (req.query.q === '') {
       Product.find({})
         .then((products) => {
           res.json({
@@ -45,6 +45,7 @@ class SiteController {
         next(e);
       });
   }
+
 
   // [GET] /contact
   contact(req, res) {
