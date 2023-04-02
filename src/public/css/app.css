@@ -36,6 +36,8 @@ body {
   overflow-x: hidden;
 }
 
+
+
 /* ============ */
 /* ---Button--- */
 /* ============ */
@@ -223,7 +225,7 @@ body {
 .dropdown-menu {
   margin-top: 0;
   width: 25vh;
-  height: 30vh;
+  height: 25vh;
   border: none;
   background-color: rgba(33, 37, 41, 1);
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -236,11 +238,7 @@ body {
 .dropdown-item:hover {
   background-color: var(--secondary);
   color: var(--primary-1);
-  /* transition: none;
-  animation: none;
-  transform: scale(0.78); */
 }
-
 
 /* ============ */
 /* ---Slider--- */
@@ -507,78 +505,6 @@ input {
 /* ======================= */
 
 .account {
-  background-image: url(https://lh3.googleusercontent.com/pw/AMWts8Ao2p2c_uPrgWCOVPqUfu6EbmWrIpBmdt3JBC0Fo0DBPizDHPY29j-tt-dP8PNsba7mLNcPSWS1jjNTdjrBP7P3iQHtiG2h2w33064YP_U2KJKDWBZBl0e0WmV2wITa74YXpNSRvzjdQC814xQ25CYA=w1341-h893-s-no?authuser=0);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  font-family: Arial, sans-serif;
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-}
-
-.login {
-  width: 450px;
-  margin: 80px auto;
-  background-color: #ffffff90;
-  padding: 40px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 20px #00000040;
-}
-
-.login h2 {
-  text-align: center;
-  color: #8b4513;
-}
-
-.login form {
-  display: flex;
-  flex-direction: column;
-}
-
-.login .login__form-group {
-  position: relative;
-  margin: 10px 0;
-}
-
-.login .login__form-group input {
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  border: none;
-  border-bottom: 2px solid #8b4513;
-  outline: none;
-  background: transparent;
-}
-
-.login .login__form-group input:focus {
-  border-color: #8b4513;
-  box-shadow: 0px 0px 10px #8b4513;
-  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-}
-
-.login .login__form-next {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #8b4513;
-  font-size: 14px;
-}
-
-.login .login__form-next a {
-  color: #8b4513;
-  text-decoration: none;
-  transition: 0.5s;
-}
-
-.login .login__form-next a:hover {
-  color: #000;
-}
-
-.account {
   background-image: url(https://lh3.googleusercontent.com/pw/AMWts8DycaX_3uynN56pCHdiOrQEdRmWdNin7ucqP1aHcEarkcRqMYY8yZBB3PZbA9_4W711c0qUuzR_pK1TsFrGdFNHe2GvONaOp_NysETLEUGWdVEH4U4vQ3AIUXzw3kup05_X_om7UlSVuo5cpczeTItR=w1339-h893-s-no?authuser=0);
   background-repeat: no-repeat;
   background-size: cover;
@@ -602,6 +528,12 @@ input {
   box-sizing: border-box;
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
   border-radius: 20px;
+  margin-top: 70px;
+}
+
+.login form {
+  display: flex;
+  flex-direction: column;
 }
 
 .login h2 {
@@ -613,11 +545,12 @@ input {
 
 .login .login__form-group {
   position: relative;
+  margin: 10px 0;
 }
 
 .login .login__form-group input {
   width: 100%;
-  padding: 10px;
+  padding: 10px 15px;
   font-size: 16px;
   color: #fff;
   margin-bottom: 10px;
@@ -635,7 +568,7 @@ input {
   position: absolute;
   top: 0;
   left: 0;
-  padding: 5px 5px 5px 10px;
+  padding: 6px 0 0 15px;
   font-size: 16px;
   color: #2d2d08;
   pointer-events: none;
