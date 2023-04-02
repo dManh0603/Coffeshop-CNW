@@ -17,6 +17,9 @@ const ProductSchema = new Schema({
     timestamps: true,
 });
 
+// Add text index on the name field
+ProductSchema.index({ name: 'text' });
+
 // Custom query helpers
 ProductSchema.query.sortable = function (req) {
     if (req.query.hasOwnProperty('_sort')) {
@@ -32,7 +35,7 @@ ProductSchema.query.sortable = function (req) {
 mongoose.plugin(slug);
 
 //Add plugin for Course models
-ProductSchema.plugin(AutoIncrement);
+ProductSchema.plugin(AutoIncrement, {inc_field: 'product_id'});
 ProductSchema.plugin(mongooseDelete, {
     overrideMethods: 'all',
     deletedAt: true,

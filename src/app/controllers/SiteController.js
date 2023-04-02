@@ -15,9 +15,20 @@ class SiteController {
       });
   }
 
-  // [GET] /search
+  // [GET] /search?q=
   search(req, res) {
-    res.render("site/search");
+    Product.find({ $text: { $search: req.query.q } })
+      .then((products) => {
+        res.json({
+          success: true,
+          msg: "Search results",
+          products: multipleMongooseToObject(products),
+        });
+      })
+      .catch((e) => {
+        console.error(e);
+        next(e);
+      });
   }
 
   // [GET] /contact
@@ -30,44 +41,52 @@ class SiteController {
     res.render("site/contact");
   }
 
-    // [GET] /menu
-    menu(req, res) {
-        Product.find({})
-            .then(products => {
-                res.render('site/menu', {
-                    layout:'blank',
-                    title: 'Menu page',
-                    products: multipleMongooseToObject(products),
-                });
-            })
-            .catch(e => {
-                next(e);
-            })
+  // [GET] /menu
+  menu(req, res) {
+    let cartQuantity
+    if (req.session.cart) {
+      cartQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
     }
-    // [GET] /about
-    about(req, res) {
-        res.render('site/about');
+    else {
+      cartQuantity = 0
     }
-    // [GET] /signin
-    signin(req, res) {
-        res.render('site/signin');
-    }
-    // [GET] /signup
-    signup(req, res) {
-        res.render('site/signup');
-    }
-    // [GET] /signout
-    signout(req, res) {
-        res.render('site/signout');
-    }
-    // [GET] /home
-    home(req, res) {
-        res.render('site/home');
-    }
-    // [GET] /shop
-    shop(req, res) {
-        res.render('site/shop');
-    }
+    Product.find({})
+      .then(products => {
+        res.render('site/menu', {
+          layout: 'blank',
+          title: 'Menu page',
+          products: multipleMongooseToObject(products),
+          cartQuantity
+        });
+      })
+      .catch(e => {
+        next(e);
+      })
+  }
+  // [GET] /about
+  about(req, res) {
+    res.render('site/about');
+  }
+  // [GET] /signin
+  signin(req, res) {
+    res.render('site/signin');
+  }
+  // [GET] /signup
+  signup(req, res) {
+    res.render('site/signup');
+  }
+  // [GET] /signout
+  signout(req, res) {
+    res.render('site/signout');
+  }
+  // [GET] /home
+  home(req, res) {
+    res.render('site/home');
+  }
+  // [GET] /shop
+  shop(req, res) {
+    res.render('site/shop');
+  }
 }
 
 module.exports = new SiteController();

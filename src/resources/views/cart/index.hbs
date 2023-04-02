@@ -1,0 +1,104 @@
+{{#if items}}
+<div class="card">
+    <div class="card-header">
+        <h3>Your cart items</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Image</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Total cost</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each items}}
+                <tr>
+                    <td>{{this.name}}</td>
+                    <td>
+                        <a href="/products/{{this.slug}}" class="">
+                            <img src="{{getImage this.imageId}}" style="width: 70px" alt="{{this.name}}">
+                        </a>
+                    </td>
+                    <td>{{this.price}}</td>
+                    <td>
+                        <input type="number" min="1" class="form-control item-quantity" style="width: 60px"
+                            data-slug="{{this.slug}}" value="{{this.quantity}}">
+                    </td>
+                    <td>{{this.totalCost}}</td>
+                    <td>
+                        <a class="btn btn-outline-danger btn-sm delete-btn" data-slug="{{this.slug}}">Delete</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="card-body text-right">
+            <a class="btn btn-primary">Checkout</a>
+        </div>
+    </div>
+</div>
+{{else}}
+<p class="text-muted text-center p-5">There are no item in the cart</p>
+{{/if}}
+
+<script>
+    $(document).ready(function () {
+
+        // On add item on session
+        $('.item-quantity').change(function () {
+            // Get the productSlug and new quantity from the input field
+            const productSlug = $(this).data('slug');
+            const newQuantity = $(this).val();
+
+            // Send an AJAX request to update the session
+            $.ajax({
+                url: '/cart/update-cart',
+                type: 'POST',
+                data: {
+                    productSlug: productSlug,
+                    quantity: newQuantity
+                },
+                success: function (response) {
+                    // Update the cart count in the UI
+                    console.log(response)
+                    $('#cart-counter').text(response.currentQuantity);
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                }
+            });
+        });
+
+
+        // On delete item in session
+        $(".delete-btn").on("click", function (e) {
+            e.preventDefault();
+            const slug = $(this).data("slug");
+            const $tr = $(this).closest("tr");
+            // Send a DELETE request to the server with the slug data
+            $.ajax({
+                url: "/cart/delete/" + slug,
+                type: "DELETE",
+                dataType: "json",
+                success: function (response) {
+                    console.log(response);
+                    $('#cart-counter').text(response.currentQuantity);
+                    $tr.remove();
+                    // Check if there are any rows left in the table
+                    if ($('.table tbody tr').length === 0) {
+                        $('.card-body').html('<p class="text-muted text-center p-5">There are no item in the cart</p>');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    // Handle error
+                }
+            });
+        });
+    });
+</script>
