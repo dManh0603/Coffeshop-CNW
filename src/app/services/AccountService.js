@@ -42,6 +42,7 @@ let signup = async (req, res) => {
             role: "user",
         });
         account = await account.save();
+        console.log(account);
         // return { status: 200, message: "Sign Up Successfully!" };
         return { status: 200, message: "Đăng ký thành công!" };
     } catch (error) {

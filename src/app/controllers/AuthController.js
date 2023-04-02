@@ -10,7 +10,9 @@ class AuthController {
     async signup(req, res, next) {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            res.json(errors.array());
+            res.status(400).json({
+                message: errors.array()[0].msg
+            });
         } else {
             let result = await accountService.signup(req, res);
             if (result) {

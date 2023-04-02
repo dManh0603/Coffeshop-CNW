@@ -165,20 +165,29 @@ function signup() {
     let body = {};
     const formData = new FormData(document.getElementById("signup__form"));
     formData.forEach((value, key) => {
+        console.log(key);
         body[`${key}`] = value;
     });
+
+    if(body.password != body.confirmPassword) {
+        alert("Mật khẩu không khớp nhau");
+        return;
+    }
+
     $.ajax({
         url: "/auth/signup",
         method: "POST",
         contentType: "application/json",
         data: JSON.stringify(body),
         success: function (response) {
+            console.log(response);
             // alert(response.message);
             alert(response.result.message)
 
             window.location.href = "/signin";
         },
         error: function (error) {
+            console.log(error);
             alert(error.responseJSON.message);
         },
     });
