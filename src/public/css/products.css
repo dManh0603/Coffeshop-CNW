@@ -1,0 +1,78 @@
+:root {
+  --primary-1: rgb(236, 196, 36);
+  --primary-2: rgba(10, 0, 0, 0.9);
+  --primary-3: #8b4513;
+  --primary-4: rgb(240, 142, 56);
+  --secondary: rgb(245, 238, 230);
+}
+
+.product_form {
+  padding: 4vw;
+}
+
+.product_title {
+  text-align: center;
+  padding-top: 12px;
+}
+
+.product_trash a,
+i {
+  text-decoration: none;
+  color: #8b4513;
+}
+
+.product_trash {
+  padding: 8px;
+  text-align: center;
+  border: 1px solid #8b4513;
+  margin: 0 12vw;
+  transition: all 0.2s ease-in-out;
+}
+
+.product_trash:hover {
+  background-color: #8b4513;
+}
+
+.product_trash:hover a,
+.product_trash:hover i {
+  color: #fff;
+}
+
+.form-check-input {
+  border: 1px solid rgba(0, 0, 0, 0.199);
+  margin-top: 12px;
+  padding: 12px;
+  margin: 0 auto;
+}
+
+.form-check-input:checked {
+  background-color: #8b4513;
+  border-color: #8b4513;
+}
+
+.form-select {
+  width: 56vw;
+  margin: 0 4vw;
+}
+
+.btn.disabled {
+  background-color: #8b4513;
+  border: 1px solid rgba(0, 0, 0, 0.199);
+  margin: 0 auto;
+  color: #fff;
+}
+
+.trash_container {
+  padding-top: 4vh;
+  padding-bottom: 8vh;
+}
+
+a,
+.btn-link {
+  text-decoration: none;
+  color: #8b4513;
+}
+
+.trash_title {
+  padding-top: 24px;
+}
