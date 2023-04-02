@@ -28,8 +28,9 @@
                                     {{this.price}} đ
                                 </div>
                                 <div class="col">
-                                    <a href="/cart/add/{{this.slug}}" data-slug="{{this.slug}}"
-                                        class="btn btn-primary addToCardBtn">Thêm vào giỏ hàng</a>
+                                    <a data-slug="{{this.slug}}" class="btn btn-primary addToCardBtn">
+                                        Thêm vào giỏ hàng
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -46,6 +47,7 @@
 <script>
     $(document).ready(function () {
         const $addToCartBtn = $('.addToCardBtn');
+        const $cartIcon = $('.fa-cart-shopping');
         const $searchForm = $('#search-form');
 
         // Search function
@@ -109,26 +111,28 @@
         // Add to cart function
         $addToCartBtn.click(function (e) {
             e.preventDefault();
-            const $clickedBtn = $(e.target).closest('a');
+            const $clickedBtn = $(this);
+            const slug = $clickedBtn.data('slug');
             const url = $clickedBtn.attr('href');
             const data = {
-                slug: $clickedBtn.data('slug')
+                slug
             };
-
             $.ajax({
-                url: url,
-                method: 'POST',
+                url: '/cart/add/',
+                type: 'POST',
+                dataType: 'json',
                 contentType: 'application/json',
                 data: JSON.stringify(data),
                 success: function (response) {
-                    console.log('Success:', response);
+                    //handle after add to cart in FE
+                    $cartIcon.text(' ' + response.currentQuantity)
+                    console.log(response)
                 },
-                error: function (error) {
-                    console.error('Error:', error);
+                error: function (xhr, status, error) {
+                    console.error(error);
                 }
             });
-        });
+        })
 
     })
-
 </script>
