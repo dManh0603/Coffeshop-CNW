@@ -1,0 +1,159 @@
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mt-1">Shipping infomation</h5>
+            </div>
+            <div class="card-body">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="table">
+                        <tr></tr>
+
+                        <tr class="border-top-0">
+                            <td colspan="2">First name</td>
+                            <td colspan="3" class="text-center">{{shippingInfo.firstname}}</td>
+                        </tr>
+
+                        <tr class="border-top-0">
+                            <td colspan="2">First name</td>
+                            <td colspan="3" class="text-center">{{shippingInfo.lastname}}</td>
+                        </tr>
+
+                        <tr class="border-top-0">
+                            <td colspan="2">First name</td>
+                            <td colspan="3" class="text-center">{{shippingInfo.email}}</td>
+                        </tr>
+
+                        <tr class="border-top-0">
+                            <td colspan="2">First name</td>
+                            <td colspan="3" class="text-center">{{shippingInfo.phone}}</td>
+                        </tr>
+
+                        <tr class="border-top-0">
+                            <td colspan="2">First name</td>
+                            <td colspan="3" class="text-center">{{shippingInfo.address}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mt-1">Order Summary ORDER ID</h5>
+            </div>
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th class="text-center">Image</th>
+                            <th class="text-center">Price</th>
+                            <th class="text-center">Quantity</th>
+                            <th class="text-right">Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table">
+                        {{#each cartItems}}
+                        <tr></tr>
+                        <tr class="border-top-0">
+                            <td>{{this.name}}</td>
+                            <td class="text-center">
+                                <img src="{{getImage this.imageId}}" style="width: 70px" alt="{{this.name}}">
+                            </td>
+                            <td class="text-center">{{this.price}}</td>
+                            <td class="text-center">{{this.quantity}}</td>
+                            <td class="text-right">{{this.totalCost}}</td>
+                        </tr>
+                        {{/each}}
+
+                        <tr class="">
+                            <td colspan="2" class="text-start">Total products:</td>
+                            <td colspan="3" class="text-end">{{cartQuantity}}</td>
+                        </tr>
+                        <tr class="">
+                            <td colspan="2" class="text-start">Total cost</td>
+                            <td colspan="3" class="text-end">TOTAL COST</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="paypal-button-container"></div>
+
+<script>
+    paypal.Buttons({
+        // Sets up the transaction when a payment button is clicked
+        createOrder: (data, actions) => {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: <?= $order -> total_price ?> // Can also reference a variable or function
+                    }
+                }]
+            });
+        },
+        onError: function (err) {
+            // For example, redirect to a specific error page
+            console.log(err)
+            debugger
+        },
+        // Finalize the transaction after payer approval
+        onApprove: function (data, actions) {
+            console.log("On approve.1", data, actions);
+            debugger;
+            return actions.order.capture().then(function (orderData) {
+                console.log(".2", orderData);
+                const $form = $('#checkout-form');
+                const formData = $form.serializeArray();
+                formData.push({
+                    name: 'transactionId',
+                    value: orderData.id
+                });
+                formData.push({
+                    name: 'orderId',
+                    value: data.orderID
+                });
+                formData.push({
+                    name: 'status',
+                    value: orderData.status
+                });
+                $.ajax({
+                    method: 'post',
+                    url: '<?= Url::to(['cart/ submit - payment', 'orderId' => $order->id]) ?>',
+                    data: formData,
+                    success: function (res) {
+                        console.log(".3", res);
+                        alert("Thanks for your order!");
+                        window.location.href = '';
+                    }
+                })
+
+            // Successful capture! For dev/demo purposes:
+            console.log('Capture result .4', orderData, JSON.stringify(orderData, null, 2));
+            const transaction = orderData.purchase_units[0].payments.captures[0];
+            // alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
+            // When ready to go live, remove the alert and show a success message within this page. For example:
+            // const element = document.getElementById('paypal-button-container');
+            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+            // Or go to another URL:  actions.redirect('thank_you.html');
+        });
+        }
+    }).render('#paypal-button-container');
+</script>

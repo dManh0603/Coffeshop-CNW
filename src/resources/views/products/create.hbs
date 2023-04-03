@@ -1,12 +1,7 @@
 <link rel="stylesheet" href="/css/product_create.css" />
 <div class="create_container mt-4">
   <h3 class="create_title">Tạo sản phẩm mới</h3>
-  <form
-    method="POST"
-    action="/products/store"
-    class="create_form"
-    enctype="multipart/form-data"
-  >
+  <form method="POST" action="/products/store" class="create_form" enctype="multipart/form-data">
 
     <div class="mb-3">
       <label for="name" class="form-label">Tên sản phẩm</label>
@@ -15,12 +10,7 @@
 
     <div class="mb-3">
       <label for="description" class="form-label">Mô tả sản phẩm</label>
-      <textarea
-        class="form-control"
-        name="description"
-        rows="3"
-        id="editor"
-      ></textarea>
+      <textarea class="form-control" name="description" rows="3" id="editor"></textarea>
     </div>
 
     <div class="mb-3">
@@ -34,13 +24,7 @@
     </div>
 
     <div class="form-check mb-3">
-      <input
-        class="form-check-input"
-        type="checkbox"
-        value="true"
-        name="isPublished"
-        checked
-      />
+      <input class="form-check-input" type="checkbox" value="true" name="isPublished" checked />
       <label class="form-check-label" for="flexCheckChecked">
         Phát hành
       </label>
@@ -52,8 +36,11 @@
 
 <script>
   const $publishCheck = $('input[name="isPublished"]'); // toogle the value of
-  isPublished $publishCheck.change(function (e) { if (e.target.checked) {
-  $publishCheck.val(true); } else { $publishCheck.val(false); }
-  console.log($publishCheck.val()); });
+  isPublished $publishCheck.change(function (e) {
+    if (e.target.checked) {
+      $publishCheck.val(true);
+    } else { $publishCheck.val(false); }
+    console.log($publishCheck.val());
+  });
 
 </script>

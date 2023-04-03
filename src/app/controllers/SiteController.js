@@ -58,7 +58,6 @@ class SiteController {
 
   // [GET] /menu
   menu(req, res) {
-    console.log(req.session);
     let cartQuantity
     if (req.session.cart) {
       cartQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);

@@ -1,0 +1,32 @@
+<div class="container">
+    <h1>Shipping infomation</h1>
+    <form action="/cart/pay" method="POST">
+        <div class="mb-3">
+            <label for="lastname" class="form-label">Last name</label>
+            <input type="text" class="form-control" id="lastname" name="lastname">
+            <div id="lastnameHelp" class="form-text"></div>
+        </div>
+        <div class="mb-3">
+            <label for="firstname" class="form-label">First name</label>
+            <input type="text" class="form-control" id="firstname" name="firstname">
+            <div id="firstnameHelp" class="form-text"></div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="email" name="email">
+            <div id="emailHelp" class="form-text"></div>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone number</label>
+            <input type="phone" class="form-control" id="phone" name="phone">
+            <div id="phoneHelp" class="form-text"></div>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Address</label>
+            <textarea class="form-control" name="address" rows="3"></textarea>
+            <div id="addressHelp" class="form-text"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Go to payment</button>
+    </form>
+</div>
