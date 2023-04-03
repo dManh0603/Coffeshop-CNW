@@ -28,6 +28,13 @@ a {
   --secondary: rgb(245, 238, 230);
 }
 
+h1{
+  font-size: 3rem;
+}
+h2{
+  font-size: 2.5rem;
+}
+
 .page_body {
   margin-top: 80px;
 }
@@ -37,11 +44,12 @@ body {
 }
 
 
+
 /* ============ */
 /* ---Button--- */
 /* ============ */
 
-.btn{
+/* .btn{
   background-color: var(--primary-1);
   color: var(--primary-2);
   padding: 10px 20px;
@@ -52,10 +60,10 @@ body {
 }
 .btn:hover {
   color: #ffffff;
-  background-color: var(--primary-4);
+  background-color: var(--primary-3);
   font-weight: bold;
   transform: scale(0.9);
-}
+} */
 
 .btn1 {
   background-color: var(--primary-1);
@@ -69,7 +77,7 @@ body {
 
 .btn1:hover {
   color: #ffffff;
-  background-color: var(--primary-4);
+  background-color: var(--primary-3);
   font-weight: bold;
   transform: scale(1.1);
 }
@@ -86,7 +94,7 @@ body {
 
 .btn2:hover {
   color: #ffffff;
-  background-color: var(--primary-4);
+  background-color: var(--primary-3);
   font-weight: bold;
   border: none;
   transform: scale(1.1);
@@ -240,7 +248,7 @@ body {
 .dropdown-menu {
   margin-top: 0;
   width: 25vh;
-  height: 25vh;
+  height: 20vh;
   border: none;
   background-color: rgba(33, 37, 41, 1);
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -560,7 +568,7 @@ input {
 
 .login .login__form-group {
   position: relative;
-  margin: 10px 0;
+  margin: 5px 0;
 }
 
 .login .login__form-group input {

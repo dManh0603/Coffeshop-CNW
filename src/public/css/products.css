@@ -36,7 +36,7 @@
 
 .product_trash:hover a,
 .product_trash:hover i {
-  color: #fff;
+  color: var(--primary-1);
 }
 
 .form-check-input {

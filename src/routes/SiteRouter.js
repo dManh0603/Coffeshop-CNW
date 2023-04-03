@@ -11,6 +11,7 @@ router.get("/menu", siteController.menu);
 router.get("/signin", siteController.signin);
 router.get("/signup", siteController.signup);
 router.get("/signout", siteController.signout);
+router.get("/forgetpassword", siteController.forgetPassword);
 router.get("/about", siteController.about);
 router.get("/shop", siteController.shop);
 

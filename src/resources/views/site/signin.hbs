@@ -13,29 +13,32 @@
     </div>
 
     <div class="d-flex align-items-center justify-content-center vh-100">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-md-6">
-                        <div class="login">
-                            <h2 class="login__title">SIGN IN</h2>
-                            <form class="login__form">
-                                <div class="login__form-group">                          
-                                    <input type="tel" id="phone" class="login__input login__input--phone" required>
-                                    <label for="phone">Phone</label>
-                                </div>
-                                <div class="login__form-group">
-                                    <input type="password" id="password" class="login__input login__input--password"  required>
-                                    <label for="phone">Passwork</label>
-                                </div>
-                                <div class="login__form-group">
-                                    <button type="submit" class="btn5 btn5-full">Sign in</button>
-                                </div>
-                                <div class="login__form-next">
-                                    <a href="#">Forget password</a>
-                                    <a href="/signup">Sign up</a>
-                                </div>
-                            </form>
-                        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="login">
+                        <h2 class="login__title">Đăng nhập</h2>
+                        <form id="signin__form" class="login__form">
+                            <div class="login__form-group">
+                                <input type="tel" id="username" name="username"
+                                    class="login__input login__input--username" required>
+                                <label for="username">Username</label>
+                            </div>
+                            <div class="login__form-group">
+                                <input type="password" id="password" name="password"
+                                    class="login__input login__input--password" required>
+                                <label for="password">Password</label>
+                            </div>
+                            <div class="login__form-group">
+                                <button type="button" class="btn5 btn5-full" onclick="signin()">Đăng nhập</button>
+                            </div>
+                            <div class="login__form-next">
+                                <a href="/forgetpassword">Quên mật khẩu</a>
+                                <a href="#"><i class="fa-solid fa-house"></i></a>
+                                <a href="/signup">Đăng ký</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

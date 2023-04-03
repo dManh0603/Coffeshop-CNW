@@ -3,55 +3,74 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 var { validationResult } = require("express-validator");
-const accountService = require("../services/account-service");
-let accountCache = new Map();
+const accountService = require("../services/AccountService");
+let { authCache } = require("../services/cache");
 
 class AuthController {
     async signup(req, res, next) {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            res.json(errors.array());
+            res.status(400).json({
+                message: errors.array()[0].msg
+            });
         } else {
             let result = await accountService.signup(req, res);
-            if(result) {
+            if (result) {
                 res.status(result.status).json({
-                    message: result.message
-                })
+                    result
+                });
             }
         }
     }
 
-    async login(req, res, next) {
+    async signin(req, res, next) {
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            res.json(errors.array());
+            res.status(401).json({
+                message: errors.array()[0].msg,
+            });
         } else {
-            let result = await accountService.authenticate(req, res)
-            if(result) {
-                res.status(result.status).json({
-                    "accessToken": result.accessToken,
-                    "refreshToken": result.refreshToken
-                })
+            let result = await accountService.signin(req, res);
+            if (result) {
+                res.status(200).json({ result });
             }
         }
     }
 
     async refreshToken(req, res, next) {
         let response = await accountService.refreshToken(req, res);
-        if(response) {
+        if (response) {
             res.status(response.status).json({
-                "accessToken": response.accessToken,
-                "refreshToken": response.refreshToken
-            })
+                accessToken: response.accessToken,
+                refreshToken: response.refreshToken,
+            });
         }
     }
 
-    async logout(req, res, next) {
-        let response = await accountService.logout(req, res);
-        if(response) {
-            res.status(response.status).json({
-                "message": response.message
-            })
+    async signout(req, res, next) {
+        let result = await accountService.signout(req, res);
+        if (result) {
+            console.log(result);
+            res.status(result.status).json({
+                result
+            });
+        }
+    }
+
+    async forgetPassword(req, res, next) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            res.status(401).json({
+                message: errors.array()[0].msg,
+            });
+        } else {
+            let result = await accountService.forgetPassword(req, res);
+            if (result) {
+                console.log(result);
+                res.status(result.status).json({
+                    result
+                });
+            }
         }
     }
 
