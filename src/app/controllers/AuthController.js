@@ -32,6 +32,11 @@ class AuthController {
         } else {
             let result = await accountService.signin(req, res);
             if (result) {
+                req.session.currentUser = {
+                    "accountId": result.accountId,
+                    "role": result.role
+                }
+                console.log(req.session);
                 res.status(200).json({ result });
             }
         }

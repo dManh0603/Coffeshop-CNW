@@ -93,6 +93,7 @@ let signin = async (req, res) => {
             accessToken: accessToken,
             refreshToken: refreshToken,
             role: account.role,
+            accountId: account.accountId
         };
     } catch (error) {
         res.status(401).json({
