@@ -7,7 +7,7 @@ const sortMiddleware = require('./app/middlewares/sort');
 const session = require('express-session');
 const { v4: uuidv4 } = require('uuid');
 
-const route = require('./routes');
+const route = require('./routes/index');
 const db = require('./config/db');
 
 // Generate a random UUID to use as the secret key

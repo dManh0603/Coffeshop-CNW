@@ -11,7 +11,7 @@ const AccountSchema = new Schema(
         email: { type: String, maxLength: 255 },
         phone: { type: String, maxLength: 20 },
         status: { type: Number },
-        role: { type: Number }
+        role: { type: String, maxLength: 25 }
     }
 );
 

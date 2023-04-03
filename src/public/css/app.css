@@ -33,7 +33,7 @@ a {
 }
 
 .page_body {
-  margin-top: 100px;
+  margin-top: 80px;
 }
 
 body {
@@ -197,7 +197,7 @@ body {
 /* ---navbar--- */
 /* ============ */
 .navbar{
-  height: 80px;
+  max-height: 80px;
   top: 0;
   left: 0;
   right: 0;
@@ -206,8 +206,8 @@ body {
 
 }
 .selected {
-  background-color: var(--primary-2);
-  width: 30%;
+  background-color: rgba(33, 37, 41, 1);
+  width: 50%;
 } 
 
 
@@ -222,11 +222,10 @@ body {
 
 .dropdown-menu {
   margin-top: 0;
-  width: 22vh;
-  height: 24vh;
+  width: 25vh;
+  height: 30vh;
   border: none;
-  border-radius: 0;
-  background-color: var(--primary-2);
+  background-color: rgba(33, 37, 41, 1);
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 }
 
@@ -244,7 +243,7 @@ body {
 /* ============ */
 .carousel {
   position: relative;
-  margin-top:80px;
+  margin-top:60px;
 }
 
 .carousel-inner {
@@ -317,15 +316,15 @@ body {
   justify-content: flex-end;
 }
 
-.container .card {
+.container .card{
   height: 20rem;
 }
 
-.container .card img {
+.container .home__card img {
   border-radius: 100%;
   border: 3px solid var(--primary-1);
+  padding: 4px;
 }
-
 /* ================== */
 /* -------Menu------- */
 /* ================== */
@@ -535,7 +534,7 @@ footer {
 
 .login {
   width: 450px;
-  margin: 100px auto;
+  margin: 80px auto;
   background-color: #ffffff90;
   padding: 40px;
   border-radius: 10px;
@@ -592,6 +591,108 @@ footer {
 .login .login__form-next a:hover {
   color: #000;
 }
+
+
+
+
+
+.account {
+  background-image: url(https://lh3.googleusercontent.com/pw/AMWts8DycaX_3uynN56pCHdiOrQEdRmWdNin7ucqP1aHcEarkcRqMYY8yZBB3PZbA9_4W711c0qUuzR_pK1TsFrGdFNHe2GvONaOp_NysETLEUGWdVEH4U4vQ3AIUXzw3kup05_X_om7UlSVuo5cpczeTItR=w1339-h893-s-no?authuser=0);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 400px;
+  padding: 40px;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.8);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,0.5);
+  border-radius: 20px;
+}
+
+
+
+.login h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login .login__form-group{
+  position: relative;
+}
+
+
+.login .login__form-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 10px;
+  border: rgba(0,0,0,0.6);
+  border-radius: 3px;
+  outline: none;
+  background: #ffffff76;
+}
+
+.login .login__form input:focus {
+  box-shadow: 0 0.2rem 0.2rem 0.2rem rgba(218, 227, 53, 0.613);
+}
+
+.login .login__form-group label {
+  position: absolute;
+  top:0;
+  left: 0;
+  padding: 5px 5px 5px 10px;
+  font-size: 16px;
+  color: #2d2d08;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login .login__form-group input:focus ~ label,
+.login .login__form-group input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: var(--primary-1);
+  font-size: 12px;
+  
+}
+
+.login .login__form-next {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  font-size: 14px;
+}
+
+.login .login__form-next a{
+  color: #fff;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+.login .login__form-next a:hover {
+  color: var(--primary-1);
+}
+
 
 .beans{
   position:absolute;

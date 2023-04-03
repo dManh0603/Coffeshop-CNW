@@ -5,7 +5,6 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 const slug = require('mongoose-slug-generator');
 
 const ProductSchema = new Schema({
-    id: Number,
     name: { type: String, maxLength: 600, },
     description: { type: String },
     price: { type: Number },
@@ -13,7 +12,6 @@ const ProductSchema = new Schema({
     imageId: { type: String, unique: true },
     slug: { type: String, slug: 'name', unique: true, },
 }, {
-    _id: false,
     timestamps: true,
 });
 
@@ -34,8 +32,8 @@ ProductSchema.query.sortable = function (req) {
 // Add plugin for mongoose
 mongoose.plugin(slug);
 
-//Add plugin for Course models
-ProductSchema.plugin(AutoIncrement, {inc_field: 'product_id'});
+// Add plugin for Course models
+ProductSchema.plugin(AutoIncrement, { inc_field: 'product_id' });
 ProductSchema.plugin(mongooseDelete, {
     overrideMethods: 'all',
     deletedAt: true,

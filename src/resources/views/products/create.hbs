@@ -1,48 +1,59 @@
-<div class="mt-4">
-    <h3>Tạo sản phẩm mới</h3>
-    <form method="POST" action="/products/store" enctype="multipart/form-data">
+<link rel="stylesheet" href="/css/product_create.css" />
+<div class="create_container mt-4">
+  <h3 class="create_title">Tạo sản phẩm mới</h3>
+  <form
+    method="POST"
+    action="/products/store"
+    class="create_form"
+    enctype="multipart/form-data"
+  >
 
-        <div class="mb-3">
-            <label for="name" class="form-label">Tên sản phẩm</label>
-            <input type="text" class="form-control" name="name" id="name" required>
-        </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Tên sản phẩm</label>
+      <input type="text" class="form-control" name="name" id="name" required />
+    </div>
 
-        <div class="mb-3">
-            <label for="description" class="form-label">Mô tả sản phẩm</label>
-            <textarea class="form-control" name="description" rows="3" id="editor"></textarea>
-        </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Mô tả sản phẩm</label>
+      <textarea
+        class="form-control"
+        name="description"
+        rows="3"
+        id="editor"
+      ></textarea>
+    </div>
 
-        <div class="mb-3">
-            <label for="formFile" class="form-label">Ảnh sản phẩm</label>
-            <input class="form-control" type="file" name="picture" required>
-        </div>
+    <div class="mb-3">
+      <label for="formFile" class="form-label">Ảnh sản phẩm</label>
+      <input class="form-control" type="file" name="picture" required />
+    </div>
 
-        <div class="mb-3">
-            <label for="name" class="form-label">Giá</label>
-            <input type="number" class="form-control" name="price" required>
-        </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Giá</label>
+      <input type="number" class="form-control" name="price" required />
+    </div>
 
-        <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" value="true" name="isPublished" checked>
-            <label class="form-check-label" for="flexCheckChecked">
-                Phát hành
-            </label>
-        </div>
+    <div class="form-check mb-3">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        value="true"
+        name="isPublished"
+        checked
+      />
+      <label class="form-check-label" for="flexCheckChecked">
+        Phát hành
+      </label>
+    </div>
 
-        <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
-    </form>
+    <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+  </form>
 </div>
 
 <script>
-    const $publishCheck = $('input[name="isPublished"]');
-    // toogle the value of isPublished
-    $publishCheck.change(function (e) {
-        if (e.target.checked) {
-            $publishCheck.val(true);
-        } else {
-            $publishCheck.val(false);
-        }
-        console.log($publishCheck.val());
-    });
+  const $publishCheck = $('input[name="isPublished"]'); // toogle the value of
+  isPublished $publishCheck.change(function (e) { if (e.target.checked) {
+  $publishCheck.val(true); } else { $publishCheck.val(false); }
+  console.log($publishCheck.val()); });
 
 </script>
