@@ -15,7 +15,7 @@ const AccountSchema = new Schema(
     }
 );
 
-AccountSchema.plugin(AutoIncrement, {inc_field: 'account_id'});
+AccountSchema.plugin(AutoIncrement, {inc_field: 'accountId'});
 
 const account = mongoose.model("accounts", AccountSchema);
 
