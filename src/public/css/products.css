@@ -16,7 +16,8 @@
 }
 
 .product_trash a,
-i {
+.product_trash i,
+.product_form i {
   text-decoration: none;
   color: #8b4513;
 }
