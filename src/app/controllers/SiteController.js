@@ -79,6 +79,10 @@ class SiteController {
   signout(req, res) {
     res.render('site/signout');
   }
+  // [GET] /signout
+  forgetPassword(req, res) {
+    res.render('site/forget_password');
+  }
   // [GET] /home
   home(req, res) {
     res.render('site/home');

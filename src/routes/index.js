@@ -10,6 +10,8 @@ function route(app) {
     app.use('/products', productsRouter);
     app.use("/cart", cartRouter);
     app.use('/', siteRouter);
+    app.use('/auth/', authRoute);
+
 }
 
 module.exports = route;

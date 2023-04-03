@@ -50,21 +50,13 @@
   font-weight: 600;
 }
 
-.similar-products {
-  cursor: pointer;
-}
-
 .container .card img {
   border-radius: 0;
   border: none;
   padding: 4px;
 }
 
-.relevant_product a {
-  text-decoration: none;
-  color: black;
-}
-
-.relevant_product a:hover {
-  scale: 1;
+.show_img img {
+  width: 88vw;
+  box-shadow: 3px 6px 22px -6px rgba(66, 68, 90, 0.5);
 }
