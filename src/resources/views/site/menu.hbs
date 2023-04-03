@@ -93,7 +93,8 @@
       const $cartIcon = $('.fa-cart-shopping');
       const $searchForm = $('#search-form'); // Search function 
       $searchForm.submit(function (e) { // Prevent the form from submitting and reloading the page 
-        e.preventDefault(); // Get the search query from the input field const query = $('input[name="q"]').val(); // Send a GET request to the server with the search query 
+        e.preventDefault(); // Get the search query from the input field 
+        const query = $('input[name="q"]').val(); // Send a GET request to the server with the search query 
         $.ajax({
           url: "/search?q=" + query,
           type: "GET",
@@ -132,18 +133,18 @@
         });
       }); // Add to cart function
       $addToCartBtn.click(function (e) {
-        e.preventDefault(); const
-          $clickedBtn = $(this); const slug = $clickedBtn.data('slug'); const url =
-            $clickedBtn.attr('href'); const data = { slug }; $.ajax({
-              url: '/cart/add/',
-              type: 'POST', dataType: 'json', contentType: 'application/json', data:
-                JSON.stringify(data), success: function (response) { //handle after add to cart in FE 
-                  $cartIcon.text(' ' + response.currentQuantity)
-                  console.log(response)
-                }, error: function (xhr, status, error) {
-                  console.error(error);
-                }
-            });
+        e.preventDefault();
+        const $clickedBtn = $(this); const slug = $clickedBtn.data('slug'); const url =
+          $clickedBtn.attr('href'); const data = { slug }; $.ajax({
+            url: '/cart/add/',
+            type: 'POST', dataType: 'json', contentType: 'application/json', data:
+              JSON.stringify(data), success: function (response) { //handle after add to cart in FE 
+                $cartIcon.text(' ' + response.currentQuantity)
+                console.log(response)
+              }, error: function (xhr, status, error) {
+                console.error(error);
+              }
+          });
       });
     } // Call the function to initialize the variables
     initialize();

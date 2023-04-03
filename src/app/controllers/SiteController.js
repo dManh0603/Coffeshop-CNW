@@ -46,7 +46,6 @@ class SiteController {
       });
   }
 
-
   // [GET] /contact
   contact(req, res) {
     res.render("site/contact");
