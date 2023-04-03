@@ -69,17 +69,6 @@
 </div>
 
 <script>
-  $(document).ready(function () {
-    const $addToCartBtn = $('.addToCartBtn');
-    $addToCartBtn.click(function (e) {
-      e.preventDefault(); const $clickedBtn =
-        $(e.target).closest('a'); const url = $clickedBtn.attr('href');
-      console.log(url);
-    })
-  })
-
-</script>
-<script>
   let category = document.querySelectorAll(".category");
   category.forEach((element) => {
     element.addEventListener("click", function () {
