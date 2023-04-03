@@ -1,14 +1,14 @@
-<<<<<<< Updated upstream
+
 <link rel="stylesheet" href="/css/menu.css" />
 <div class="menu_container py-5">
   <h1 class="menu_title py-4 text-center">Danh mục sản phẩm</h1>
   <div class="menu_row row">
     <div class="menu_left col-lg-3 col-md-12 col-sm-12 col-xs-12 stikySidebar">
       <aside class="sidebar_menu">
-        <form id="search-form" action="/search">
+        <form id="search-form" class="menu_search d-flex" action="/search">
           <div class="mb-3">
-            <label for="search-input" class="form-label">Từ khóa</label>
-            <input type="text" name="q" class="form-control" id="search-input" placeholder="Nhập từ khóa ...">
+
+            <input type="text" name="q" class="form-control search_input" id="search-input" placeholder="Nhập từ khóa ...">
           </div>
 
         <button type="submit" class="btn btn-primary">Tìm kiếm</button>
@@ -149,66 +149,6 @@
 
       })
     </script>
-=======
-<h1>MENU</h1>
-<div class="mt-4">
-  <div class="row">
-    <div class="col ms-4">
-      <form id="search-form" action="/search">
-        <div class="mb-3">
-          <label for="search-input" class="form-label">Từ khóa</label>
-          <input
-            type="text"
-            name="q"
-            class="form-control"
-            id="search-input"
-            placeholder="Nhập từ khóa ..."
-          />
-        </div>
-
-        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-      </form>
-    </div>
-    <div class="col">
-      <div class="row" id="showed-products">
-        {{#each products}}
-          <div class="col-sm-6 col-lg-4">
-            <div class="card mt-2">
-              <a href="/products/{{this.slug}}">
-                <img
-                  src="{{getImage this.imageId}}"
-                  class="card-img-top"
-                  alt="..."
-                />
-              </a>
-              <div class="card-body">
-                <h5 class="card-title">
-                  {{this.name}}</h5>
-                <p class="card-text">{{this.description}}</p>
-                <div class="row">
-                  <div class="col">
-                    {{this.price}}
-                    đ
-                  </div>
-                  <div class="col">
-                    <a
-                      data-slug="{{this.slug}}"
-                      class="btn btn-primary addToCardBtn"
-                    >
-                      Thêm vào giỏ hàng
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        {{/each}}
-      </div>
-
-    </div>
-
-  </div>
-</div>
 
 <script>
   $(document).ready(function () { const $addToCartBtn = $('.addToCardBtn');
@@ -244,4 +184,3 @@
   console.log(response) }, error: function (xhr, status, error) {
   console.error(error); } }); }) })
 </script>
->>>>>>> Stashed changes
