@@ -42,6 +42,22 @@ body {
 /* ---Button--- */
 /* ============ */
 
+.btn{
+  background-color: var(--primary-1);
+  color: var(--primary-2);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 18vh;
+}
+.btn:hover {
+  color: #ffffff;
+  background-color: var(--primary-4);
+  font-weight: bold;
+  transform: scale(0.9);
+}
+
 .btn1 {
   background-color: var(--primary-1);
   color: var(--primary-2);
