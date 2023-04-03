@@ -66,7 +66,7 @@
                 success: function (response) {
                     // Update the cart count in the UI
                     console.log(response)
-                    $('#cart-counter').text(response.currentQuantity);
+                    $('#cart-counter').text(' ' + response.currentQuantity);
                 },
                 error: function (xhr, status, error) {
                     console.error(error);
@@ -87,7 +87,7 @@
                 dataType: "json",
                 success: function (response) {
                     console.log(response);
-                    $('#cart-counter').text(response.currentQuantity);
+                    $('#cart-counter').text(' ' + response.currentQuantity);
                     $tr.remove();
                     // Check if there are any rows left in the table
                     if ($('.table tbody tr').length === 0) {

@@ -28,10 +28,11 @@ a {
   --secondary: rgb(245, 238, 230);
 }
 
-h1{
+h1 {
   font-size: 3rem;
 }
-h2{
+
+h2 {
   font-size: 2.5rem;
 }
 
@@ -216,10 +217,11 @@ body {
   background-color: var(--secondary);
 }
 
-.form-control:focus{
+.form-control:focus {
   border-color: var(--primary-1);
   box-shadow: 0 0 0 0.25rem rgba(218, 227, 53, 0.613);
 }
+
 /* ============ */
 /* ---navbar--- */
 /* ============ */
@@ -231,6 +233,7 @@ body {
   position: fixed;
   z-index: 99;
 }
+
 .selected {
   background-color: rgba(33, 37, 41, 1);
   width: 50%;
@@ -285,6 +288,7 @@ body {
   .carousel-inner {
     max-height: 450px;
   }
+
   .carousel-caption {
     position: absolute;
     top: 15%;
@@ -344,6 +348,7 @@ body {
   border: 3px solid var(--primary-1);
   padding: 4px;
 }
+
 /* ================== */
 /* -------Menu------- */
 /* ================== */
@@ -386,6 +391,7 @@ body {
   overflow-y: scroll;
   height: 100px;
 }
+
 .ourspecial__content__description::-webkit-scrollbar {
   width: 5px;
   background-color: transparent;
@@ -403,6 +409,7 @@ body {
 .coffee__beans {
   position: relative;
 }
+
 .coffee__beans--caption {
   position: absolute;
   top: 50%;
@@ -500,6 +507,7 @@ input {
   height: 50px;
   margin: 0;
 }
+
 /* ======================= */
 /* ----scrollToTopBtn----- */
 /* ======================= */
@@ -598,8 +606,8 @@ input {
   transition: 0.5s;
 }
 
-.login .login__form-group input:focus ~ label,
-.login .login__form-group input:valid ~ label {
+.login .login__form-group input:focus~label,
+.login .login__form-group input:valid~label {
   top: -20px;
   left: 0;
   color: var(--primary-1);
@@ -691,27 +699,37 @@ input {
   animation: animate 15s linear infinite;
 }
 
+#cart-counter {
+  white-space: pre;
+}
+
 @keyframes animate {
   0% {
     opacity: 0;
     top: -10%;
     transform: translateX(20px) rotate(0deg);
   }
+
   10% {
     opacity: 1;
   }
+
   20% {
     transform: translateX(-20%) rotate(45deg);
   }
+
   40% {
     transform: translateX(-20%) rotate(90deg);
   }
+
   60% {
     transform: translateX(-20%) rotate(180deg);
   }
+
   80% {
     transform: translateX(-20%) rotate(45deg);
   }
+
   100% {
     top: 110%;
     transform: translateX(20%) rotate(225deg);
