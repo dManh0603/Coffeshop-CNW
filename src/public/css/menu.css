@@ -64,7 +64,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.addToCartBtn {
+.btn.addToCartBtn {
   color: var(--primary-3);
   background: #ffffff;
   border: 1px solid #8b4513;
@@ -145,6 +145,10 @@
   height: auto;
   width: 12vw;
   line-height: 2;
+}
+
+.search_form {
+  display: flex;
 }
 
 .search_btn {
