@@ -94,15 +94,15 @@ class CartController {
         try {
             const slug = req.params.slug;
             const cart = req.session.cart;
-            console.log('1',slug);
+            console.log('1', slug);
             for (let i = 0; i < cart.length; i++) {
                 if (cart[i].productSlug == slug) {
                     cart.splice(i, 1);
                     break;
                 }
             }
-            console.log('2',cart)
-            
+            console.log('2', cart)
+
             // Save the updated session object
             req.session.save(() => {
                 const currentQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
@@ -116,6 +116,45 @@ class CartController {
         }
     }
 
+    // [GET] /cart/checkout
+    checkout(req, res, next) {
+        res.render('cart/checkout');
+    }
+
+
+
+    // [POST] /cart/pay
+    pay(req, res, next) {
+        // console.log(req.body)
+        const shippingInfo = req.body;
+        const cartQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
+        const productSlugs = req.session.cart.map(item => item.productSlug);
+        Product.find({ slug: { $in: productSlugs } })
+            .then(products => {
+                const cartItems = products.map(product => {
+                    const cartItem = req.session.cart.find(item => item.productSlug === product.slug);
+                    return {
+                        name: product.name,
+                        price: product.price,
+                        quantity: cartItem.quantity,
+                        totalCost: cartItem.quantity * product.price,
+                        imageId: product.imageId,
+                        slug: product.slug
+                    }
+                });
+                const cartTotalCost = cartItems.reduce((total, item) => total + item.totalCost, 0);
+                res.render('cart/pay', {
+                    cartItems,
+                    cartQuantity,
+                    shippingInfo,
+                    cartTotalCost,
+                });
+            })
+            .catch(err => {
+                console.error(err);
+                // Handle errors
+            });
+    }
 }
 
 
