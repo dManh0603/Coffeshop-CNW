@@ -127,6 +127,7 @@ class CartController {
     pay(req, res, next) {
         // console.log(req.body)
         const shippingInfo = req.body;
+        console.log('cart controller:', req.session.cart)
         const cartQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
         const productSlugs = req.session.cart.map(item => item.productSlug);
         Product.find({ slug: { $in: productSlugs } })
@@ -148,6 +149,7 @@ class CartController {
                     cartQuantity,
                     shippingInfo,
                     cartTotalCost,
+                    PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID
                 });
             })
             .catch(err => {
