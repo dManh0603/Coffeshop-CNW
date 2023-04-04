@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 var { validationResult } = require("express-validator");
 const accountService = require("../services/AccountService");
-let { authCache } = require("../services/cache");
+let { authCache, webCache } = require("../services/cache");
 
 class AuthController {
     async signup(req, res, next) {
@@ -32,9 +32,11 @@ class AuthController {
         } else {
             let result = await accountService.signin(req, res);
             if (result) {
+                const accountEncode = encodeURIComponent(JSON.stringify(result.account));
+                res.cookie('currentUser', accountEncode);
                 req.session.currentUser = {
-                    "accountId": result.accountId,
-                    "role": result.role
+                    "accountId": result.account.accountId,
+                    "role": result.account.role
                 }
                 console.log(req.session);
                 res.status(200).json({ result });
@@ -55,7 +57,6 @@ class AuthController {
     async signout(req, res, next) {
         let result = await accountService.signout(req, res);
         if (result) {
-            console.log(result);
             res.status(result.status).json({
                 result
             });
@@ -83,6 +84,27 @@ class AuthController {
         AccountDocument.find({}).then((accounts) => {
             res.json({ accounts });
         });
+    }
+
+    async update(req, res, next) {
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            res.status(400).json({
+                message: errors.array()[0].msg
+            });
+        } else {
+            let result = await accountService.update(req, res);
+            if (result) {
+                const accountEncode = encodeURIComponent(JSON.stringify(result.account));
+                res.cookie('currentUser', accountEncode);
+                req.session.currentUser = {
+                    "accountId": result.account.accountId,
+                    "role": result.account.role
+                }
+                console.log(req.session);
+                res.status(200).json({ result });
+            }
+        }
     }
 }
 
