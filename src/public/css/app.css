@@ -703,6 +703,22 @@ input {
   white-space: pre;
 }
 
+.btn.checkoutBtn {
+  color: var(--primary-3);
+  background:var(--primary-1);
+  border: 1px solid #8b4513;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  padding: 12px;
+  transition: all 0.2s ease-in;
+}
+
+.checkoutBtn:hover {
+  color: var(--primary-1);
+  background-color: var(--primary-3);
+}
+
 @keyframes animate {
   0% {
     opacity: 0;
