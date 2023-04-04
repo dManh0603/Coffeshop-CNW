@@ -7,14 +7,14 @@
   color: var(--secondary);
   text-align: center;
 }
-a {
+.E404 a {
   text-decoration: none;
   font-size: larger;
 }
 
-a:hover {
-  scale: 1.3;
-  transition: all 0.5s ease-in-out;
+.E404 a:hover {
+  font-weight: bolder;
+  transition: all 0.2s ease-in-out;
   text-shadow: #1e1d1d;
 }
 
