@@ -13,6 +13,7 @@
     </div>
 
     <div class="d-flex align-items-center justify-content-center vh-100">
+
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-6">
@@ -20,12 +21,14 @@
                         <h2 class="login__title">Đăng nhập</h2>
                         <form id="signin__form" class="login__form">
                             <div class="login__form-group">
-                                <input type="tel" id="username" name="username" class="login__input login__input--username"
-                                    placeholder="username" required>
+                                <input type="tel" id="username" name="username"
+                                    class="login__input login__input--username" required>
+                                <label for="username">Username</label>
                             </div>
                             <div class="login__form-group">
-                                <input type="password" id="password" name="password" class="login__input login__input--password"
-                                    placeholder="Password" required>
+                                <input type="password" id="password" name="password"
+                                    class="login__input login__input--password" required>
+                                <label for="password">Password</label>
                             </div>
                             <div class="login__form-group">
                                 <button type="button" class="btn5 btn5-full" onclick="signin()">Đăng nhập</button>

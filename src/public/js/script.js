@@ -1,10 +1,15 @@
 // =====================//
 // ---Navbar Active---//
 // ====================//
+// $('.navbar-nav .nav-link').click(function() {
+//   $('.navbar-nav .nav-link').removeClass('xh-active');
+//   $(this).addClass('xh-active');
+// });
+
 // Lấy đường dẫn của trang hiện thời
 var path = window.location.pathname;
 
-// Tìm các phần tử nav-link và thêm 'active' vào phần tử tương ứng với đường dẫn hiện tại
+//Tìm các phần tử nav-link và thêm 'active' vào phần tử tương ứng với đường dẫn hiện tại
 var navbarLinks = document.querySelectorAll(".nav-link");
 for (var i = 0; i < navbarLinks.length; i++) {
     var href = navbarLinks[i].getAttribute("href");
@@ -14,6 +19,7 @@ for (var i = 0; i < navbarLinks.length; i++) {
         navbarLinks[i].classList.remove("active");
     }
 }
+
 
 // =====================//
 // ---scrollToTopBtn---//

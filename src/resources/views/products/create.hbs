@@ -4,23 +4,43 @@
   <form method="POST" action="/products/store" class="create_form" enctype="multipart/form-data">
 
     <div class="mb-3">
-      <label for="name" class="form-label">Tên sản phẩm</label>
-      <input type="text" class="form-control" name="name" id="name" required />
+      <label for="name" class="form-label">Tên sản phẩm: </label>
+      <input
+        type="text"
+        class="form-control"
+        name="name"
+        id="name"
+        placeholder="VD: Cà phê đá xay mắm tôm"
+        required
+      />
     </div>
 
     <div class="mb-3">
       <label for="description" class="form-label">Mô tả sản phẩm</label>
       <textarea class="form-control" name="description" rows="3" id="editor"></textarea>
+      <textarea
+        class="form-control"
+        name="description"
+        rows="5"
+        id="editor"
+        placeholder="VD: Xuất xứ sản phẩm, điểm đặc biệt ở sản phẩm"
+      ></textarea>
     </div>
 
     <div class="mb-3">
-      <label for="formFile" class="form-label">Ảnh sản phẩm</label>
+      <label for="formFile" class="form-label">Ảnh sản phẩm:</label>
       <input class="form-control" type="file" name="picture" required />
     </div>
 
     <div class="mb-3">
-      <label for="name" class="form-label">Giá</label>
-      <input type="number" class="form-control" name="price" required />
+      <label for="name" class="form-label">Giá:</label>
+      <input
+        type="number"
+        class="form-control"
+        name="price"
+        placeholder="Đơn vị: VNĐ"
+        required
+      />
     </div>
 
     <div class="form-check mb-3">
@@ -30,7 +50,7 @@
       </label>
     </div>
 
-    <button type="submit" class="btn btn-primary">Thêm sản phẩm</button>
+    <button type="submit" class="btn create_btn">Thêm sản phẩm</button>
   </form>
 </div>
 
