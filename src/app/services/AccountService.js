@@ -148,7 +148,9 @@ let signout = async (req, res) => {
             token === authCache.get(decode.username).accessToken
         ) {
             authCache.del(decode.username);
-            console.log(authCache.data);
+            console.log(req.session);
+            req.session.destroy();
+            console.log(req.session);
             return {
                 status: 200,
                 // message: "Logged out!"
