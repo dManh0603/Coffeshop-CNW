@@ -5,47 +5,25 @@
                 <h5 class="mt-1">Shipping infomation</h5>
             </div>
             <div class="card-body">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                        </tr>
-                    </thead>
+                <p class="text-start">
+                    First name: {{shippingInfo.firstname}}
+                </p>
 
-                    <tbody class="table">
-                        <tr></tr>
+                <p class="text-start">
+                    Last name: {{shippingInfo.lastname}}
+                </p>
 
-                        <tr class="border-top-0">
-                            <td colspan="2">First name</td>
-                            <td colspan="3" class="text-center">{{shippingInfo.firstname}}</td>
-                        </tr>
+                <p class="text-start">
+                    Email: {{shippingInfo.email}}
+                </p>
 
-                        <tr class="border-top-0">
-                            <td colspan="2">First name</td>
-                            <td colspan="3" class="text-center">{{shippingInfo.lastname}}</td>
-                        </tr>
+                <p class="text-start">
+                    Phone number{{shippingInfo.phone}}
+                </p>
 
-                        <tr class="border-top-0">
-                            <td colspan="2">First name</td>
-                            <td colspan="3" class="text-center">{{shippingInfo.email}}</td>
-                        </tr>
-
-                        <tr class="border-top-0">
-                            <td colspan="2">First name</td>
-                            <td colspan="3" class="text-center">{{shippingInfo.phone}}</td>
-                        </tr>
-
-                        <tr class="border-top-0">
-                            <td colspan="2">First name</td>
-                            <td colspan="3" class="text-center">{{shippingInfo.address}}</td>
-                        </tr>
-                    </tbody>
-
-                </table>
+                <p class="text-start">
+                    Address: {{shippingInfo.address}}
+                </p>
             </div>
         </div>
     </div>
@@ -85,7 +63,7 @@
                         </tr>
                         <tr class="">
                             <td colspan="2" class="text-start">Total cost</td>
-                            <td colspan="3" class="text-end">TOTAL COST</td>
+                            <td colspan="3" class="text-end">{{cartTotalCost}}</td>
                         </tr>
                     </tbody>
                 </table>

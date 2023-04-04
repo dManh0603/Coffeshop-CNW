@@ -142,11 +142,12 @@ class CartController {
                         slug: product.slug
                     }
                 });
+                const cartTotalCost = cartItems.reduce((total, item) => total + item.totalCost, 0);
                 res.render('cart/pay', {
                     cartItems,
                     cartQuantity,
                     shippingInfo,
-
+                    cartTotalCost,
                 });
             })
             .catch(err => {
