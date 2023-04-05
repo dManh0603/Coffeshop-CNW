@@ -24,12 +24,12 @@
                             <img src="{{getImage this.imageId}}" style="width: 70px" alt="{{this.name}}">
                         </a>
                     </td>
-                    <td>{{this.price}}</td>
-                    <td>
+                    <td class="num">{{this.price}}</td>
+                    <td  class="num">
                         <input type="number" min="1" class="form-control item-quantity" style="width: 60px"
                             data-slug="{{this.slug}}" value="{{this.quantity}}">
                     </td>
-                    <td>{{this.totalCost}}</td>
+                    <td  class="num">{{this.totalCost}}</td>
                     <td>
                         <a class="btn btn-outline-danger btn-sm delete-btn" data-slug="{{this.slug}}">Delete</a>
                     </td>

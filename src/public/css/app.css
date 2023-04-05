@@ -707,12 +707,12 @@ input {
   display: block;
   text-align: center;
   padding: 0px;
+
 }
 
-/* .cart td {
-  text-align: center;
-  line-height: 1.75;
-} */
+.cart input {
+  height: fit-content;
+}
 
 /* .cart thead {
   text-align: center;
