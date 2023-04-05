@@ -703,6 +703,21 @@ input {
   white-space: pre;
 }
 
+.cart .form-control{
+  display: block;
+  text-align: center;
+  padding: 0px;
+}
+
+/* .cart td {
+  text-align: center;
+  line-height: 1.75;
+} */
+
+/* .cart thead {
+  text-align: center;
+} */
+
 .btn.checkoutBtn {
   color: var(--primary-3);
   background:var(--primary-1);
@@ -710,7 +725,7 @@ input {
   border-radius: 8px;
   text-decoration: none;
   text-align: center;
-  padding: 12px;
+  padding:  4px 12px;
   transition: all 0.2s ease-in;
 }
 
