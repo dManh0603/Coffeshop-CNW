@@ -138,29 +138,53 @@
 <form method="POST" name="delete-product-form"></form>
 
 <script>
-  $(document).ready(function () { const $containerForm =
-  $('form[name="container-form"]'); const $deleteForm =
-  $('form[name="delete-product-form"]'); const $deleteModal =
-  $('#delete-product-modal'); const $btnDeleteCourse = $('#btn-delete-product');
-  const $checkboxAll = $('#checkbox-all'); const $productsCheckbox =
-  $('input[name="productIds[]"]'); const $checkedSubmitBtn = $('#submit-btn');
-  let productId; // When delete button was clicked
-  $deleteModal.on('show.bs.modal', event => { // Button that triggered the modal
-  const button = $(event.relatedTarget); // Extract info from data-bs-*
-  attributes productId = button.attr('data-bs-id'); }); // When confirmed the
-  delete $btnDeleteCourse.on('click', function () { $deleteForm.attr('action',
-  '/products/' + productId + '?_method=DELETE'); $deleteForm.submit(); }); //
-  When checkbox all checked $checkboxAll.change(function () { let isCheckAll =
-  $(this).prop('checked') $productsCheckbox.prop('checked', isCheckAll)
-  enableCheckAllSubmitBtn(); }); // When product item changes
-  $productsCheckbox.change(function () { let isCheckAll =
-  $productsCheckbox.length === $('input[name="productIds[]"]:checked').length;
-  $checkboxAll.prop('checked', isCheckAll); enableCheckAllSubmitBtn(); }); //
-  Checked submit button clicked $checkedSubmitBtn.click(function (e) { let
-  isSubmittable = !$(this).hasClass('disabled'); if (!isSubmittable) {
-  e.preventDefault(); } }) // Enable the submit button when an item is checked
-  function enableCheckAllSubmitBtn() { const checkedCount =
-  $('input[name="productIds[]"]:checked').length; if (checkedCount > 0) {
-  $checkedSubmitBtn.removeClass('disabled'); } else {
-  $checkedSubmitBtn.addClass('disabled'); } } });
+  $(document).ready(function () { 
+    const $containerForm = $('form[name="container-form"]'); 
+    const $deleteForm = $('form[name="delete-product-form"]'); 
+    const $deleteModal = $('#delete-product-modal'); 
+    const $btnDeleteCourse = $('#btn-delete-product');
+    const $checkboxAll = $('#checkbox-all'); 
+    const $productsCheckbox = $('input[name="productIds[]"]'); 
+    const $checkedSubmitBtn = $('#submit-btn');
+  let productId; 
+  // When delete button was clicked
+  $deleteModal.on('show.bs.modal', event => { 
+    // Button that triggered the modal
+  const button = $(event.relatedTarget); 
+  // Extract info from data-bs-*attributes 
+  productId = button.attr('data-bs-id'); 
+  }); 
+  // When confirmed the delete 
+  $btnDeleteCourse.on('click', function () { $deleteForm.attr('action','/products/' + productId + '?_method=DELETE'); 
+  $deleteForm.submit(); 
+  }); 
+  //When checkbox all checked 
+  $checkboxAll.change(function () { 
+    let isCheckAll =$(this).prop('checked'); 
+    $productsCheckbox.prop('checked', isCheckAll);
+    enableCheckAllSubmitBtn(); 
+  }); 
+  // When product item changes
+  $productsCheckbox.change(function () { 
+    let isCheckAll = $productsCheckbox.length === $('input[name="productIds[]"]:checked').length;
+  $checkboxAll.prop('checked', isCheckAll); 
+  enableCheckAllSubmitBtn(); 
+  }); 
+  //Checked submit button clicked 
+  $checkedSubmitBtn.click(function (e) { 
+  let isSubmittable = !$(this).hasClass('disabled'); 
+  if (!isSubmittable) {
+    e.preventDefault(); 
+  } }) 
+  // Enable the submit button when an item is checked
+  function enableCheckAllSubmitBtn() { 
+    const checkedCount = $('input[name="productIds[]"]:checked').length; 
+    if (checkedCount > 0) {
+  $checkedSubmitBtn.removeClass('disabled'); 
+  } else {
+  $checkedSubmitBtn.addClass('disabled'); 
+  } 
+  } 
+  }
+  );
 </script>
