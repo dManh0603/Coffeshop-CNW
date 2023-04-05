@@ -23,7 +23,6 @@ class OrderController {
         try {
             const shippingInfo = req.session.shippingInfo;
             const cartItems = req.body.items;
-            debugger
 
             const products = await Product.find({
                 product_id: { $in: req.body.items.map(item => item.product_id) }
@@ -74,7 +73,7 @@ class OrderController {
             if (PP_order.statusCode !== 201) {
                 return res.status(500).json({ error: 'Failed to create order' });
             }
-            console.log(PP_order)
+
             req.session.cart = null;
 
             res.json({ id: PP_order.result.id });
@@ -107,10 +106,27 @@ class OrderController {
             res.status(500).json({ error: 'An error occurred while creating the order' });
         }
     }
+
+    update(req, res, next) {
+        const orderDetails = req.body;
+        const PP_orderId = orderDetails.id;
+        // TODO: secure the transaction data
+        Order.findOneAndUpdate({ payment_id: PP_orderId }, { isPaid: true }, { new: true })
+            .then(updatedOrder => {
+                if (updatedOrder) {
+                    console.log('updated order:', updatedOrder)
+                    res.json({ success: true, message: `Order ${updatedOrder._id} has been updated.` });
+                } else {
+                    res.status(404).json({ success: false, message: `Order with payment ID ${PP_orderId} not found.` });
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                res.status(500).json({ success: false, message: 'An error occurred while updating the order.' });
+            });
+    }
+
+
 }
-
-
-
-
 
 module.exports = new OrderController;

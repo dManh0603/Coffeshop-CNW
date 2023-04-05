@@ -129,13 +129,15 @@
                     .then((details) => {
                         console.log('on approve:', details)
                         // todo: save order to db
-                        //fetch('/orders/save', {
-                        //  method: 'PUT',
-                        //   headers: {
-                        //       "Content-Type": "application/json"
-                        //
-                        //    }
-                        //})
+                        fetch('/orders/update', {
+                            method: 'PUT',
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(details)
+                        })
+                            .then(response => console.log(response))
+                            .catch(e => console.error(e))
                         alert("Transaction completed by " + details.payer.name.given_name + "\nYou will be redirected to the home page in a few second!\nThank you for your support!");
                         return Promise.resolve();
                     })
