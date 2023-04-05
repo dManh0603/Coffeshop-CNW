@@ -60,7 +60,7 @@
 
 .item_title,
 .item_price {
-  transform: translateY(50px);
+  transform: translateY(60px);
   transition: all 0.3s ease-in-out;
 }
 
@@ -71,8 +71,8 @@
   border-radius: 8px;
   text-decoration: none;
   text-align: center;
-  padding: 4px;
-  transform: translateY(50px);
+  padding: 8px;
+  transform: translateY(60px);
   transition: all 0.2s ease-in;
 }
 
@@ -143,12 +143,13 @@
 
 .search_input {
   height: auto;
-  width: 12vw;
+  width: 32vw;
   line-height: 2;
 }
 
 .search_form {
   display: flex;
+  justify-content: center;
 }
 
 .search_btn {

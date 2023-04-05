@@ -1,141 +1,146 @@
 <link rel="stylesheet" href="/css/menu.css" />
 <div class="menu_container py-5">
   <h1 class="menu_title py-4 text-center">Danh mục sản phẩm</h1>
-  <div class="menu_row row">
-    <div class="menu_left col-lg-3 col-md-12 col-sm-12 col-xs-12 stikySidebar">
-      <aside class="sidebar_menu">
-        <ul class="menu_list">
-          <li>
-            <i class="icon"></i><a href="#" class="category active text-decoration-none"> Tất cả </a>
-          </li>
-          <li>
-            <i class="icon"></i><a href="#" class="category text-decoration-none">
-              Cà Phê Việt Nam
-            </a>
-          </li>
-          <li>
-            <i class="icon"></i><a href="#" class="category text-decoration-none"> Cà Phê Máy </a>
-          </li>
-          <li>
-            <i class="icon"></i><a href="#" class="category text-decoration-none"> Tất cả </a>
-          </li>
-        </ul>
-        <select class="menu_selector">
-          <option value="null">Tất cả</option>
-          <option value="null">Cà Phê Việt Nam</option>
-          <option value="null">Cà Phê Máy</option>
-        </select>
-
-      </aside>
-      <form id="search-form" class="search_form" action="/search">
+   <form id="search-form" class="search_form" action="/search">
         <div class="mb-3">
           <input type="text" name="q" class="form-control search_input" id="search-input"
             placeholder="Nhập từ khóa ..." />
         </div>
         <button type="submit" class="search_btn">Tìm kiếm</button>
       </form>
+  <div class="menu_row row row-cols-4">
 
-    </div>
-    <div class="menu_right col-lg-9 col-md-12 col-sm-12 col-xs-12">
-      <div class="row row-cols-3 mt-2 gy-3 gx-2">
+    <div class="menu_right col-12">
+      <div class="row row-cols-4 mt-2 gy-3 gx-4" id="showed-products">
         {{#each products}}
-        <div class="menu_item col-sm-12 col-lg-4 col-md-6">
+        <div class="menu_item col-sm-12 col-lg-3 col-md-6">
           <div class="card mt-2 menu_item">
             <a href="/products/{{this.slug}}">
-              <img src="{{getImage this.imageId}}" class="card-img-top" alt="..." />
+              <img src="{{getImage this.imageId}}" class="card-img-top" alt="...">
             </a>
             <div class="card-body">
-              <h5 class="item_title">
+              <h5 class="card-title">
                 {{this.name}}</h5>
               <p class="card-text d-none">{{this.description}}</p>
               <div class="row">
-                <div class="item_price">
-                  {{this.price}}
-                  đ
+                <div class="col">
+                  {{this.price}} đ
                 </div>
-                <div class="col addToCardBtn">
-                  <a data-slug="{{this.slug}}" class="btn addToCartBtn">
+
+              </div>
+                              <div class="col">
+                  <a data-slug="{{this.slug}}" class="btn btn-primary addToCartBtn">
                     Thêm vào giỏ hàng
                   </a>
                 </div>
-              </div>
             </div>
           </div>
         </div>
         {{/each}}
       </div>
+
     </div>
+
   </div>
 </div>
 
 <script>
-  let category = document.querySelectorAll(".category");
-  category.forEach((element) => {
-    element.addEventListener("click", function () {
-      category.forEach((e) => e.classList.remove("active"));
-      this.classList.add("active");
-    });
-  });
   $(document).ready(function () {
     function initialize() {
       const $addToCartBtn = $('.addToCartBtn');
       const $cartIcon = $('.fa-cart-shopping');
-      const $searchForm = $('#search-form'); // Search function 
-      $searchForm.submit(function (e) { // Prevent the form from submitting and reloading the page 
-        e.preventDefault(); // Get the search query from the input field 
-        const query = $('input[name="q"]').val(); // Send a GET request to the server with the search query 
+      const $searchForm = $('#search-form');
+
+      // Search function
+      $searchForm.submit(function (e) {
+        // Prevent the form from submitting and reloading the page
+        e.preventDefault();
+
+        // Get the search query from the input field
+        const query = $('input[name="q"]').val();
+
+        // Send a GET request to the server with the search query
         $.ajax({
           url: "/search?q=" + query,
           type: "GET",
           dataType: "json",
-          success: function (response) { // Generate the HTML for each product 
+          success: function (response) {
+            // Generate the HTML for each product
             var productsHtml = "";
             if (response.products.length === 0) {
-              productsHtml = ` 
-                <div class="col-sm-6 col-lg-4"> <h1>No product found</h1>
-                </div> 
-              `
+              productsHtml = `
+                            <div class="menu_item col-sm-12 col-lg-4 col-md-6">
+                                <h1>No product found</h1>
+                            </div>
+                        `
             } else {
               for (var i = 0; i < response.products.length; i++) {
                 var product = response.products[i];
-                var productHtml = ` 
-                  <div class="col-sm-6
-                  col-lg-4"> <div class="card mt-2"> <a href="/products/${product.slug}"> <img
-                  src="https://drive.google.com/uc?id=${product.imageId}&export=download"
-                  class="card-img-top" alt="..."> </a> <div class="card-body"> <h5
-                  class="card-title">${product.name}</h5> <p
-                  class="card-text">${product.description}</p> <div class="row"> <div
-                  class="col">${product.price} đ</div> <div class="col"> <a
-                  href="/cart/add/${product.slug}" data-slug="${product.slug}" class="btn
-                  btn-primary addToCartBtn">Thêm vào giỏ hàng</a> </div> </div> </div> </div>
-                  </div> 
+                var productHtml = `
+                  <div class="menu_item col-sm-12 col-lg-4 col-md-6">
+                      <div class="card mt-2 menu_item">
+                      <a href="/products/${product.slug}">
+                          <img src="https://drive.google.com/uc?id=${product.imageId}&export=download" class="card-img-top" alt="...">
+                      </a>
+                      <div class="card-body">
+                          <h5 class="card-title">${product.name}</h5>
+                          <p class="card-text d-none">${product.description}</p>
+                          <div class="row">
+                          <div class="col">${product.price} đ</div>
+                          </div>
+                                                    <div class="col">
+                              <a href="/cart/add/${product.slug}" data-slug="${product.slug}" class="btn btn-primary addToCartBtn">Thêm vào giỏ hàng</a>
+                          </div>
+                      </div>
+                      </div>
+                  </div>
                 `;
                 productsHtml += productHtml;
               }
-            } // Append the HTML for all theproducts to the showed - products div 
+            }
+
+            // Append the HTML for all the products to the showed-products div
             $("#showed-products").html(productsHtml);
-            // Re-initialize the variables 
+
+            // Re-initialize the variables
             initialize();
-          }, error: function (xhr, status, error) { // Handle errors 
+          },
+
+          error: function (xhr, status, error) {
+            // Handle errors
             console.log("Error:", error);
           }
         });
-      }); // Add to cart function
+      });
+
+      // Add to cart function
       $addToCartBtn.click(function (e) {
         e.preventDefault();
-        const $clickedBtn = $(this); const slug = $clickedBtn.data('slug'); const url =
-          $clickedBtn.attr('href'); const data = { slug }; $.ajax({
-            url: '/cart/add/',
-            type: 'POST', dataType: 'json', contentType: 'application/json', data:
-              JSON.stringify(data), success: function (response) { //handle after add to cart in FE 
-                $cartIcon.text(' ' + response.currentQuantity)
-                console.log(response)
-              }, error: function (xhr, status, error) {
-                console.error(error);
-              }
-          });
+        const $clickedBtn = $(this);
+        const slug = $clickedBtn.data('slug');
+        const data = {
+          slug
+        };
+        $.ajax({
+          url: '/cart/add/',
+          type: 'POST',
+          dataType: 'json',
+          contentType: 'application/json',
+          data: JSON.stringify(data),
+          success: function (response) {
+            //handle after add to cart in FE
+            $cartIcon.text(' ' + response.currentQuantity)
+            console.log(response)
+          },
+          error: function (xhr, status, error) {
+            console.error(error);
+          }
+        });
       });
-    } // Call the function to initialize the variables
+    }
+
+    // Call the function to initialize the variables
     initialize();
   })
+
 </script>

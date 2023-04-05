@@ -27,6 +27,6 @@ module.exports = {
   },
   
   getImage: (imageId) => {
-    return `https://drive.google.com/uc?id=${imageId}&export=download`
+    return `https://drive.google.com/uc?id=${imageId}`
   }
 }

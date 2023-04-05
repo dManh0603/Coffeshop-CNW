@@ -1,18 +1,18 @@
 {{#if items}}
-<div class="card">
+<div class="card cart">
     <div class="card-header">
-        <h3>Your cart items</h3>
+        <h3>GIỎ HÀNG</h3>
     </div>
-    <div class="card-body">
+    <div class="card-body mx-5">
         <table class="table table-hover">
             <thead>
                 <tr>
-                    <th>Product</th>
-                    <th>Image</th>
-                    <th>Unit Price</th>
-                    <th>Quantity</th>
-                    <th>Total cost</th>
-                    <th>Action</th>
+                    <th>Sản phẩm</th>
+                    <th>Hình ảnh</th>
+                    <th>Đơn giá</th>
+                    <th>Số lượng</th>
+                    <th>Tổng</th>
+                    <th>Thao tác</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,12 +24,12 @@
                             <img src="{{getImage this.imageId}}" style="width: 70px" alt="{{this.name}}">
                         </a>
                     </td>
-                    <td>{{this.price}}</td>
-                    <td>
+                    <td class="num">{{this.price}}</td>
+                    <td  class="num">
                         <input type="number" min="1" class="form-control item-quantity" style="width: 60px"
                             data-slug="{{this.slug}}" value="{{this.quantity}}">
                     </td>
-                    <td>{{this.totalCost}}</td>
+                    <td  class="num">{{this.totalCost}}</td>
                     <td>
                         <a class="btn btn-outline-danger btn-sm delete-btn" data-slug="{{this.slug}}">Delete</a>
                     </td>
@@ -38,7 +38,7 @@
             </tbody>
         </table>
         <div class="card-body text-right">
-            <a class="btn btn-primary">Checkout</a>
+            <a href="/cart/checkout" class="btn checkoutBtn">Checkout</a>
         </div>
     </div>
 </div>
@@ -66,7 +66,7 @@
                 success: function (response) {
                     // Update the cart count in the UI
                     console.log(response)
-                    $('#cart-counter').text(response.currentQuantity);
+                    $('#cart-counter').text(' ' + response.currentQuantity);
                 },
                 error: function (xhr, status, error) {
                     console.error(error);
@@ -87,7 +87,7 @@
                 dataType: "json",
                 success: function (response) {
                     console.log(response);
-                    $('#cart-counter').text(response.currentQuantity);
+                    $('#cart-counter').text(' ' + response.currentQuantity);
                     $tr.remove();
                     // Check if there are any rows left in the table
                     if ($('.table tbody tr').length === 0) {
