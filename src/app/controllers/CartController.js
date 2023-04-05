@@ -127,7 +127,6 @@ class CartController {
     pay(req, res, next) {
         // console.log(req.body)
         const shippingInfo = req.body;
-        console.log('cart controller:', req.session.cart)
         const cartQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
         const productSlugs = req.session.cart.map(item => item.productSlug);
         Product.find({ slug: { $in: productSlugs } })
@@ -135,6 +134,7 @@ class CartController {
                 const cartItems = products.map(product => {
                     const cartItem = req.session.cart.find(item => item.productSlug === product.slug);
                     return {
+                        product_id: product.product_id,
                         name: product.name,
                         price: product.price,
                         quantity: cartItem.quantity,
@@ -144,6 +144,7 @@ class CartController {
                     }
                 });
                 const cartTotalCost = cartItems.reduce((total, item) => total + item.totalCost, 0);
+                req.session.shippingInfo = shippingInfo;
                 res.render('cart/pay', {
                     cartItems,
                     cartQuantity,
