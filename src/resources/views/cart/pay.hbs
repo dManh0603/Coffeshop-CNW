@@ -1,72 +1,61 @@
-<div class="row">
-    <div class="col">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="mt-1">Shipping infomation</h5>
-            </div>
-            <div class="card-body">
-                <p class="text-start">
-                    First name: {{shippingInfo.firstname}}
-                </p>
-
-                <p class="text-start">
-                    Last name: {{shippingInfo.lastname}}
-                </p>
-
-                <p class="text-start">
-                    Email: {{shippingInfo.email}}
-                </p>
-
-                <p class="text-start">
-                    Phone number{{shippingInfo.phone}}
-                </p>
-
-                <p class="text-start">
-                    Address: {{shippingInfo.address}}
-                </p>
-            </div>
-        </div>
-    </div>
-    <div class="col">
-        <div class="card">
-            <div class="card-header">
-                <h5 class="mt-1">Order Summary ORDER ID</h5>
-            </div>
-            <div class="card-body">
-                <table class="table">
-                    <thead>
+<div class="pay__page d-flex justify-content-center align-items-center">
+    <div class="container m-5">
+        <div class="row g-5 w-100">
+            <div class="col-12 col-lg-8 pay__order">
+                <h2 class="text-center m-3">THÔNG TIN<span style="color: var(--primary-1);"> ĐƠN HÀNG</span></h2>
+                {{#each cartItems}}
+                <div class="row pay__order-info no-gutters">
+                    <div class="col-6 pay__order__image-left p-2">
+                        <img src="{{getImage this.imageId}}" class="w-100" alt="">
+                    </div>
+                    <div
+                        class="col-6 pay__order__content-right pl-2 d-flex justify-content-center align-items-left flex-column">
+                        <h4 class="pay__order__content-title mb-2">{{this.name}} ({{this.quantity}})</h4>
+                        <p class="pay__order__content-description">Đơn giá: {{this.price}}</p>
+                        <p class="pay__order__content-description">Tổng tiền: {{this.totalCost}}</p>
+                    </div>
+                </div>
+                {{/each}}
+                <div class="row pay__order-check no-gutters">
+                    <table>
                         <tr>
-                            <th>Product</th>
-                            <th class="text-center">Image</th>
-                            <th class="text-center">Price</th>
-                            <th class="text-center">Quantity</th>
-                            <th class="text-right">Cost</th>
+                            <td>Tổng sản phẩm:</td>
+                            <td>{{cartQuantity}}</td>
                         </tr>
-                    </thead>
-                    <tbody class="table">
-                        {{#each cartItems}}
-                        <tr></tr>
-                        <tr class="border-top-0">
-                            <td>{{this.name}}</td>
-                            <td class="text-center">
-                                <img src="{{getImage this.imageId}}" style="width: 70px" alt="{{this.name}}">
-                            </td>
-                            <td class="text-center">{{this.price}}</td>
-                            <td class="text-center">{{this.quantity}}</td>
-                            <td class="text-right">{{this.totalCost}}</td>
+                        <tr>
+                            <td>Tổng hóa đơn:</td>
+                            <td>{{cartTotalCost}}</td>
                         </tr>
-                        {{/each}}
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-4 shipping__info">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="mt-1">THÔNG TIN VẬN CHUYỂN</h4>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-start">
+                            Tên: {{shippingInfo.firstname}}
+                        </p>
 
-                        <tr class="">
-                            <td colspan="2" class="text-start">Total products:</td>
-                            <td colspan="3" class="text-end">{{cartQuantity}}</td>
-                        </tr>
-                        <tr class="">
-                            <td colspan="2" class="text-start">Total cost</td>
-                            <td colspan="3" class="text-end">{{cartTotalCost}}</td>
-                        </tr>
-                    </tbody>
-                </table>
+                        <p class="text-start">
+                            Họ: {{shippingInfo.lastname}}
+                        </p>
+
+                        <p class="text-start">
+                            Email: {{shippingInfo.email}}
+                        </p>
+
+                        <p class="text-start">
+                            Số điện thoại: {{shippingInfo.phone}}
+                        </p>
+
+                        <p class="text-start">
+                            Địa chỉ: {{shippingInfo.address}}
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
