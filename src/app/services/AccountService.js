@@ -86,14 +86,13 @@ let signin = async (req, res) => {
             accessToken: accessToken,
             refreshToken: refreshToken,
         });
-
+        console.log(account.username + " Login!");
         return {
             status: 200,
             message: "Đăng nhập thành công",
             accessToken: accessToken,
             refreshToken: refreshToken,
-            role: account.role,
-            accountId: account.accountId
+            account: account
         };
     } catch (error) {
         res.status(401).json({
@@ -140,15 +139,13 @@ let signout = async (req, res) => {
     try {
         const token = req.headers.authorization.split(" ")[1];
         const decode = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-        console.log(token);
-        console.log(authCache.get(decode.username));
-        console.log(authCache.get(decode.username).accessToken);
         if (
             authCache.get(decode.username) &&
             token === authCache.get(decode.username).accessToken
         ) {
             authCache.del(decode.username);
-            console.log(authCache.data);
+            req.session.destroy();
+            console.log(decode.username + " Logout!");
             return {
                 status: 200,
                 // message: "Logged out!"
@@ -165,7 +162,7 @@ let signout = async (req, res) => {
         } else {
             res.status(401).json({
                 // message: "Authentication Failed",
-                message: "Xác thực tài khoản thất bại!",
+                message: "Đăng xuất thành công!"
             });
         }
     }
@@ -197,6 +194,52 @@ let forgetPassword = async (req, res) => {
     }
 };
 
+let update = async (req, res) => {
+    try {
+        console.log(req.body);
+        let account = await AccountDocument.findOne({ username: req.body.username });
+        if (!account) {
+            throw new Error("Error from server!");
+        }
+        if (account.email != req.body.email) {
+            let emailChecking = await AccountDocument.findOne({
+                email: req.body.email,
+            });
+
+            if (emailChecking) {
+                throw new Error("email đã được sử dụng");
+                // throw new Error("email is used")
+            }
+        }
+
+        if (account.phone != req.body.phone) {
+            let phoneChecking = await AccountDocument.findOne({
+                phone: req.body.phone,
+            });
+            if (phoneChecking) {
+                throw new Error("phone đã được sử dụng");
+                // throw new Error("phone is used")
+            }
+        }
+        account.username = req.body.username
+        account.firstname = req.body.firstname
+        account.lastname = req.body.lastname
+        account.email = req.body.email
+        account.phone = req.body.phone
+        account = await account.save();
+        console.log(account);
+        // return { status: 200, message: "Update Successfully!" };
+        return {
+            status: 200, message: "Cập nhật thông tin thành công!",
+            account: account
+        };
+    } catch (error) {
+        res.status(400).json({
+            message: error.message,
+        });
+    }
+};
+
 let generateAccessToken = async (account) => {
     return jwt.sign(account, process.env.ACCESS_TOKEN_SECRET, {
         expiresIn: "15m",
@@ -210,4 +253,4 @@ let generateRefreshToken = async (account) => {
     return refreshToken;
 };
 
-module.exports = { signup, signin, refreshToken, signout, forgetPassword };
+module.exports = { signup, signin, refreshToken, signout, forgetPassword, update };

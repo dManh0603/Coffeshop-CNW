@@ -57,6 +57,18 @@ class validator {
             body("email", "email không hợp lệ").isEmail(),
         ];
     }
+
+    validateUpdateAccount() {
+        return [
+            body("firstname", "firstname không được để trống").not().isEmpty(),
+            body("lastname", "lastname không được để trống").not().isEmpty(),
+            body("email", "email không được để trống").not().isEmpty(),
+            body("phone", "số điện thoại không được để trống").not().isEmpty(),
+
+            body("email", "email không hợp lệ").isEmail(),
+            body("phone", "số điện thoại không hợp lệ").isMobilePhone(),
+        ];
+    }
 }
 
 module.exports = new validator();
