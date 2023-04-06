@@ -16,11 +16,11 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="login">
-                        <h2>Đăng ký tài khoản</h2>
-                        <form id="signup__form" class="login__form">
+                        <h2>Thông tin tài khoản</h2>
+                        <form id="user_detail__form" class="login__form">
                             <div class="login__form-group">
-                                <input type="text" id="user_name" name="username" required />
-                                <label for="username">Tài khoản</label>
+                                <input type="text" id="user_name" name="username" disabled required />
+                                {{!-- <label for="username">Tài khoản</label> --}}
                             </div>
                             <div class="login__form-group">
                                 <input type="text" id="first_name" name="firstname" required />
@@ -31,27 +31,15 @@
                                 <label for="last_name">Họ và tên đệm</label>
                             </div>
                             <div class="login__form-group">
-                                <input type="password" id="password" minlength="8" name="password" required />
-                                <label for="password">Mật khẩu</label>
-                            </div>
-                            <div class="login__form-group">
-                                <input type="password" id="confirm_password" minlength="8" name="confirmPassword" required />
-                                <label for="confirm_password">Xác nhận mật khẩu</label>
-                            </div>
-                            <div class="login__form-group">
                                 <input type="tel" id="phone" pattern="[0-9]{10}" name="phone" required />
                                 <label for="phone">Số điện thoại</label>
                             </div>
                             <div class="login__form-group">
-                                <input type="email" id="email" name="email"  required />
+                                <input type="email" id="email" name="email" required />
                                 <label for="email">Email</label>
                             </div>
                             <div class="login__form-group">
-                                <button type="button" class="btn5 btn5-full" onclick="signup()" >Đăng ký</button>
-                            </div>
-                            <div class="login__form-next">
-                                <a href="/signin">Đăng nhập</a>
-                                <a href="/home"><i class="fa-solid fa-house" ></i></a>
+                                <button type="button" class="btn5 btn5-full" onclick="updateAccount()">Xác nhận</button>
                             </div>
                         </form>
                     </div>
@@ -60,3 +48,21 @@
         </div>
     </div>
 </div>
+<script>
+    function changeUserInfo() {
+        let accountCookie = document.cookie.split('; ')
+            .find(row => row.startsWith('currentUser='))
+            .split('=')[1].replace(/25/g, "");
+
+        const account = JSON.parse(decodeURIComponent(accountCookie))
+        console.log(account);
+        document.getElementById("user_name").value=account.username
+        document.getElementById("user_name").disabled=true
+        document.getElementById("first_name").value=account.firstname
+        document.getElementById("last_name").value=account.lastname
+        document.getElementById("phone").value=account.phone
+        document.getElementById("email").value=account.email
+
+    }
+    changeUserInfo()
+</script>

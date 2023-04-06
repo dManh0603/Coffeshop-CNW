@@ -114,9 +114,16 @@ function signin() {
         success: function (response) {
             localStorage.setItem("accessToken", response.result.accessToken);
             localStorage.setItem("refreshToken", response.result.refreshToken);
+            // localStorage.setItem("accountId", response.result.accountId);
             console.log(response.result.message);
+
+            sessionStorage.setItem('user', JSON.stringify({
+                "accountId": response.result.accountId,
+                "accessToken": response.result.accessToken
+            }));
+
             alert(response.result.message)
-            if (response.result.role === "user") {
+            if (response.result.account.role === "user") {
                 window.location.href = "/";
             } else {
                 console.log("redirect to admin page");
@@ -131,28 +138,51 @@ function signin() {
 }
 
 let checkLogin = () => {
-    if (localStorage.accessToken != null) {
+    console.log("Check login()");
+    let accessToken = localStorage.accessToken;
+    if (accessToken != null) {
+        let accountId = localStorage.accountId;
         const ul = document.querySelector("#user-menu");
         const signinEl = document.querySelector("#signin-menu");
         const signupEl = document.querySelector("#signup-menu");
         ul.removeChild(signupEl);
         ul.removeChild(signinEl);
 
+        const productString = `<li id="dang-san-pham-menu" ><a class="dropdown-item" href="/products/create">Đăng sản phẩm</a></li>`
+        const cartString = `<li id="san-pham-cua-toi-menu" ><a class="dropdown-item" href="/me/stored/products">Sản phẩm của tôi </a></li>`
+
         const signoutString =
-            '<li id="signout-menu" ><a class="dropdown-item" onclick="signout()" >Đăng xuất</a></li>';
+            `<li id="signout-menu" ><a class="dropdown-item" onclick="signout()" >Đăng xuất</a></li>`;
+        const userDetailString =
+            `<li id="user-detail-menu" ><a class="dropdown-item" href="/user_detail" >Thông tin cá nhân</a></li>`;
+        const passwordString =
+            `<li id="user-detail-menu" ><a class="dropdown-item" href="/forgetpassword" >Thay đổi mật khẩu</a></li>`;
+        const productlEl = document.createElement("li");
+        const cartEl = document.createElement("li");
+        const userDetailEl = document.createElement("li");
+        const passwordEl = document.createElement("li");
         const signoutEl = document.createElement("li");
+        productlEl.innerHTML = productString;
+        cartEl.innerHTML = cartString;
+        userDetailEl.innerHTML = userDetailString;
+        passwordEl.innerHTML = passwordString;
         signoutEl.innerHTML = signoutString;
+        ul.appendChild(productlEl);
+        ul.appendChild(cartEl);
+        ul.appendChild(userDetailEl);
+        ul.appendChild(passwordEl);
         ul.appendChild(signoutEl);
     }
 };
 
 let signout = () => {
+    let token = localStorage.getItem('accessToken');
     $.ajax({
         url: "/auth/signout",
         method: "POST",
         contentType: "application/json",
         headers: {
-            "authorization": `Bearer ${localStorage.getItem('accessToken')}`
+            "authorization": `Bearer ${token}`
         },
         success: function (response) {
             console.log(response.result.message);
@@ -162,6 +192,9 @@ let signout = () => {
         error: function (error) {
             alert(error.responseJSON.message);
         },
+    });
+    document.cookie.split(";").forEach(function (c) {
+        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
     });
     localStorage.clear();
     window.location.href = "/";
@@ -175,7 +208,7 @@ function signup() {
         body[`${key}`] = value;
     });
 
-    if(body.password != body.confirmPassword) {
+    if (body.password != body.confirmPassword) {
         alert("Mật khẩu không khớp nhau");
         return;
     }
@@ -223,5 +256,41 @@ function forgetPassword() {
         },
     });
 }
+
+function changeUserInfo() {
+    let accountCookie = document.cookie.split('; ')
+        .find(row => row.startsWith('currentUser='))
+        .split('=')[1].replace(/25/g, "");
+
+    const account = JSON.parse(decodeURIComponent(accountCookie))
+    console.log(account);
+}
+
+function updateAccount() {
+    let body = {};
+    document.getElementById("user_name").disabled=false
+    const formData = new FormData(document.getElementById("user_detail__form"));
+    formData.forEach((value, key) => {
+        console.log(key);
+        body[`${key}`] = value;
+    });
+    console.log(body);
+    $.ajax({
+        url: "/auth/update",
+        method: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(body),
+        success: function (response) {
+            console.log(response);
+            alert(response.result.message)
+            window.location.href = "/user_detail";
+        },
+        error: function (error) {
+            console.log(error);
+            alert(error.responseJSON.message);
+        },
+    });
+}
+
 
 checkLogin();

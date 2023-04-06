@@ -5,7 +5,9 @@ const handlebars = require('express-handlebars');
 const methodOverride = require('method-override');
 const sortMiddleware = require('./app/middlewares/sort');
 const session = require('express-session');
+const cookieParser = require('cookie-parser');
 const { v4: uuidv4 } = require('uuid');
+
 
 const route = require('./routes/index');
 const db = require('./config/db');
@@ -44,7 +46,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
 }));
-
+app.use(cookieParser());
 // // HTTP logger
 // if (process.env.NODE_ENV === 'DEV') {
 //     app.use(morgan('combined'));
