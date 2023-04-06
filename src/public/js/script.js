@@ -110,12 +110,12 @@ var dropdownMenu = document.getElementById('user-menu');
 dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + "px";
 
 // Lắng nghe sự kiện khi click vào dropdown menu
-document.getElementById("userDropdown").addEventListener("click", function() {
-  if (dropdownMenu.classList.contains("show")) {
-    dropdownMenu.style.maxHeight = null;
-  } else {
-    dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + "px";
-  }
+document.getElementById("userDropdown").addEventListener("click", function () {
+    if (dropdownMenu.classList.contains("show")) {
+        dropdownMenu.style.maxHeight = null;
+    } else {
+        dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + "px";
+    }
 });
 
 function signin() {
@@ -168,50 +168,63 @@ let checkLogin = () => {
 
         try {
             let accountCookie = document.cookie.split('; ')
-            .find(row => row.startsWith('currentUser='))
-            .split('=')[1].replace(/25/g, "");
-    
+                .find(row => row.startsWith('currentUser='))
+                .split('=')[1].replace(/25/g, "");
+
             const account = JSON.parse(decodeURIComponent(accountCookie))
             console.log(account);
-            if("admin" === account.role) {
+            if ("admin" === account.role) {
                 const adminWebsiteString = `<li id="user-detail-menu" ><a class="dropdown-item" href="/admin">Admin website</a></li>`;
                 const productString = `<li id="dang-san-pham-menu" ><a class="dropdown-item" href="/products/create">Đăng sản phẩm</a></li>`
-                const cartString = `<li id="san-pham-cua-toi-menu" ><a class="dropdown-item" href="/me/stored/products">Sản phẩm của tôi </a></li>`
-                
+                const cartString = `<li id="san-pham-cua-toi-menu" ><a class="dropdown-item" href="/admin/stored/products">Sản phẩm của tôi </a></li>`
+                const signoutString =
+                    `<li id="signout-menu" ><a class="dropdown-item" onclick="signout()" >Đăng xuất</a></li>`;
+
                 const adminWebsiteEl = document.createElement("li");
                 const productlEl = document.createElement("li");
                 const cartEl = document.createElement("li");
-                
+                const signoutEl = document.createElement("li");
+
                 adminWebsiteEl.innerHTML = adminWebsiteString;
                 productlEl.innerHTML = productString;
                 cartEl.innerHTML = cartString;
+                signoutEl.innerHTML = signoutString;
 
                 ul.appendChild(adminWebsiteEl);
                 ul.appendChild(productlEl);
                 ul.appendChild(cartEl);
+                ul.appendChild(signoutEl);
+
+            } else {
+                const signoutString =
+                    `<li id="signout-menu" ><a class="dropdown-item" onclick="signout()" >Đăng xuất</a></li>`;
+                const userDetailString =
+                    `<li id="user-detail-menu" ><a class="dropdown-item" href="/me/account" >Thông tin cá nhân</a></li>`;
+                const passwordString =
+                    `<li id="user-detail-menu" ><a class="dropdown-item" href="/forgetpassword" >Thay đổi mật khẩu</a></li>`;
+                const userOrderString =
+                    `<li id="user-detail-menu" ><a class="dropdown-item" href="/me/orders" >Đơn hàng của tôi</a></li>`;
+
+                const userDetailEl = document.createElement("li");
+                const passwordEl = document.createElement("li");
+                const signoutEl = document.createElement("li");
+                const userOrderEl = document.createElement("li");
+
+                userDetailEl.innerHTML = userDetailString;
+                userOrderEl.innerHTML = userOrderString;
+                passwordEl.innerHTML = passwordString;
+                signoutEl.innerHTML = signoutString;
+
+                ul.appendChild(userOrderEl);
+                ul.appendChild(userDetailEl);
+                ul.appendChild(passwordEl);
+                ul.appendChild(signoutEl);
             }
-        } catch(error) {
+        } catch (error) {
             console.log(error);
         }
-        
-        const signoutString =
-            `<li id="signout-menu" ><a class="dropdown-item" onclick="signout()" >Đăng xuất</a></li>`;
-        const userDetailString =
-            `<li id="user-detail-menu" ><a class="dropdown-item" href="/user_detail" >Thông tin cá nhân</a></li>`;
-        const passwordString =
-            `<li id="user-detail-menu" ><a class="dropdown-item" href="/forgetpassword" >Thay đổi mật khẩu</a></li>`;
-        
-        const userDetailEl = document.createElement("li");
-        const passwordEl = document.createElement("li");
-        const signoutEl = document.createElement("li");
-        
-        userDetailEl.innerHTML = userDetailString;
-        passwordEl.innerHTML = passwordString;
-        signoutEl.innerHTML = signoutString;
-        
-        ul.appendChild(userDetailEl);
-        ul.appendChild(passwordEl);
-        ul.appendChild(signoutEl);
+
+
     }
 };
 
@@ -308,7 +321,7 @@ function changeUserInfo() {
 
 function updateAccount() {
     let body = {};
-    document.getElementById("user_name").disabled=false
+    document.getElementById("user_name").disabled = false
     const formData = new FormData(document.getElementById("user_detail__form"));
     formData.forEach((value, key) => {
         console.log(key);

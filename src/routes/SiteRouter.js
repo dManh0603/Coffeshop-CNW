@@ -15,7 +15,6 @@ router.get("/signout", siteController.signout);
 router.get("/forgetpassword", siteController.forgetPassword);
 router.get("/about", siteController.about);
 router.get("/shop", siteController.shop);
-router.get("/user_detail", authenticate, siteController.userDetail);
 // router.get("/admin",checkAdminRole ,siteController.adminpage);
 router.get("/home", siteController.index);
 router.get("/401", siteController.unauth);
