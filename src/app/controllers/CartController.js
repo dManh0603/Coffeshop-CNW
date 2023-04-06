@@ -267,13 +267,72 @@ class CartController {
 
     // [POST] /cart/pay
     pay(req, res, next) {
-        // console.log(req.body)
         const shippingInfo = req.body;
-        const cartQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
-        const productSlugs = req.session.cart.map(item => item.productSlug);
-        Product.find({ slug: { $in: productSlugs } })
-            .then(products => {
-                const cartItems = products.map(product => {
+        let cartQuantity = 0;
+        let cartItems = [];
+
+        if (req.session.currentUser) {
+            const accountId = req.session.currentUser.accountId;
+            try {
+                Cart.findOne({ accountId }, (err, userCart) => {
+                    if (err) {
+                        console.error(err);
+                        res.status(500).send('Internal Server Error');
+                        return;
+                    }
+
+                    if (userCart && userCart.items.length > 0) {
+                        const productSlugs = userCart.items.map((item) => item.productSlug);
+                        Product.find({ slug: { $in: productSlugs } }, (err, products) => {
+                            if (err) {
+                                console.error(err);
+                                res.status(500).send('Internal Server Error');
+                                return;
+                            }
+
+                            cartItems = userCart.items.map((item) => {
+                                const product = products.find((p) => p.slug === item.productSlug);
+                                return {
+                                    product_id: product.product_id,
+                                    name: product.name,
+                                    price: product.price,
+                                    quantity: item.quantity,
+                                    totalCost: item.quantity * product.price,
+                                    imageId: product.imageId,
+                                    slug: product.slug
+                                };
+                            });
+
+                            cartQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+                            const cartTotalCost = cartItems.reduce((total, item) => total + item.totalCost, 0);
+                            req.session.shippingInfo = shippingInfo;
+                            res.render('cart/pay', {
+                                cartItems,
+                                cartQuantity,
+                                shippingInfo,
+                                cartTotalCost,
+                                PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID
+                            });
+                        });
+                    } else {
+                        res.redirect('/cart');
+                    }
+                });
+            } catch (err) {
+                console.log(err);
+                res.status(500).send('Internal Server Error');
+                return;
+            }
+        } else if (req.session.cart) {
+            const productSlugs = req.session.cart.map(item => item.productSlug);
+            Product.find({ slug: { $in: productSlugs } }, (err, products) => {
+                if (err) {
+                    console.error(err);
+                    res.status(500).send('Internal Server Error');
+                    return;
+                }
+
+                cartItems = products.map(product => {
                     const cartItem = req.session.cart.find(item => item.productSlug === product.slug);
                     return {
                         product_id: product.product_id,
@@ -283,8 +342,10 @@ class CartController {
                         totalCost: cartItem.quantity * product.price,
                         imageId: product.imageId,
                         slug: product.slug
-                    }
+                    };
                 });
+
+                cartQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
                 const cartTotalCost = cartItems.reduce((total, item) => total + item.totalCost, 0);
                 req.session.shippingInfo = shippingInfo;
                 res.render('cart/pay', {
@@ -294,12 +355,12 @@ class CartController {
                     cartTotalCost,
                     PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID
                 });
-            })
-            .catch(err => {
-                console.error(err);
-                // Handle errors
             });
+        } else {
+            res.redirect('/cart');
+        }
     }
+
 }
 
 
