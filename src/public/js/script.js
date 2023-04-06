@@ -177,18 +177,24 @@ let checkLogin = () => {
                 const adminWebsiteString = `<li id="user-detail-menu" ><a class="dropdown-item" href="/admin">Admin website</a></li>`;
                 const productString = `<li id="dang-san-pham-menu" ><a class="dropdown-item" href="/products/create">Đăng sản phẩm</a></li>`
                 const cartString = `<li id="san-pham-cua-toi-menu" ><a class="dropdown-item" href="/admin/stored/products">Sản phẩm của tôi </a></li>`
+                const signoutString =
+                    `<li id="signout-menu" ><a class="dropdown-item" onclick="signout()" >Đăng xuất</a></li>`;
 
                 const adminWebsiteEl = document.createElement("li");
                 const productlEl = document.createElement("li");
                 const cartEl = document.createElement("li");
+                const signoutEl = document.createElement("li");
 
                 adminWebsiteEl.innerHTML = adminWebsiteString;
                 productlEl.innerHTML = productString;
                 cartEl.innerHTML = cartString;
+                signoutEl.innerHTML = signoutString;
 
                 ul.appendChild(adminWebsiteEl);
                 ul.appendChild(productlEl);
                 ul.appendChild(cartEl);
+                ul.appendChild(signoutEl);
+
             } else {
                 const signoutString =
                     `<li id="signout-menu" ><a class="dropdown-item" onclick="signout()" >Đăng xuất</a></li>`;
