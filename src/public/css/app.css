@@ -232,7 +232,7 @@ body {
   left: 0;
   right: 0;
   position: fixed;
-  z-index: 99;
+  z-index: 999;
 }
 
 .selected {
@@ -888,10 +888,12 @@ input {
   display: block;
 }
 .pay__page .container{
+  background-color: var(--secondary);
   width: 1100px;
   margin:auto;
   display: flex;
   justify-content: center;
+  border-radius: 15px;
 }
 .pay__order{
   background-color: var(--secondary);
@@ -964,7 +966,7 @@ input {
 
 /* -------PAY PAGE shipping -------- */
 .shipping__info {
-  padding: 0 10px;
+  padding: 10px 10px;
 }
 
 .shipping__info .card {
