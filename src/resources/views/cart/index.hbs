@@ -38,7 +38,12 @@
             </tbody>
         </table>
         <div class="card-body text-right">
+            {{#if cart_id}}
             <a href="/cart/checkout?cart_id={{this.cart_id}}" class="btn checkoutBtn">Checkout</a>
+            {{else}}
+            <a href="/cart/checkout" class="btn checkoutBtn">Checkout</a>
+            {{/if}}
+
         </div>
     </div>
 </div>

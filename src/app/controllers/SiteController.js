@@ -59,39 +59,58 @@ class SiteController {
   }
 
   // [GET] /menu
-  async menu(req, res) {
-    let cartQuantity = 0;
-    let products = [];
+  menu(req, res, next) {
+    let cartQuantity;
 
-    try {
-      if (req.session.currentUser) {
-        const accountId = req.session.currentUser.accountId;
-        const userCart = await Cart.findOne({ accountId });
-        if (userCart) {
-          products = await Product.find({ _id: { $in: userCart.items.map(item => item.product) } });
-          cartQuantity = userCart.items.reduce((total, item) => total + item.quantity, 0);
-        }
-      }
+    if (req.session.currentUser) {
+      const userId = req.session.currentUser.accountId;
 
-      if (!products.length) {
-        products = await Product.find({});
-      }
+      Cart.findOne({ accountId: userId })
+        .then(cart => {
+          if (cart) {
+            cartQuantity = cart.items.reduce((total, item) => total + item.quantity, 0);
+          } else {
+            cartQuantity = 0;
+          }
 
+          Product.find({})
+            .then(products => {
+              res.render('site/menu', {
+                layout: 'blank',
+                title: 'Menu page',
+                products: multipleMongooseToObject(products),
+                cartQuantity
+              });
+            })
+            .catch(e => {
+              next(e);
+            });
+        })
+        .catch(e => {
+          next(e);
+        });
+    } else {
       if (req.session.cart) {
-        cartQuantity += req.session.cart.reduce((total, item) => total + item.quantity, 0);
+        cartQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
+      } else {
+        cartQuantity = 0;
       }
 
-      res.render('site/menu', {
-        layout: 'blank',
-        title: 'Menu page',
-        products: multipleMongooseToObject(products),
-        cartQuantity
-      });
-    } catch (error) {
-      console.error(error);
-      res.status(500).send('Internal Server Error');
+      Product.find({})
+        .then(products => {
+          res.render('site/menu', {
+            layout: 'blank',
+            title: 'Menu page',
+            products: multipleMongooseToObject(products),
+            cartQuantity
+          });
+        })
+        .catch(e => {
+          next(e);
+        });
     }
   }
+
 
 
   // [GET] /about

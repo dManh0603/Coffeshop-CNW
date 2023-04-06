@@ -233,33 +233,38 @@ class CartController {
 
     // [GET] /cart/checkout
     async checkout(req, res, next) {
-        const cartId = req.query.cart_id;
+        if (req.query.cart_id) {
+            const cartId = req.query.cart_id;
+            try {
+                const cart = await Cart.findOne({ cart_id: cartId });
+                if (!cart) {
+                    throw new Error('Cart not found');
+                }
 
-        try {
-            const cart = await Cart.findOne({ cart_id: cartId });
-            if (!cart) {
-                throw new Error('Cart not found');
+                const accountId = cart.accountId;
+                const account = await Account.findOne({ accountId });
+                if (!account) {
+                    throw new Error('Account not found');
+                }
+
+                const { firstname, lastname, email, phone } = account;
+
+                res.render('cart/checkout', {
+                    firstname,
+                    lastname,
+                    email,
+                    phone
+                });
+            } catch (err) {
+                console.error(err);
+                res.status(500).send('Internal Server Error');
+                next()
             }
-
-            const accountId = cart.accountId;
-            const account = await Account.findOne({ accountId });
-            if (!account) {
-                throw new Error('Account not found');
-            }
-
-            const { firstname, lastname, email, phone } = account;
-
-            res.render('cart/checkout', {
-                firstname,
-                lastname,
-                email,
-                phone
-            });
-        } catch (err) {
-            console.error(err);
-            res.status(500).send('Internal Server Error');
-            next()
+        }else{
+            res.render('cart/checkout')
         }
+
+
     }
 
 
