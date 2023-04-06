@@ -45,7 +45,7 @@ class CartController {
         // console.log(req.session.cart);
     }
 
-    // [POST] /add/:slug
+    // [POST] /add/
     add(req, res, next) {
         const productSlug = req.body.slug;
         const quantity = req.body.quantity ?? 1;

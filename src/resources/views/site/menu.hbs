@@ -120,7 +120,7 @@
           slug
         };
         $.ajax({
-          url: '/cart/add/',
+          url: '/cart/add',
           type: 'POST',
           dataType: 'json',
           contentType: 'application/json',
@@ -131,7 +131,7 @@
             console.log(response)
           },
           error: function (xhr, status, error) {
-            console.error(error);
+            console.log(error);
           }
         });
       });

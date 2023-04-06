@@ -4,13 +4,15 @@
             <div class="col-12 col-lg-8 pay__order">
                 <h2 class="text-center m-3">THÔNG TIN<span style="color: var(--primary-1);"> ĐƠN HÀNG</span></h2>
                 {{#each cartItems}}
-                <div class="row pay__order-info no-gutters">
+                <div class="row pay__order-info no-gutters" data-id="{{this.product_id}}"
+                    data-quantity="{{this.quantity}}">
                     <div class="col-6 pay__order__image-left p-2">
                         <img src="{{getImage this.imageId}}" class="w-100" alt="">
                     </div>
                     <div
                         class="col-6 pay__order__content-right pl-2 d-flex justify-content-center align-items-left flex-column">
-                        <h4 class="pay__order__content-title mb-2">{{this.name}} ({{this.quantity}})</h4>
+                        <h4 class="pay__order__content-title mb-2">{{this.name}}</h4>
+                        <p class="pay__order__content-description">Số lượng: {{this.quantity}}</p>
                         <p class="pay__order__content-description">Đơn giá: {{this.price}}</p>
                         <p class="pay__order__content-description">Tổng tiền: {{this.totalCost}}</p>
                     </div>
@@ -73,10 +75,13 @@
 
         let items = [];
         // Iterate over each row in the table body that has a data-slug attribute
-        $('tr[data-id]').each(function () {
+        $('.pay__order-info').each(function () {
             // Extract the slug and quantity from the relevant columns
-            var itemId = $(this).data('id');
-            var quantity = parseInt($(this).find('td:nth-child(4)').text().trim());
+            const itemId = $(this).data('id');
+            const quantity = $(this).data('quantity');
+
+            // Do something with the itemId and quantity data
+            console.log(itemId, quantity);
 
             // Add the item to the array
             items.push({
@@ -84,6 +89,10 @@
                 quantity: quantity
             });
         });
+
+
+
+
         paypal.Buttons({
             // Order is created on the server and the order id is returned
             createOrder() {
@@ -142,6 +151,6 @@
                     });
             }
         }).render('#paypal-button-container');
-    })
 
+    });
 </script>
