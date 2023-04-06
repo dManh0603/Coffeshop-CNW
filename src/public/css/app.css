@@ -743,6 +743,12 @@ input {
   height: fit-content;
 }
 
+.cart_empty {
+  line-height: 60vh;
+  text-align: center;
+  font-size: x-large;
+}
+
 /* .cart thead {
   text-align: center;
 } */
