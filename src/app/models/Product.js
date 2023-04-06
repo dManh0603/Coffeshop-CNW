@@ -11,6 +11,7 @@ const ProductSchema = new Schema({
     isPublished: { type: String, maxLength: 8, },
     imageId: { type: String, unique: true },
     slug: { type: String, slug: 'name', unique: true, },
+    product_id: { type: Number, unique: true }
 }, {
     timestamps: true,
 });
