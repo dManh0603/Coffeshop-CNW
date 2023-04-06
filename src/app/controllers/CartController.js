@@ -81,7 +81,6 @@ class CartController {
             productSlug,
             quantity,
         }
-
         // ON LOGGED IN
         if (req.session.currentUser) {
             const accountId = req.session.currentUser.accountId;
@@ -147,7 +146,6 @@ class CartController {
         }
     }
 
-
     // [POST] /update-cart-quantity
     updateCart(req, res, next) {
         const { productSlug, quantity } = req.body;
@@ -191,7 +189,6 @@ class CartController {
         }
     }
 
-
     // [DELETE] /cart/delete/:slug
     async deleteItem(req, res, next) {
         try {
@@ -230,7 +227,6 @@ class CartController {
         }
     }
 
-
     // [GET] /cart/checkout
     async checkout(req, res, next) {
         if (req.query.cart_id) {
@@ -260,15 +256,10 @@ class CartController {
                 res.status(500).send('Internal Server Error');
                 next()
             }
-        }else{
+        } else {
             res.render('cart/checkout')
         }
-
-
     }
-
-
-
 
     // [POST] /cart/pay
     pay(req, res, next) {
@@ -367,9 +358,5 @@ class CartController {
     }
 
 }
-
-
-
-
 
 module.exports = new CartController;

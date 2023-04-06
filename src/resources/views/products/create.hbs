@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/product_create.css" />
 <div class="create_container mt-4">
   <h3 class="create_title">Tạo sản phẩm mới</h3>
-  <form method="POST" action="/products/store" class="create_form" enctype="multipart/form-data">
+  <form method="POST" action="/products/store" class="create_form" enctype="multipart/form-data" id="create_form">
 
     <div class="mb-3">
       <label for="name" class="form-label">Tên sản phẩm: </label>
@@ -37,12 +37,39 @@
 </div>
 
 <script>
-  const $publishCheck = $('input[name="isPublished"]'); // toogle the value of
-  isPublished $publishCheck.change(function (e) {
-    if (e.target.checked) {
-      $publishCheck.val(true);
-    } else { $publishCheck.val(false); }
-    console.log($publishCheck.val());
-  });
+  $(document).ready(function () {
+    $('#create_form').submit(function (e) {
+      e.preventDefault(); // Prevent the form from submitting normally
 
+      const formData = new FormData(this); // Create a new FormData object with the form data
+
+      $.ajax({
+        url: '/products/store',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+          // Handle successful response from server
+          window.location.href = '/me/stored/products';
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          // Handle errors from server
+          const errors = jqXHR.responseJSON.errors;
+          if (errors) {
+            let errorHtml = '<ul>';
+            for (const error of errors) {
+              errorHtml += `<li>${error.msg}</li>`;
+            }
+            errorHtml += '</ul>';
+            $('#error_message').html(errorHtml);
+          } else {
+            $('#error_message').html('Lỗi không xác định xảy ra. Vui lòng thử lại sau.');
+          }
+        }
+      });
+    });
+  });
 </script>
+
+<div id="error_message"></div>

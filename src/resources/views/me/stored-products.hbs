@@ -1,38 +1,24 @@
 <link rel="stylesheet" href="/css/products.css" />
 
-<form
-  name="container-form"
-  class="product_form mt-4"
-  method="POST"
-  action="/products/handle-form-actions"
->
+<form name="container-form" class="product_form mt-4" method="POST" action="/products/handle-form-actions">
   <div>
     <h3 class="product_title">Sản phẩm của tôi</h3>
 
     <div class="mt-4 d-flex align-items-center">
       <div class="form-check d-inline">
-        <input
-          class="form-check-input mx-2"
-          type="checkbox"
-          value=""
-          id="checkbox-all"
-        />
+        <input class="form-check-input mx-2" type="checkbox" value="" id="checkbox-all" />
         <label class="form-check-label" for="checkbox-all">
           Tất cả
         </label>
 
       </div>
 
-      <select
-        class="form-select form-select-sm select checkbox-select-all-options"
-        name="action"
-        required
-      >
+      <select class="form-select form-select-sm select checkbox-select-all-options" name="action" required>
         <option value="">-- Hành động --</option>
         <option value="delete">Xóa</option>
       </select>
 
-      <button type="submit" class="btn btn-sm disabled" id="submit-btn">Thực
+      <button type="submit" class="btn conduct btn-sm disabled " id="submit-btn">Thực
         hiện</button>
     </div>
 
@@ -59,42 +45,30 @@
     </thead>
     <tbody>
       {{#each products}}
-        <tr>
-          <td>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                name="productIds[]"
-                value="{{this._id}}"
-              />
-            </div>
-          </td>
-          <th scope="row">{{sum @index 1}}</th>
-          <td>{{this.name}}</td>
-          <td>{{this.createdAt}}</td>
-          <td>{{this.updatedAt}}</td>
-          <td>
-            <a href="/products/{{this._id}}/edit" class="btn btn-link"><i
-                class="fa-solid fa-pen-to-square"
-              ></i></a>
-            <a
-              href=""
-              class="btn btn-link"
-              data-bs-toggle="modal"
-              data-bs-target="#delete-product-modal"
-              data-bs-id="{{this._id}}"
-            ><i class="fa-solid fa-trash"></i></a>
-          </td>
-        </tr>
+      <tr>
+        <td>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="productIds[]" value="{{this._id}}" />
+          </div>
+        </td>
+        <th scope="row">{{sum @index 1}}</th>
+        <td>{{this.name}}</td>
+        <td>{{convertDate this.createdAt}}</td>
+        <td>{{convertDate this.updatedAt}}</td>
+        <td>
+          <a href="/products/{{this._id}}/edit" class="btn btn-link"><i class="fa-solid fa-pen-to-square"></i></a>
+          <a href="" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#delete-product-modal"
+            data-bs-id="{{this._id}}"><i class="fa-solid fa-trash"></i></a>
+        </td>
+      </tr>
 
       {{else}}
-        <tr>
-          <td class="text-center border-0" colspan="5">Bạn chưa đăng sản phẩm
-            nào.
-            <a href="/products/create">Đăng sản phẩm ở đây</a>
-          </td>
-        </tr>
+      <tr>
+        <td class="text-center border-0" colspan="5">Bạn chưa đăng sản phẩm
+          nào.
+          <a href="/products/create">Đăng sản phẩm ở đây</a>
+        </td>
+      </tr>
       {{/each}}
     </tbody>
   </table>
@@ -111,12 +85,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Đưa sản phẩm vào thùng rác ?</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <p>Bạn chắc chắn muốn đưa sản phẩm này vào thùng rác ?</p>
@@ -124,11 +93,7 @@
       <div class="modal-footer">
         <button id="btn-delete-product" type="button" class="btn btn-danger">Đưa
           vào thùng rác</button>
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >Hủy</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
       </div>
     </div>
   </div>
@@ -138,53 +103,55 @@
 <form method="POST" name="delete-product-form"></form>
 
 <script>
-  $(document).ready(function () { 
-    const $containerForm = $('form[name="container-form"]'); 
-    const $deleteForm = $('form[name="delete-product-form"]'); 
-    const $deleteModal = $('#delete-product-modal'); 
+  $(document).ready(function () {
+    const $containerForm = $('form[name="container-form"]');
+    const $deleteForm = $('form[name="delete-product-form"]');
+    const $deleteModal = $('#delete-product-modal');
     const $btnDeleteCourse = $('#btn-delete-product');
-    const $checkboxAll = $('#checkbox-all'); 
-    const $productsCheckbox = $('input[name="productIds[]"]'); 
+    const $checkboxAll = $('#checkbox-all');
+    const $productsCheckbox = $('input[name="productIds[]"]');
     const $checkedSubmitBtn = $('#submit-btn');
-  let productId; 
-  // When delete button was clicked
-  $deleteModal.on('show.bs.modal', event => { 
-    // Button that triggered the modal
-  const button = $(event.relatedTarget); 
-  // Extract info from data-bs-*attributes 
-  productId = button.attr('data-bs-id'); 
-  }); 
-  // When confirmed the delete 
-  $btnDeleteCourse.on('click', function () { $deleteForm.attr('action','/products/' + productId + '?_method=DELETE'); 
-  $deleteForm.submit(); 
-  }); 
-  //When checkbox all checked 
-  $checkboxAll.change(function () { 
-    let isCheckAll =$(this).prop('checked'); 
-    $productsCheckbox.prop('checked', isCheckAll);
-    enableCheckAllSubmitBtn(); 
-  }); 
-  // When product item changes
-  $productsCheckbox.change(function () { 
-    let isCheckAll = $productsCheckbox.length === $('input[name="productIds[]"]:checked').length;
-  $checkboxAll.prop('checked', isCheckAll); 
-  enableCheckAllSubmitBtn(); 
-  }); 
-  //Checked submit button clicked 
-  $checkedSubmitBtn.click(function (e) { 
-  let isSubmittable = !$(this).hasClass('disabled'); 
-  if (!isSubmittable) {
-    e.preventDefault(); 
-  } }) 
-  // Enable the submit button when an item is checked
-  function enableCheckAllSubmitBtn() { 
-    const checkedCount = $('input[name="productIds[]"]:checked').length; 
-    if (checkedCount > 0) {
-  $checkedSubmitBtn.removeClass('disabled'); 
-  } else {
-  $checkedSubmitBtn.addClass('disabled'); 
-  } 
-  } 
+    let productId;
+    // When delete button was clicked
+    $deleteModal.on('show.bs.modal', event => {
+      // Button that triggered the modal
+      const button = $(event.relatedTarget);
+      // Extract info from data-bs-*attributes 
+      productId = button.attr('data-bs-id');
+    });
+    // When confirmed the delete 
+    $btnDeleteCourse.on('click', function () {
+      $deleteForm.attr('action', '/products/' + productId + '?_method=DELETE');
+      $deleteForm.submit();
+    });
+    //When checkbox all checked 
+    $checkboxAll.change(function () {
+      let isCheckAll = $(this).prop('checked');
+      $productsCheckbox.prop('checked', isCheckAll);
+      enableCheckAllSubmitBtn();
+    });
+    // When product item changes
+    $productsCheckbox.change(function () {
+      let isCheckAll = $productsCheckbox.length === $('input[name="productIds[]"]:checked').length;
+      $checkboxAll.prop('checked', isCheckAll);
+      enableCheckAllSubmitBtn();
+    });
+    //Checked submit button clicked 
+    $checkedSubmitBtn.click(function (e) {
+      let isSubmittable = !$(this).hasClass('disabled');
+      if (!isSubmittable) {
+        e.preventDefault();
+      }
+    })
+    // Enable the submit button when an item is checked
+    function enableCheckAllSubmitBtn() {
+      const checkedCount = $('input[name="productIds[]"]:checked').length;
+      if (checkedCount > 0) {
+        $checkedSubmitBtn.removeClass('disabled');
+      } else {
+        $checkedSubmitBtn.addClass('disabled');
+      }
+    }
   }
   );
 </script>

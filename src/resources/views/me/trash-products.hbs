@@ -20,31 +20,22 @@
       </thead>
       <tbody>
         {{#each products}}
-          <tr>
-            <th scope="row">{{sum @index 1}}</th>
-            <td>{{this.name}}</td>
-            <td>{{this.createdAt}}</td>
-            <td>{{this.deletedAt}}</td>
-            <td>
-              <a
-                href=""
-                class="btn btn-link btn-restore"
-                data-id="{{this._id}}"
-              >Khôi phục</a>
-              <a
-                href=""
-                class="btn btn-link"
-                data-bs-toggle="modal"
-                data-bs-target="#delete-product-modal"
-                data-id="{{this._id}}"
-              >Xóa vĩnh viễn</a>
-            </td>
-          </tr>
+        <tr>
+          <th scope="row">{{sum @index 1}}</th>
+          <td>{{this.name}}</td>
+          <td>{{convertDate this.createdAt}}</td>
+          <td>{{convertDate this.deletedAt}}</td>
+          <td>
+            <a href="" class="btn btn-link btn-restore" data-id="{{this._id}}">Khôi phục</a>
+            <a href="" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#delete-product-modal"
+              data-id="{{this._id}}">Xóa vĩnh viễn</a>
+          </td>
+        </tr>
 
         {{else}}
-          <tr>
-            <td class="text-center border-0" colspan="5">Thùng rác trống.</td>
-          </tr>
+        <tr>
+          <td class="text-center border-0" colspan="5">Thùng rác trống.</td>
+        </tr>
         {{/each}}
       </tbody>
     </table>
@@ -57,12 +48,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Xóa sản phẩm vĩnh viễn ?</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <p>Hành động này không thể khôi phục. Bạn chắc chắn muốn xóa sản phẩm
@@ -71,11 +57,7 @@
       <div class="modal-footer">
         <button id="btn-delete-product" type="button" class="btn btn-danger">Xóa
           vĩnh viễn</button>
-        <button
-          type="button"
-          class="btn btn-secondary"
-          data-bs-dismiss="modal"
-        >Hủy</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
       </div>
     </div>
   </div>
@@ -85,33 +67,33 @@
 <form method="POST" name="restore-product-form"></form>
 
 <script>
-  $(document).ready(function () { 
-    let productId; 
-    const $deleteForm = $('form[name="delete-product-form"]'); 
-    const $restoreForm = $('form[name="restore-product-form"]'); 
-    const $deleteModal =$('#delete-product-modal');
-     const $restoreBtn = $('.btn-restore'); 
-     // When delete button was clicked 
-     $deleteModal.on('show.bs.modal', function (event) {
-  // Button that triggered the modal 
-  const button = $(event.relatedTarget); 
-  //Extract info from data-bs-* attributes 
-  productId = button.data('id'); 
-  }); 
-  //When confirmed the delete 
-  const $btnDeleteCourse = $('#btn-delete-product');
-  $btnDeleteCourse.click(function () { 
-    $deleteForm.attr('action', '/products/' +productId + '/destroy?_method=DELETE');
-    alert('Bạn đã đưa 1 sản phẩm vào thùng rác');
-    $deleteForm.submit(); 
-  }); // When restore button clicked 
-  $restoreBtn.click(function (e) { 
-    e.preventDefault();
-    const productId = $(this).data('id');
-    $restoreForm.attr('action', '/products/'+ productId + '/restore?_method=PATCH'); 
-    alert('Bạn đã khôi phục 1 sản phẩm!');
-    $restoreForm.submit(); 
-  }); 
+  $(document).ready(function () {
+    let productId;
+    const $deleteForm = $('form[name="delete-product-form"]');
+    const $restoreForm = $('form[name="restore-product-form"]');
+    const $deleteModal = $('#delete-product-modal');
+    const $restoreBtn = $('.btn-restore');
+    // When delete button was clicked 
+    $deleteModal.on('show.bs.modal', function (event) {
+      // Button that triggered the modal 
+      const button = $(event.relatedTarget);
+      //Extract info from data-bs-* attributes 
+      productId = button.data('id');
+    });
+    //When confirmed the delete 
+    const $btnDeleteCourse = $('#btn-delete-product');
+    $btnDeleteCourse.click(function () {
+      $deleteForm.attr('action', '/products/' + productId + '/destroy?_method=DELETE');
+      alert('Bạn đã xóa 1 sản phẩm!');
+      $deleteForm.submit();
+    }); // When restore button clicked 
+    $restoreBtn.click(function (e) {
+      e.preventDefault();
+      const productId = $(this).data('id');
+      $restoreForm.attr('action', '/products/' + productId + '/restore?_method=PATCH');
+      alert('Bạn đã khôi phục 1 sản phẩm!');
+      $restoreForm.submit();
+    });
   });
 
 </script>

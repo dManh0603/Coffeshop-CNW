@@ -1,6 +1,6 @@
 const Product = require('../models/Product');
 const { mongooseToObject } = require('../../util/mongoose');
-
+const { body, validationResult } = require('express-validator');
 
 class ProductController {
 
@@ -20,6 +20,20 @@ class ProductController {
 
     // [POST] /products/store
     store(req, res, next) {
+        // Validate user input
+        body('name').isString().isLength({ max: 600 }).trim().escape();
+        body('description').isString().trim().escape();
+        body('price').isNumeric();
+        body('isPublished').isBoolean();
+        body('imageId').isString();
+        body('slug').isString();
+        body('product_id').isNumeric();
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
         const formData = req.body;
 
         const product = new Product(formData);
@@ -45,41 +59,59 @@ class ProductController {
 
     // [PUT] /products/:id
     update(req, res, next) {
-        if (!req.body.imageId) {
-            // update when no image was uploaded
-            Product.findById(req.params.id)
-                .then(product => {
-                    delete req.body.picture;
-                    req.body.imageId = product.imageId;
-                    Product.updateOne({ _id: req.params.id }, req.body)
-                        .then(() => res.redirect('/me/stored/products'))
-                        .catch((err) => {
-                            console.error(err)
-                        })
-                })
-                .catch((err) => {
-                    console.error(err)
-                })
+        const { name, description, price, isPublished } = req.body;
+        const { id } = req.params;
 
-        } else {
-            // update when new image was uploaded
-            let oldImageId;
-            Product.findById(req.params.id).
-                then(product => {
-                    oldImageId = product.imageId;
-                    delete req.body.picture;
-                })
-            Product.updateOne({ _id: req.params.id }, req.body)
-                .then(() => {
-                    req.body.oldImageId = oldImageId;
-                    next()
-                })
-                .catch((err) => {
-                    console.error(err);
-                    next();
-                })
+        // validate inputs
+        const errors = [];
+        if (!name) errors.push({ field: "name", message: "Name is required." });
+        if (!description) errors.push({ field: "description", message: "Description is required." });
+        if (!price) errors.push({ field: "price", message: "Price is required." });
+        if (!Number.isInteger(Number(price))) errors.push({ field: "price", message: "Price must be an integer." });
+        if (isPublished !== "true" && isPublished !== "false") errors.push({ field: "isPublished", message: "Invalid value for isPublished." });
+        if (errors.length > 0) {
+            return res.status(422).json({ errors });
         }
+
+        // find the product by id
+        Product.findById(id)
+            .then(product => {
+                if (!product) {
+                    return res.status(404).json({ error: "Product not found." });
+                }
+
+                // update the product
+                if (!req.file) {
+                    // no new image uploaded
+                    Product.updateOne({ _id: id }, { name, description, price, isPublished })
+                        .then(() => res.redirect('/me/stored/products'))
+                        .catch(err => {
+                            console.error(err);
+                            res.status(500).json({ error: "Failed to update product." });
+                        });
+                } else {
+                    // new image uploaded
+                    uploadImage(req.file)
+                        .then(imageId => {
+                            Product.updateOne({ _id: id }, { name, description, price, isPublished, imageId })
+                                .then(() => res.redirect('/me/stored/products'))
+                                .catch(err => {
+                                    console.error(err);
+                                    res.status(500).json({ error: "Failed to update product." });
+                                });
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            res.status(500).json({ error: "Failed to upload image." });
+                        });
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                res.status(500).json({ error: "Failed to update product." });
+            });
     }
+
 
     // [DELETE] /products/:id
     delete(req, res, next) {

@@ -33,6 +33,7 @@
     "handlebars": "^4.7.7",
     "jsonwebtoken": "^9.0.0",
     "method-override": "^3.0.0",
+    "moment-timezone": "^0.5.43",
     "mongoose": "^6.0.2",
     "mongoose-delete": "^0.5.4",
     "mongoose-sequence": "^5.3.1",

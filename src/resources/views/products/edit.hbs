@@ -85,8 +85,8 @@
 </div>
 
 <script>
-  const $publishCheck = $('input[name="isPublished"]'); // toogle the value of
-  isPublished $publishCheck.change(function (e) { if (e.target.checked) {
+  const $publishCheck = $('input[name="isPublished"]'); // toogle the value of isPublished 
+  $publishCheck.change(function (e) { if (e.target.checked) {
   $publishCheck.val(true); } else { $publishCheck.val(false); }
   console.log($publishCheck.val()); });
 
