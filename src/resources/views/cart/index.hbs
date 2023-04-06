@@ -31,19 +31,19 @@
                     </td>
                     <td  class="num">{{this.totalCost}}</td>
                     <td>
-                        <a class="btn btn-outline-danger btn-sm delete-btn" data-slug="{{this.slug}}">Delete</a>
+                        <a class="btn btn-outline-danger btn-sm delete-btn" data-slug="{{this.slug}}"><i class="fa-solid fa-trash-can"></i></a>
                     </td>
                 </tr>
                 {{/each}}
             </tbody>
         </table>
         <div class="card-body text-right">
-            <a href="/cart/checkout" class="btn checkoutBtn">Checkout</a>
+            <a href="/cart/checkout" class="btn checkoutBtn">Đặt hàng</a>
         </div>
     </div>
 </div>
 {{else}}
-<p class="text-muted text-center p-5">There are no item in the cart</p>
+<p class="text-muted text-center p-5">Không tồn tại sản phẩm nào trong giỏ hàng của bạn</p>
 {{/if}}
 
 <script>

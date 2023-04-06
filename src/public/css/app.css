@@ -288,7 +288,9 @@ body {
   .carousel-inner {
     max-height: 450px;
   }
-
+  .carousel-inner h1 {
+    font-size: 2.5rem;
+  }
   .carousel-caption {
     position: absolute;
     top: 15%;
@@ -300,7 +302,9 @@ body {
   .carousel-inner {
     max-height: 300px;
   }
-
+  .carousel-inner h1 {
+    font-size: 2rem;
+  }
   .carousel-caption {
     position: absolute;
     top: 15%;
@@ -433,7 +437,11 @@ body {
 /* ======================= */
 /* ------Contact us------- */
 /* ======================= */
-@media (min-width: 1000px) {
+@media (min-width: 768px) {
+  .contact__wrapper h2{
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
   .contact__form__row {
     display: flex;
     flex-wrap: wrap;
@@ -452,6 +460,16 @@ body {
     margin-bottom: 0;
   }
 }
+  @media (max-width: 767px) {
+    .contact__wrapper__info{
+      display:flex;
+      justify-content: center;
+    }
+    .contact__wrapper p{
+      display: block;
+    }
+  }
+
 
 /* ======================= */
 /* --------Footer--------- */
