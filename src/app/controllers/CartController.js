@@ -147,17 +147,45 @@ class CartController {
     updateCart(req, res, next) {
         const { productSlug, quantity } = req.body;
 
-        const cartItem = req.session.cart.find(item => item.productSlug === productSlug);
-        if (cartItem) {
-            cartItem.quantity = parseInt(quantity);
-        }
+        if (req.session.currentUser) {
+            const accountId = req.session.currentUser.accountId;
 
-        const currentQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
-        res.json({
-            success: true,
-            currentQuantity
-        })
+            Cart.findOne({ accountId })
+                .then((cart) => {
+                    const cartItem = cart.items.find((item) => item.productSlug === productSlug);
+                    if (cartItem) {
+                        cartItem.quantity = parseInt(quantity);
+                    }
+                    return cart.save();
+                })
+                .then(() => {
+                    return Cart.findOne({ accountId });
+                })
+                .then((cart) => {
+                    const currentQuantity = cart.items.reduce((total, item) => total + item.quantity, 0);
+                    res.json({
+                        success: true,
+                        currentQuantity
+                    });
+                })
+                .catch((err) => {
+                    console.error(err);
+                    res.status(500).send('Internal Server Error');
+                });
+        } else {
+            const cartItem = req.session.cart.find((item) => item.productSlug === productSlug);
+            if (cartItem) {
+                cartItem.quantity = parseInt(quantity);
+            }
+
+            const currentQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
+            res.json({
+                success: true,
+                currentQuantity
+            });
+        }
     }
+
 
     // [DELETE] /cart/delete/:slug
     deleteItem(req, res, next) {
