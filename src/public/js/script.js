@@ -161,10 +161,6 @@ let checkLogin = () => {
     let accessToken = localStorage.accessToken;
     if (accessToken != null) {
         const ul = document.querySelector("#user-menu");
-        const signinEl = document.querySelector("#signin-menu");
-        const signupEl = document.querySelector("#signup-menu");
-        ul.removeChild(signupEl);
-        ul.removeChild(signinEl);
 
         try {
             let accountCookie = document.cookie.split('; ')
@@ -195,6 +191,11 @@ let checkLogin = () => {
                 ul.appendChild(cartEl);
                 ul.appendChild(signoutEl);
 
+                const signinEl = document.querySelector("#signin-menu");
+                const signupEl = document.querySelector("#signup-menu");
+                ul.removeChild(signupEl);
+                ul.removeChild(signinEl);
+
             } else {
                 const signoutString =
                     `<li id="signout-menu" ><a class="dropdown-item" onclick="signout()" >Đăng xuất</a></li>`;
@@ -219,6 +220,11 @@ let checkLogin = () => {
                 ul.appendChild(userDetailEl);
                 ul.appendChild(passwordEl);
                 ul.appendChild(signoutEl);
+
+                const signinEl = document.querySelector("#signin-menu");
+                const signupEl = document.querySelector("#signup-menu");
+                ul.removeChild(signupEl);
+                ul.removeChild(signinEl);
             }
         } catch (error) {
             console.log(error);
