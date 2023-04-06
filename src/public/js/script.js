@@ -100,6 +100,9 @@ menuBtns.forEach((menuBtn, index) => {
     });
 });
 
+// ======================//
+// -------Dropdown-------//
+// ======================//
 // Lấy đối tượng dropdown menu
 var dropdownMenu = document.getElementById('user-menu');
 
