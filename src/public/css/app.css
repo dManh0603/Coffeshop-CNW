@@ -719,6 +719,49 @@ input {
   background-color: var(--primary-3);
 }
 
+.login.user_info {
+  width: 60vw;
+  max-width: 600px;
+}
+
+.login.user_info h2 {
+  text-transform: uppercase;
+  font-size: xx-large;
+}
+
+/* .login .login__form-group input {
+ width: 70%;
+} */
+
+.login__form.user {
+  width: 100%;
+}
+
+.login__form-group.user__form {
+  display: flex;
+  width: 100%;
+}
+
+.login__form-group.user__form p {
+  color: var(--primary-1);
+  line-height:  3;
+}
+
+.login .login__form-group input.user_info {
+  justify-content: end; 
+  width: 70%;
+  }
+
+@media only screen and (max-width: 992px) {
+  .login .login__form-group input.user_info {
+   width: 100%;
+}
+.login__form-group.user__form p {
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+}
+
 @keyframes animate {
   0% {
     opacity: 0;
