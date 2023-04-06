@@ -1,4 +1,5 @@
 const Product = require("../models/Product");
+const Cart = require("../models/Cart");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 class SiteController {
   // [GET] /
@@ -58,27 +59,60 @@ class SiteController {
   }
 
   // [GET] /menu
-  menu(req, res) {
-    let cartQuantity
-    if (req.session.cart) {
-      cartQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
-    }
-    else {
-      cartQuantity = 0
-    }
-    Product.find({})
-      .then(products => {
-        res.render('site/menu', {
-          layout: 'blank',
-          title: 'Menu page',
-          products: multipleMongooseToObject(products),
-          cartQuantity
+  menu(req, res, next) {
+    let cartQuantity;
+
+    if (req.session.currentUser) {
+      const userId = req.session.currentUser.accountId;
+
+      Cart.findOne({ accountId: userId })
+        .then(cart => {
+          if (cart) {
+            cartQuantity = cart.items.reduce((total, item) => total + item.quantity, 0);
+          } else {
+            cartQuantity = 0;
+          }
+
+          Product.find({})
+            .then(products => {
+              res.render('site/menu', {
+                layout: 'blank',
+                title: 'Menu page',
+                products: multipleMongooseToObject(products),
+                cartQuantity
+              });
+            })
+            .catch(e => {
+              next(e);
+            });
+        })
+        .catch(e => {
+          next(e);
         });
-      })
-      .catch(e => {
-        next(e);
-      })
+    } else {
+      if (req.session.cart) {
+        cartQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
+      } else {
+        cartQuantity = 0;
+      }
+
+      Product.find({})
+        .then(products => {
+          res.render('site/menu', {
+            layout: 'blank',
+            title: 'Menu page',
+            products: multipleMongooseToObject(products),
+            cartQuantity
+          });
+        })
+        .catch(e => {
+          next(e);
+        });
+    }
   }
+
+
+
   // [GET] /about
   about(req, res) {
     res.render('site/about');

@@ -25,11 +25,11 @@
                         </a>
                     </td>
                     <td class="num">{{this.price}}</td>
-                    <td  class="num">
+                    <td class="num">
                         <input type="number" min="1" class="form-control item-quantity" style="width: 60px"
                             data-slug="{{this.slug}}" value="{{this.quantity}}">
                     </td>
-                    <td  class="num">{{this.totalCost}}</td>
+                    <td class="num">{{this.totalCost}}</td>
                     <td>
                         <a class="btn btn-outline-danger btn-sm delete-btn" data-slug="{{this.slug}}"><i class="fa-solid fa-trash-can"></i></a>
                     </td>
@@ -38,7 +38,12 @@
             </tbody>
         </table>
         <div class="card-body text-right">
-            <a href="/cart/checkout" class="btn checkoutBtn">Đặt hàng</a>
+            {{#if cart_id}}
+            <a href="/cart/checkout?cart_id={{this.cart_id}}" class="btn checkoutBtn">Checkout</a>
+            {{else}}
+            <a href="/cart/checkout" class="btn checkoutBtn">Checkout</a>
+            {{/if}}
+
         </div>
     </div>
 </div>
@@ -61,7 +66,7 @@
                 type: 'POST',
                 data: {
                     productSlug: productSlug,
-                    quantity: newQuantity
+                    quantity: newQuantity,
                 },
                 success: function (response) {
                     // Update the cart count in the UI
@@ -95,7 +100,7 @@
                     }
                 },
                 error: function (xhr, status, error) {
-                    console.error(error);
+                    console.log(error);
                     // Handle error
                 }
             });
