@@ -134,6 +134,7 @@ class CartController {
                 const cartItems = products.map(product => {
                     const cartItem = req.session.cart.find(item => item.productSlug === product.slug);
                     return {
+                        product_id: product.product_id,
                         name: product.name,
                         price: product.price,
                         quantity: cartItem.quantity,
@@ -143,11 +144,13 @@ class CartController {
                     }
                 });
                 const cartTotalCost = cartItems.reduce((total, item) => total + item.totalCost, 0);
+                req.session.shippingInfo = shippingInfo;
                 res.render('cart/pay', {
                     cartItems,
                     cartQuantity,
                     shippingInfo,
                     cartTotalCost,
+                    PAYPAL_CLIENT_ID: process.env.PAYPAL_CLIENT_ID
                 });
             })
             .catch(err => {

@@ -107,6 +107,16 @@ class SiteController {
   shop(req, res) {
     res.render('site/shop');
   }
+
+  // [GET] /shop
+  userDetail(req, res) {
+    res.render('site/user_detail');
+  }
+
+  // [GET] /shop
+  unauth(req, res) {
+    res.render('site/401');
+  }
 }
 
 module.exports = new SiteController();

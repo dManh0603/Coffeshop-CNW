@@ -1,15 +1,13 @@
 <link rel="stylesheet" href="/css/menu.css" />
 <div class="menu_container py-5">
   <h1 class="menu_title py-4 text-center">Danh mục sản phẩm</h1>
-   <form id="search-form" class="search_form" action="/search">
-        <div class="mb-3">
-          <input type="text" name="q" class="form-control search_input" id="search-input"
-            placeholder="Nhập từ khóa ..." />
-        </div>
-        <button type="submit" class="search_btn">Tìm kiếm</button>
-      </form>
+  <form id="search-form" class="search_form" action="/search">
+    <div class="mb-3">
+      <input type="text" name="q" class="form-control search_input" id="search-input" placeholder="Nhập từ khóa ..." />
+    </div>
+    <button type="submit" class="search_btn">Tìm kiếm</button>
+  </form>
   <div class="menu_row row row-cols-4">
-
     <div class="menu_right col-12">
       <div class="row row-cols-4 mt-2 gy-3 gx-4" id="showed-products">
         {{#each products}}
@@ -28,11 +26,11 @@
                 </div>
 
               </div>
-                              <div class="col">
-                  <a data-slug="{{this.slug}}" class="btn btn-primary addToCartBtn">
-                    Thêm vào giỏ hàng
-                  </a>
-                </div>
+              <div class="col">
+                <a data-slug="{{this.slug}}" class="btn btn-primary addToCartBtn">
+                  Thêm vào giỏ hàng
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -142,5 +140,69 @@
     // Call the function to initialize the variables
     initialize();
   })
+</script>
+
+<script>
+  let checkLogin = () => {
+    console.log("Check login()");
+    let accessToken = localStorage.accessToken;
+    if (accessToken != null) {
+      let accountId = localStorage.accountId;
+      const ul = document.querySelector("#user-menu");
+      const signinEl = document.querySelector("#signin-menu");
+      const signupEl = document.querySelector("#signup-menu");
+      ul.removeChild(signupEl);
+      ul.removeChild(signinEl);
+
+      const productString = `<li id="dang-san-pham-menu" ><a class="dropdown-item" href="/products/create">Đăng sản phẩm</a></li>`
+      const cartString = `<li id="san-pham-cua-toi-menu" ><a class="dropdown-item" href="/me/stored/products">Sản phẩm của tôi </a></li>`
+
+      const signoutString =
+        `<li id="signout-menu" ><a class="dropdown-item" onclick="signout()" >Đăng xuất</a></li>`;
+      const userDetailString =
+        `<li id="user-detail-menu" ><a class="dropdown-item" href="/user_detail" >Thông tin cá nhân</a></li>`;
+      const passwordString =
+        `<li id="user-detail-menu" ><a class="dropdown-item" href="/forgetpassword" >Thay đổi mật khẩu</a></li>`;
+      const productlEl = document.createElement("li");
+      const cartEl = document.createElement("li");
+      const userDetailEl = document.createElement("li");
+      const passwordEl = document.createElement("li");
+      const signoutEl = document.createElement("li");
+      productlEl.innerHTML = productString;
+      cartEl.innerHTML = cartString;
+      userDetailEl.innerHTML = userDetailString;
+      passwordEl.innerHTML = passwordString;
+      signoutEl.innerHTML = signoutString;
+      ul.appendChild(productlEl);
+      ul.appendChild(cartEl);
+      ul.appendChild(userDetailEl);
+      ul.appendChild(passwordEl);
+      ul.appendChild(signoutEl);
+    }
+  };
+
+  let signout = () => {
+    let token = localStorage.getItem('accessToken');
+    $.ajax({
+      url: "/auth/signout",
+      method: "POST",
+      contentType: "application/json",
+      headers: {
+        "authorization": `Bearer ${token}`
+      },
+      success: function (response) {
+        console.log(response.result.message);
+        // alert("Đăng xuất thành công!")
+        alert(response.result.message)
+      },
+      error: function (error) {
+        alert(error.responseJSON.message);
+      },
+    });
+    localStorage.clear();
+    window.location.href = "/";
+  };
+
+  checkLogin()
 
 </script>
