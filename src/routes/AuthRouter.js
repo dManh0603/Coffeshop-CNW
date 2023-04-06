@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const AuthController = require("../app/controllers/AuthController");
-const authenticate = require("../app/middlewares/auth_with_cookie");
+const {authenticate, checkAdminRole, checkUserRole} = require("../app/middlewares/auth_with_cookie");
 const validator = require("../app/middlewares/validate");
 
 router.post("/signup", validator.validateSignUpAccount(), AuthController.signup);
