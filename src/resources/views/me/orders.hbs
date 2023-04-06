@@ -4,7 +4,7 @@
   <div>
     <h3 class="product_title">Đơn hàng của tôi</h3>
 
-    <div class="mt-4 d-flex align-items-center">
+    {{!-- <div class="mt-4 d-flex align-items-center">
       <div class="form-check d-inline">
         <input class="form-check-input mx-2" type="checkbox" value="" id="checkbox-all" />
         <label class="form-check-label" for="checkbox-all">
@@ -20,7 +20,7 @@
 
       <button type="submit" class="btn conduct btn-sm disabled " id="submit-btn">Thực
         hiện</button>
-    </div>
+    </div> --}}
 
   </div>
 
@@ -29,22 +29,22 @@
       <tr>
         <th scope="col"></th>
         <th scope="col">STT</th>
-        <th scope="col">Tên SP
-          {{{sortable "name" _sort}}}
-        </th>
+        <th scope="col">Mã đơn hàng</th>
+        <th scope="col">Họ tên</th>
+        <th scope="col">SDT nhận</th>
+        <th scope="col">Tổng giá trị</th>
         <th scope="col">Thời gian tạo
           {{{sortable "createdAt" _sort}}}
         </th>
 
-        <th scope="col">Thời gian sửa
-          {{{sortable "updatedAt" _sort}}}
+        <th scope="col">Trạng thái
         </th>
 
-        <th scope="col">Sửa/Xóa</th>
+        <th scope="col">Xem</th>
       </tr>
     </thead>
     <tbody>
-      {{#each products}}
+      {{#each orders}}
       <tr>
         <td>
           <div class="form-check">
@@ -52,13 +52,15 @@
           </div>
         </td>
         <th scope="row">{{sum @index 1}}</th>
-        <td>{{this.name}}</td>
+        <td>{{this.order_id}}</td>
+        <td>{{this.firstname}}</td>
+        <td>{{this.phone}}</td>
+        <td>{{this.total}}</td>
         <td>{{convertDate this.createdAt}}</td>
-        <td>{{convertDate this.updatedAt}}</td>
+        <td>{{this.isPaidl}}</td>
+
         <td>
-          <a href="/products/{{this._id}}/edit" class="btn btn-link"><i class="fa-solid fa-pen-to-square"></i></a>
-          <a href="" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#delete-product-modal"
-            data-bs-id="{{this._id}}"><i class="fa-solid fa-trash"></i></a>
+          <a href="/products/{{this._id}}/edit" class="btn btn-link"<i class="fa-solid fa-eye"></i></a>
         </td>
       </tr>
 
@@ -71,35 +73,10 @@
       {{/each}}
     </tbody>
   </table>
-  <div class="product_trash">
-    <a href="/me/trash/products"><i class="fa-solid fa-trash"></i>
-      Thùng rác ({{deletedCount}})</a>
-    <i class="fa-solid fa-arrow-right"></i>
-  </div>
 </form>
 
-{{! Delete confirm }}
-<div id="delete-product-modal" class="modal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Đưa sản phẩm vào thùng rác ?</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p>Bạn chắc chắn muốn đưa sản phẩm này vào thùng rác ?</p>
-      </div>
-      <div class="modal-footer">
-        <button id="btn-delete-product" type="button" class="btn btn-danger">Đưa
-          vào thùng rác</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 {{! delete hidden form }}
-<form method="POST" name="delete-product-form"></form>
 
 <script>
   $(document).ready(function () {
