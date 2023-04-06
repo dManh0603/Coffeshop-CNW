@@ -1,4 +1,5 @@
 const Handlebars = require('handlebars');
+const moment = require('moment-timezone');
 
 module.exports = {
   sum: (a, b) => a + b,
@@ -25,8 +26,20 @@ module.exports = {
       </a>`
     return new Handlebars.SafeString(output);
   },
-  
+
   getImage: (imageId) => {
     return `https://drive.google.com/uc?id=${imageId}`
+  },
+
+  convertDate: (dateString) => {
+    // Use Moment.js library to parse and manipulate the date/time string
+    const date = moment(dateString).tz('Asia/Bangkok').utcOffset('+0700');
+
+    // Format the date/time string in the desired format (day-month-year-time)
+    const formattedDate = date.format('DD MMM YYYY HH:mm:ss');
+
+    // Return the formatted date/time string
+    return formattedDate;
   }
+
 }

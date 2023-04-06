@@ -23,8 +23,8 @@
           <tr>
             <th scope="row">{{sum @index 1}}</th>
             <td>{{this.name}}</td>
-            <td>{{this.createdAt}}</td>
-            <td>{{this.deletedAt}}</td>
+            <td>{{convertDate this.createdAt}}</td>
+            <td>{{convertDate this.deletedAt}}</td>
             <td>
               <a
                 href=""
