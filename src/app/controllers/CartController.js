@@ -1,5 +1,6 @@
 const Product = require('../models/Product');
 const Cart = require('../models/Cart');
+const Account = require('../models/Account');
 const { multipleMongooseToObject, } = require('../../util/mongoose');
 class CartController {
 
@@ -7,6 +8,7 @@ class CartController {
     async index(req, res, next) {
         let cartQuantity = 0;
         let cartItems = [];
+        let cartId;
 
         if (req.session.currentUser) {
             const accountId = req.session.currentUser.accountId;
@@ -28,8 +30,9 @@ class CartController {
                         };
                     });
                     cartQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
+                    cartId = userCart.cart_id;
                 }
-                renderCart(cartItems, cartQuantity);
+                renderCart(cartItems, cartQuantity, cartId);
             } catch (err) {
                 console.log(err);
                 res.status(500).send('Internal Server Error');
@@ -51,22 +54,24 @@ class CartController {
                     };
                 });
                 cartQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
-                renderCart(cartItems, cartQuantity);
+                renderCart(cartItems, cartQuantity, cartId);
             } catch (err) {
                 console.error(err);
                 // Handle errors
             }
         } else {
-            renderCart(cartItems, cartQuantity);
+            renderCart(cartItems, cartQuantity, cartId);
         }
 
-        function renderCart(items, quantity) {
+        function renderCart(items, quantity, cartId) {
             res.render('cart/index', {
                 items,
                 cartQuantity: quantity,
+                cart_id: cartId
             });
         }
     }
+
 
     // [POST] /add/
     add(req, res, next) {
@@ -227,9 +232,36 @@ class CartController {
 
 
     // [GET] /cart/checkout
-    checkout(req, res, next) {
-        res.render('cart/checkout');
+    async checkout(req, res, next) {
+        const cartId = req.query.cart_id;
+
+        try {
+            const cart = await Cart.findOne({ cart_id: cartId });
+            if (!cart) {
+                throw new Error('Cart not found');
+            }
+
+            const accountId = cart.accountId;
+            const account = await Account.findOne({ accountId });
+            if (!account) {
+                throw new Error('Account not found');
+            }
+
+            const { firstname, lastname, email, phone } = account;
+
+            res.render('cart/checkout', {
+                firstname,
+                lastname,
+                email,
+                phone
+            });
+        } catch (err) {
+            console.error(err);
+            res.status(500).send('Internal Server Error');
+            next()
+        }
     }
+
 
 
 
