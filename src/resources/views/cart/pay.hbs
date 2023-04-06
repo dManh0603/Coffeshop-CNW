@@ -12,9 +12,9 @@
                     <div
                         class="col-6 pay__order__content-right pl-2 d-flex justify-content-center align-items-left flex-column">
                         <h4 class="pay__order__content-title mb-2">{{this.name}}</h4>
-                        <p class="pay__order__content-description">Số lượng: {{this.quantity}}</p>
-                        <p class="pay__order__content-description">Đơn giá: {{this.price}}</p>
-                        <p class="pay__order__content-description">Tổng tiền: {{this.totalCost}}</p>
+                        <p class="pay__order__content-description mb-1">Số lượng: {{this.quantity}}</p>
+                        <p class="pay__order__content-description mb-1">Đơn giá: {{this.price}}</p>
+                        <p class="pay__order__content-description mb-1">Tổng tiền: {{this.totalCost}}</p>
                     </div>
                 </div>
                 {{/each}}
@@ -32,11 +32,11 @@
                 </div>
             </div>
             <div class="col-lg-4 shipping__info">
-                <div class="card">
-                    <div class="card-header">
+                <div class="card border-0">
+                    <div class="card-header border-0">
                         <h4 class="mt-1">THÔNG TIN VẬN CHUYỂN</h4>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body border-0">
                         <p class="text-start">
                             Tên: {{shippingInfo.firstname}}
                         </p>

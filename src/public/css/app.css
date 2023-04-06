@@ -252,7 +252,6 @@ body {
 .dropdown-menu {
   margin-top: 0;
   width: 25vh;
-  height: 20vh;
   border: none;
   background-color: rgba(33, 37, 41, 1);
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -865,13 +864,16 @@ input {
 
 .pay__page{
   margin: 0;
-  /* height: 100%; */
   width: 100%;
 }
-
+.pay__page p{
+  display: block;
+}
 .pay__page .container{
   width: 1100px;
   margin:auto;
+  display: flex;
+  justify-content: center;
 }
 .pay__order{
   background-color: var(--secondary);
@@ -948,15 +950,15 @@ input {
 }
 
 .shipping__info .card {
-  background-color: #f5eeee;
+  background-color: #f7f2f2;
   color: var(--primary-2);
   font-weight: bold;
-  border: none;
+  box-shadow: none;
+  border-radius: 15px;
 }
 
 .shipping__info .card-header {
   color: var(--primary-1);
-  border: none;
 }
 
 .shipping__info--highlight {
@@ -980,15 +982,11 @@ input {
     width: 100%;
     margin:auto;
   }
-  .pay__order{
-    margin-left: 25px;
-  }
+
   .pay__order-check::before {
     width: 170%;
   }
-  .shipping__info {
-    margin-left: 30px;
-  }
+
   .pay__order-check::before {
     width: 260%;
   }
@@ -996,42 +994,24 @@ input {
  
 }
 @media screen and (min-width: 577px) and (max-width: 767px) {
-  .pay__page p{
-    display: block;
-  }
+
   .pay__page .container{
     width: 100%;
     margin:auto;
   }
-  .pay__order{
-    width: 100%;
-    margin-left: 25px;
-  }
   .pay__order-check::before {
     width: 200%;
-  }
-  .shipping__info {
-    margin-left: 30px;
   }
  
 }
 
 @media screen and (max-width: 576px) {
-  .pay__page p{
-    display: block;
-  }
   .pay__page .container{
     width: 100%;
     margin:auto;
   }
-  .pay__order{
-    width: 100%;
-    margin-left: 25px;
-  }
   .pay__order-check::before {
     width: 170%;
   }
-  .shipping__info {
-    margin-left: 30px;
-  }
+
 }
