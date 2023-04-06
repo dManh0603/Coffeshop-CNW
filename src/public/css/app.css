@@ -81,6 +81,7 @@ body {
   background-color: var(--primary-3);
   font-weight: bold;
   transform: scale(1.1);
+  cursor: pointer;
 }
 
 .btn2 {
@@ -251,7 +252,6 @@ body {
 .dropdown-menu {
   margin-top: 0;
   width: 25vh;
-  height: 20vh;
   border: none;
   background-color: rgba(33, 37, 41, 1);
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -560,12 +560,14 @@ input {
   box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
   border-radius: 20px;
   margin-top: 70px;
+  margin-top: 70px;
 }
 
 .login form {
   display: flex;
   flex-direction: column;
 }
+
 
 .login h2 {
   margin: 0 0 30px;
@@ -576,6 +578,7 @@ input {
 
 .login .login__form-group {
   position: relative;
+  margin: 10px 0;
   margin: 5px 0;
 }
 
@@ -599,7 +602,7 @@ input {
   position: absolute;
   top: 0;
   left: 0;
-  padding: 6px 0 0 15px;
+  padding: 5px 15px;
   font-size: 16px;
   color: #2d2d08;
   pointer-events: none;
@@ -703,6 +706,21 @@ input {
   white-space: pre;
 }
 
+.cart .form-control{
+  display: block;
+  text-align: center;
+  padding: 0px;
+
+}
+
+.cart input {
+  height: fit-content;
+}
+
+/* .cart thead {
+  text-align: center;
+} */
+
 .btn.checkoutBtn {
   color: var(--primary-3);
   background:var(--primary-1);
@@ -710,7 +728,7 @@ input {
   border-radius: 8px;
   text-decoration: none;
   text-align: center;
-  padding: 12px;
+  padding:  4px 12px;
   transition: all 0.2s ease-in;
 }
 
@@ -750,4 +768,250 @@ input {
     top: 110%;
     transform: translateX(20%) rotate(225deg);
   }
+}
+
+/* ======================= */
+/* -----CHECKOUT PAGE----- */
+/* ======================= */
+/* Phần tử chính */
+.container.checkout__page {
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+  padding: 50px;
+  max-width: 600px;
+}
+
+/* Tiêu đề của form */
+.checkout__page h1 {
+  color: var(--primary-1);
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.checkout__page h1 span {
+  color: var(--primary-2);
+}
+
+
+.checkout__page h1::before {
+  background-color: var(--primary-1);
+  content: "";
+  height: 4px;
+  left: 0;
+  position: absolute;
+  top: 40px;
+  width: 100%;
+}
+
+/* Nhãn và Input */
+.checkout__page label {
+  color: #000;
+  display: block;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.checkout__page input,
+.checkout__page textarea {
+  background-color: #eee;
+  border: none;
+  border-radius: 5px;
+  box-shadow: none;
+  color: #000;
+  font-size: 16px;
+  margin-bottom: 20px;
+  padding: 10px;
+  width: 100%;
+}
+
+.checkout__page input:focus,
+.checkout__page textarea:focus {
+  outline: none;
+}
+
+/* Nút Submit */
+.checkout__page button[type="submit"] {
+  background-color: var(--primary-1);
+  border: none;
+  border-radius: 5px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 20px;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+}
+
+.checkout__page button[type="submit"]:hover {
+  background-color: var(--primary-3);
+  color: #ffffff
+}
+@media screen and (max-width: 550px) {
+  .checkout__page h1{
+    font-size: 1.5rem;
+  }
+}
+
+/* ======================= */
+/* -------PAY PAGE-------- */
+/* ======================= */
+
+.pay__page{
+  margin: 0;
+  width: 100%;
+}
+.pay__page p{
+  display: block;
+}
+.pay__page .container{
+  width: 1100px;
+  margin:auto;
+  display: flex;
+  justify-content: center;
+}
+.pay__order{
+  background-color: var(--secondary);
+  border-radius: 15px;
+}
+
+.pay__order-info{
+  width: 800px;
+}
+
+.pay__order__image-left{
+  height: 150px;
+  width: 150px;
+}
+
+.pay__order__image-left img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+}
+
+.pay__order__content-title{
+  color: var(--primary-1);
+}
+
+/* -------PAY PAGE checkout-------- */
+.pay__order-check {
+  color: var(--primary-1);
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  position: relative;
+  text-transform: uppercase;
+}
+
+.pay__order-check::before {
+  background-color: var(--primary-1);
+  content: "";
+  height: 4px;
+  left: 0;
+  position: absolute;
+  top: -10px;
+  width: 275%;
+}
+
+.pay__order-check {
+  margin-top: 30px;
+  width: 250px;
+
+}
+
+.pay__order-check table {
+  width: 100%;
+}
+
+.pay__order-check td {
+  padding: 10px;
+}
+
+.pay__order-check td:first-child {
+  font-weight: bold;
+}
+
+.pay__order-check td:last-child {
+  text-align: right;
+  font-weight: bold;
+}
+
+
+/* -------PAY PAGE shipping -------- */
+.shipping__info {
+  padding: 0 10px;
+}
+
+.shipping__info .card {
+  background-color: #f7f2f2;
+  color: var(--primary-2);
+  font-weight: bold;
+  box-shadow: none;
+  border-radius: 15px;
+}
+
+.shipping__info .card-header {
+  color: var(--primary-1);
+}
+
+.shipping__info--highlight {
+  font-weight: bold;
+  color: var(--primary-1);
+}
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .pay__page .container{
+    width: 100%;
+    margin:auto;
+  }
+  .pay__order-check::before {
+    width: 225%;
+  }
+ 
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  .pay__page .container{
+    width: 100%;
+    margin:auto;
+  }
+
+  .pay__order-check::before {
+    width: 170%;
+  }
+
+  .pay__order-check::before {
+    width: 260%;
+  }
+
+ 
+}
+@media screen and (min-width: 577px) and (max-width: 767px) {
+
+  .pay__page .container{
+    width: 100%;
+    margin:auto;
+  }
+  .pay__order-check::before {
+    width: 200%;
+  }
+ 
+}
+
+@media screen and (max-width: 576px) {
+  .pay__page .container{
+    width: 100%;
+    margin:auto;
+  }
+  .pay__order-check::before {
+    width: 170%;
+  }
+
 }

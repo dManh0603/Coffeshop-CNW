@@ -1,28 +1,29 @@
-<div class="container">
-    <h1>Shipping infomation</h1>
+<div class="container checkout__page">
+    <i class="fa-solid fa-truck-fast fa-beat"></i>
+    <h1><span>Thông tin</span> vận chuyển</h1>
     <form action="/cart/pay" method="POST">
         <div class="mb-3">
-            <label for="lastname" class="form-label">Last name</label>
+            <label for="lastname" class="checkout__form-label">Họ</label>
             <input type="text" class="form-control" id="lastname" name="lastname">
             <div id="lastnameHelp" class="form-text"></div>
         </div>
         <div class="mb-3">
-            <label for="firstname" class="form-label">First name</label>
+            <label for="firstname" class="checkout__form-label">Tên</label>
             <input type="text" class="form-control" id="firstname" name="firstname">
             <div id="firstnameHelp" class="form-text"></div>
         </div>
         <div class="mb-3">
-            <label for="email" class="form-label">Email address</label>
+            <label for="email" class="checkout__form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email">
             <div id="emailHelp" class="form-text"></div>
         </div>
         <div class="mb-3">
-            <label for="phone" class="form-label">Phone number</label>
+            <label for="phone" class="checkout__form-label">Số điện thoại</label>
             <input type="phone" class="form-control" id="phone" name="phone">
             <div id="phoneHelp" class="form-text"></div>
         </div>
         <div class="mb-3">
-            <label for="description" class="form-label">Address</label>
+            <label for="description" class="checkout__form-label">Địa chỉ</label>
             <textarea class="form-control" name="address" rows="3"></textarea>
             <div id="addressHelp" class="form-text"></div>
         </div>

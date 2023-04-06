@@ -11,7 +11,7 @@ function route(app) {
     // Router
     app.use('/me', authenticate , meRouter);
     app.use('/products',authenticate, productsRouter);
-    app.use("/cart", authenticate, cartRouter);
+    app.use("/cart", cartRouter);
     app.use('/orders', orderRouter);
     app.use('/auth/', authRouter);
     app.use('/', siteRouter);

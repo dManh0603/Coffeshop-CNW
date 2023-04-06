@@ -100,6 +100,21 @@ menuBtns.forEach((menuBtn, index) => {
     });
 });
 
+// Lấy đối tượng dropdown menu
+var dropdownMenu = document.getElementById('user-menu');
+
+// Thiết lập chiều cao ban đầu
+dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + "px";
+
+// Lắng nghe sự kiện khi click vào dropdown menu
+document.getElementById("userDropdown").addEventListener("click", function() {
+  if (dropdownMenu.classList.contains("show")) {
+    dropdownMenu.style.maxHeight = null;
+  } else {
+    dropdownMenu.style.maxHeight = dropdownMenu.scrollHeight + "px";
+  }
+});
+
 function signin() {
     let body = {};
     const formData = new FormData(document.getElementById("signin__form"));
