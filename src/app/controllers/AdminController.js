@@ -13,7 +13,7 @@ class AdminController {
             Product.find({}).sortable(req),
             Product.countDocumentsDeleted()])
             .then(([products, deletedCount]) =>
-                res.render('me/stored-products', {
+                res.render('admin/stored-products', {
                     deletedCount,
                     products: multipleMongooseToObject(products),
                 })
@@ -25,7 +25,7 @@ class AdminController {
     trashProducts(req, res, next) {
         Product.findDeleted({})
             .then((products) => {
-                res.render('me/trash-products', {
+                res.render('admin/trash-products', {
                     products: multipleMongooseToObject(products)
                 });
             })
