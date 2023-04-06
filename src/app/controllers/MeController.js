@@ -7,7 +7,7 @@ class MeController {
     }
 
     orders(req, res, next) {
-        res.end('orders page')
+        res.render('me/orders')
     }
 
 }
