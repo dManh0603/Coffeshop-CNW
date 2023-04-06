@@ -1,4 +1,5 @@
 const Product = require("../models/Product");
+const Cart = require("../models/Cart");
 const { multipleMongooseToObject } = require("../../util/mongoose");
 class SiteController {
   // [GET] /
@@ -58,27 +59,41 @@ class SiteController {
   }
 
   // [GET] /menu
-  menu(req, res) {
-    let cartQuantity
-    if (req.session.cart) {
-      cartQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
+  async menu(req, res) {
+    let cartQuantity = 0;
+    let products = [];
+
+    try {
+      if (req.session.currentUser) {
+        const accountId = req.session.currentUser.accountId;
+        const userCart = await Cart.findOne({ accountId });
+        if (userCart) {
+          products = await Product.find({ _id: { $in: userCart.items.map(item => item.product) } });
+          cartQuantity = userCart.items.reduce((total, item) => total + item.quantity, 0);
+        }
+      }
+
+      if (!products.length) {
+        products = await Product.find({});
+      }
+
+      if (req.session.cart) {
+        cartQuantity += req.session.cart.reduce((total, item) => total + item.quantity, 0);
+      }
+
+      res.render('site/menu', {
+        layout: 'blank',
+        title: 'Menu page',
+        products: multipleMongooseToObject(products),
+        cartQuantity
+      });
+    } catch (error) {
+      console.error(error);
+      res.status(500).send('Internal Server Error');
     }
-    else {
-      cartQuantity = 0
-    }
-    Product.find({})
-      .then(products => {
-        res.render('site/menu', {
-          layout: 'blank',
-          title: 'Menu page',
-          products: multipleMongooseToObject(products),
-          cartQuantity
-        });
-      })
-      .catch(e => {
-        next(e);
-      })
   }
+
+
   // [GET] /about
   about(req, res) {
     res.render('site/about');
