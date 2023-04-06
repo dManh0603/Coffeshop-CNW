@@ -232,7 +232,7 @@ body {
   left: 0;
   right: 0;
   position: fixed;
-  z-index: 99;
+  z-index: 999;
 }
 
 .selected {
@@ -288,7 +288,9 @@ body {
   .carousel-inner {
     max-height: 450px;
   }
-
+  .carousel-inner h1 {
+    font-size: 2.5rem;
+  }
   .carousel-caption {
     position: absolute;
     top: 15%;
@@ -300,7 +302,9 @@ body {
   .carousel-inner {
     max-height: 300px;
   }
-
+  .carousel-inner h1 {
+    font-size: 2rem;
+  }
   .carousel-caption {
     position: absolute;
     top: 15%;
@@ -433,12 +437,20 @@ body {
 /* ======================= */
 /* ------Contact us------- */
 /* ======================= */
-@media (min-width: 1000px) {
+
+@media (min-width: 768px) {
+
+  .contact__ui h2{
+    margin-top: 100px;
+    margin-bottom: 50px;
+  }
+  .contact__wrapper h2{
+    margin-bottom: 50px;
+  }
   .contact__form__row {
     display: flex;
     flex-wrap: wrap;
   }
-
   .contact__form__group .col-md-6 {
     flex: 0 0 50%;
     max-width: 50%;
@@ -451,7 +463,44 @@ body {
   .contact__form__group:last-child {
     margin-bottom: 0;
   }
+  .single-contact-next a{
+    text-decoration:none;
+    color: var(--primary-2);
+  }
+  .single-contact-next a:hover{
+    text-decoration:none;
+    color: var(--primary-3);
+  }
 }
+
+  @media (max-width: 767px) {
+    .contact__ui h2{
+      margin-top: 100px;
+      margin-bottom: 50px;
+    }
+    .contact__ui p{
+      display: block;
+    }
+    .contact__wrapper h2{
+      margin-bottom: 50px;
+    }
+    .contact__wrapper__info{
+      display:flex;
+      justify-content: center;
+    }
+    .contact__wrapper p{
+      display: block;
+    }
+    .single-contact-next a{
+      text-decoration:none;
+      color: var(--primary-2);
+    }
+    .single-contact-next a:hover{
+      text-decoration:none;
+      color: var(--primary-3);
+    }
+  }
+
 
 /* ======================= */
 /* --------Footer--------- */
@@ -706,6 +755,14 @@ input {
   white-space: pre;
 }
 
+.cart {
+  min-height: 60vh;
+}
+
+.cart_header {
+  padding-top: 4vh;
+}
+
 .cart .form-control{
   display: block;
   text-align: center;
@@ -715,6 +772,12 @@ input {
 
 .cart input {
   height: fit-content;
+}
+
+.cart_empty {
+  line-height: 60vh;
+  text-align: center;
+  font-size: x-large;
 }
 
 /* .cart thead {
@@ -913,10 +976,12 @@ input {
   display: block;
 }
 .pay__page .container{
+  background-color: var(--secondary);
   width: 1100px;
   margin:auto;
   display: flex;
   justify-content: center;
+  border-radius: 15px;
 }
 .pay__order{
   background-color: var(--secondary);
@@ -989,7 +1054,7 @@ input {
 
 /* -------PAY PAGE shipping -------- */
 .shipping__info {
-  padding: 0 10px;
+  padding: 10px 10px;
 }
 
 .shipping__info .card {

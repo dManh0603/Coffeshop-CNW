@@ -151,6 +151,10 @@ class SiteController {
   unauth(req, res) {
     res.render('site/401');
   }
+
+  notfound(req, res) {
+    res.render('site/404')
+  }
 }
 
 module.exports = new SiteController();

@@ -100,6 +100,9 @@ menuBtns.forEach((menuBtn, index) => {
     });
 });
 
+// ======================//
+// -------Dropdown-------//
+// ======================//
 // Lấy đối tượng dropdown menu
 var dropdownMenu = document.getElementById('user-menu');
 
@@ -129,7 +132,6 @@ function signin() {
         success: function (response) {
             localStorage.setItem("accessToken", response.result.accessToken);
             localStorage.setItem("refreshToken", response.result.refreshToken);
-            // localStorage.setItem("accountId", response.result.accountId);
             console.log(response.result.message);
 
             sessionStorage.setItem('user', JSON.stringify({
@@ -138,12 +140,14 @@ function signin() {
             }));
 
             alert(response.result.message)
-            if (response.result.account.role === "user") {
-                window.location.href = "/";
-            } else {
-                console.log("redirect to admin page");
-                // window.location.href = "/admin";
-            }
+            window.location.href = "/";
+
+            // if (response.result.account.role === "user") {
+            //     window.location.href = "/";
+            // } else {
+            //     console.log("redirect to admin page");
+            //     // window.location.href = "/admin";
+            // }
         },
         error: function (error) {
             console.log("error:", error.responseJSON.message);
@@ -156,34 +160,55 @@ let checkLogin = () => {
     console.log("Check login()");
     let accessToken = localStorage.accessToken;
     if (accessToken != null) {
-        let accountId = localStorage.accountId;
         const ul = document.querySelector("#user-menu");
         const signinEl = document.querySelector("#signin-menu");
         const signupEl = document.querySelector("#signup-menu");
         ul.removeChild(signupEl);
         ul.removeChild(signinEl);
 
-        const productString = `<li id="dang-san-pham-menu" ><a class="dropdown-item" href="/products/create">Đăng sản phẩm</a></li>`
-        const cartString = `<li id="san-pham-cua-toi-menu" ><a class="dropdown-item" href="/me/stored/products">Sản phẩm của tôi </a></li>`
+        try {
+            let accountCookie = document.cookie.split('; ')
+            .find(row => row.startsWith('currentUser='))
+            .split('=')[1].replace(/25/g, "");
+    
+            const account = JSON.parse(decodeURIComponent(accountCookie))
+            console.log(account);
+            if("admin" === account.role) {
+                const adminWebsiteString = `<li id="user-detail-menu" ><a class="dropdown-item" href="/admin">Admin website</a></li>`;
+                const productString = `<li id="dang-san-pham-menu" ><a class="dropdown-item" href="/products/create">Đăng sản phẩm</a></li>`
+                const cartString = `<li id="san-pham-cua-toi-menu" ><a class="dropdown-item" href="/me/stored/products">Sản phẩm của tôi </a></li>`
+                
+                const adminWebsiteEl = document.createElement("li");
+                const productlEl = document.createElement("li");
+                const cartEl = document.createElement("li");
+                
+                adminWebsiteEl.innerHTML = adminWebsiteString;
+                productlEl.innerHTML = productString;
+                cartEl.innerHTML = cartString;
 
+                ul.appendChild(adminWebsiteEl);
+                ul.appendChild(productlEl);
+                ul.appendChild(cartEl);
+            }
+        } catch(error) {
+            console.log(error);
+        }
+        
         const signoutString =
             `<li id="signout-menu" ><a class="dropdown-item" onclick="signout()" >Đăng xuất</a></li>`;
         const userDetailString =
             `<li id="user-detail-menu" ><a class="dropdown-item" href="/user_detail" >Thông tin cá nhân</a></li>`;
         const passwordString =
             `<li id="user-detail-menu" ><a class="dropdown-item" href="/forgetpassword" >Thay đổi mật khẩu</a></li>`;
-        const productlEl = document.createElement("li");
-        const cartEl = document.createElement("li");
+        
         const userDetailEl = document.createElement("li");
         const passwordEl = document.createElement("li");
         const signoutEl = document.createElement("li");
-        productlEl.innerHTML = productString;
-        cartEl.innerHTML = cartString;
+        
         userDetailEl.innerHTML = userDetailString;
         passwordEl.innerHTML = passwordString;
         signoutEl.innerHTML = signoutString;
-        ul.appendChild(productlEl);
-        ul.appendChild(cartEl);
+        
         ul.appendChild(userDetailEl);
         ul.appendChild(passwordEl);
         ul.appendChild(signoutEl);
