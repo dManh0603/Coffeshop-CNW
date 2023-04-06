@@ -1,6 +1,6 @@
 const Product = require('../models/Product');
 const { mongooseToObject } = require('../../util/mongoose');
-
+const { body, validationResult } = require('express-validator');
 
 class ProductController {
 
@@ -20,6 +20,20 @@ class ProductController {
 
     // [POST] /products/store
     store(req, res, next) {
+        // Validate user input
+        body('name').isString().isLength({ max: 600 }).trim().escape();
+        body('description').isString().trim().escape();
+        body('price').isNumeric();
+        body('isPublished').isBoolean();
+        body('imageId').isString();
+        body('slug').isString();
+        body('product_id').isNumeric();
+
+        const errors = validationResult(req);
+        if (!errors.isEmpty()) {
+            return res.status(400).json({ errors: errors.array() });
+        }
+
         const formData = req.body;
 
         const product = new Product(formData);
