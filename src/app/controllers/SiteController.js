@@ -76,7 +76,7 @@ class SiteController {
           Product.find({})
             .then(products => {
               res.render('site/menu', {
-                layout: 'blank',
+                // layout: 'blank',
                 title: 'Menu page',
                 products: multipleMongooseToObject(products),
                 cartQuantity
@@ -99,7 +99,7 @@ class SiteController {
       Product.find({})
         .then(products => {
           res.render('site/menu', {
-            layout: 'blank',
+            layout: 'main',
             title: 'Menu page',
             products: multipleMongooseToObject(products),
             cartQuantity
@@ -142,11 +142,7 @@ class SiteController {
     res.render('site/shop');
   }
 
-  // [GET] /shop
-  userDetail(req, res) {
-    res.render('site/user_detail');
-  }
-
+ 
   // [GET] /shop
   unauth(req, res) {
     res.render('site/401');
