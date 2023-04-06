@@ -724,6 +724,14 @@ input {
   white-space: pre;
 }
 
+.cart {
+  min-height: 60vh;
+}
+
+.cart_header {
+  padding-top: 4vh;
+}
+
 .cart .form-control{
   display: block;
   text-align: center;
