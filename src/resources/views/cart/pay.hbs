@@ -46,7 +46,7 @@
                     <tbody class="table">
                         {{#each cartItems}}
                         <tr></tr>
-                        <tr class="border-top-0">
+                        <tr class="border-top-0" data-id="{{this.product_id}}">
                             <td>{{this.name}}</td>
                             <td class="text-center">
                                 <img src="{{getImage this.imageId}}" style="width: 70px" alt="{{this.name}}">
@@ -68,70 +68,91 @@
                     </tbody>
                 </table>
             </div>
+            <div id="paypal-button-container"></div>
         </div>
     </div>
 </div>
 
+<head>
+    <script src="https://www.paypal.com/sdk/js?client-id={{PAYPAL_CLIENT_ID}}&currency=USD"></script>
+</head>
 
-<div id="paypal-button-container"></div>
+
 
 <script>
-    paypal.Buttons({
-        // Sets up the transaction when a payment button is clicked
-        createOrder: (data, actions) => {
-            return actions.order.create({
-                purchase_units: [{
-                    amount: {
-                        value: <?= $order -> total_price ?> // Can also reference a variable or function
-                    }
-                }]
-            });
-        },
-        onError: function (err) {
-            // For example, redirect to a specific error page
-            console.log(err)
-            debugger
-        },
-        // Finalize the transaction after payer approval
-        onApprove: function (data, actions) {
-            console.log("On approve.1", data, actions);
-            debugger;
-            return actions.order.capture().then(function (orderData) {
-                console.log(".2", orderData);
-                const $form = $('#checkout-form');
-                const formData = $form.serializeArray();
-                formData.push({
-                    name: 'transactionId',
-                    value: orderData.id
-                });
-                formData.push({
-                    name: 'orderId',
-                    value: data.orderID
-                });
-                formData.push({
-                    name: 'status',
-                    value: orderData.status
-                });
-                $.ajax({
-                    method: 'post',
-                    url: '<?= Url::to(['cart/ submit - payment', 'orderId' => $order->id]) ?>',
-                    data: formData,
-                    success: function (res) {
-                        console.log(".3", res);
-                        alert("Thanks for your order!");
-                        window.location.href = '';
-                    }
-                })
+    $(document).ready(function () {
 
-            // Successful capture! For dev/demo purposes:
-            console.log('Capture result .4', orderData, JSON.stringify(orderData, null, 2));
-            const transaction = orderData.purchase_units[0].payments.captures[0];
-            // alert(`Transaction ${transaction.status}: ${transaction.id}\n\nSee console for all available details`);
-            // When ready to go live, remove the alert and show a success message within this page. For example:
-            // const element = document.getElementById('paypal-button-container');
-            // element.innerHTML = '<h3>Thank you for your payment!</h3>';
-            // Or go to another URL:  actions.redirect('thank_you.html');
+        let items = [];
+        // Iterate over each row in the table body that has a data-slug attribute
+        $('tr[data-id]').each(function () {
+            // Extract the slug and quantity from the relevant columns
+            var itemId = $(this).data('id');
+            var quantity = parseInt($(this).find('td:nth-child(4)').text().trim());
+
+            // Add the item to the array
+            items.push({
+                product_id: itemId,
+                quantity: quantity
+            });
         });
-        }
-    }).render('#paypal-button-container');
+        paypal.Buttons({
+            // Order is created on the server and the order id is returned
+            createOrder() {
+                return fetch('/orders/create', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        items
+                    })
+
+                })
+                    .then(res => {
+                        if (!res.ok) {
+                            throw new Error("Failed to create order");
+                        }
+                        return res.json();
+                    })
+                    .then(({ id }) => {
+                        return id;
+                    })
+                    .catch(e => {
+                        console.error(e.message);
+                        alert("Failed to create order. Please try again later.");
+                    })
+
+            },
+            // Finalize the transaction on the server after payer approval
+            onApprove(data, actions) {
+                return actions.order.capture()
+                    .then((details) => {
+                        console.log('on approve:', details)
+                        // todo: save order to db
+                        fetch('/orders/update', {
+                            method: 'PUT',
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(details)
+                        })
+                            .then(response => console.log(response))
+                            .catch(e => console.error(e))
+                        alert("Transaction completed by " + details.payer.name.given_name + "\nYou will be redirected to the home page in a few second!\nThank you for your support!");
+                        return Promise.resolve();
+                    })
+                    .catch(e => {
+                        console.error(e.message);
+                        alert("Failed to capture the transaction. Please contact customer support.");
+                        return Promise.reject(e);
+                    })
+                    .then(() => {
+                        setTimeout(() => {
+                            window.location.replace('/');
+                        }, 5000); // wait for 3 seconds before redirecting
+                    });
+            }
+        }).render('#paypal-button-container');
+    })
+
 </script>
