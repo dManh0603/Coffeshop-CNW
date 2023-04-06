@@ -188,31 +188,43 @@ class CartController {
 
 
     // [DELETE] /cart/delete/:slug
-    deleteItem(req, res, next) {
+    async deleteItem(req, res, next) {
         try {
             const slug = req.params.slug;
-            const cart = req.session.cart;
-            console.log('1', slug);
-            for (let i = 0; i < cart.length; i++) {
-                if (cart[i].productSlug == slug) {
-                    cart.splice(i, 1);
-                    break;
+
+            if (req.session.currentUser) {
+                const accountId = req.session.currentUser.accountId;
+                const userCart = await Cart.findOne({ accountId });
+
+                if (userCart) {
+                    const itemIndex = userCart.items.findIndex((item) => item.productSlug === slug);
+
+                    if (itemIndex >= 0) {
+                        userCart.items.splice(itemIndex, 1);
+                        await userCart.save();
+                    }
+                }
+            } else {
+                const cart = req.session.cart;
+                const itemIndex = cart.findIndex((item) => item.productSlug === slug);
+
+                if (itemIndex >= 0) {
+                    cart.splice(itemIndex, 1);
+                    req.session.save();
                 }
             }
-            console.log('2', cart)
 
-            // Save the updated session object
-            req.session.save(() => {
-                const currentQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
-                res.json({
-                    success: true,
-                    currentQuantity
-                });
+            const currentQuantity = req.session.cart.reduce((total, item) => total + item.quantity, 0);
+            res.json({
+                success: true,
+                currentQuantity
             });
         } catch (error) {
-            res.error(error);
+            console.log(error);
+            next();
         }
     }
+
 
     // [GET] /cart/checkout
     checkout(req, res, next) {
