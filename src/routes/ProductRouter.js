@@ -25,6 +25,6 @@ router.put('/:id', upload.single('picture'), googleDrive.toGoogle, productContro
 router.patch('/:id/restore', productController.restore)
 router.delete('/:id', productController.delete)
 router.delete('/:id/destroy', productController.destroy, googleDrive.deleteFile, (req, res) =>
-    res.redirect('/me/stored/products'));
+    res.redirect('/me/trash/products'));
 
 module.exports = router;
