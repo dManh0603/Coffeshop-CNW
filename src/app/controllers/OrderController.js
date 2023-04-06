@@ -23,7 +23,7 @@ class OrderController {
         try {
             const shippingInfo = req.session.shippingInfo;
             const cartItems = req.body.items;
-
+            const userId = req.session.currentUser?.accountId || 'guest';
             const products = await Product.find({
                 product_id: { $in: req.body.items.map(item => item.product_id) }
             });
@@ -74,13 +74,19 @@ class OrderController {
                 return res.status(500).json({ error: 'Failed to create order' });
             }
 
-            req.session.cart = null;
+            if (userId) {
+                // If the user is logged in, remove their cart from the database
+                await Cart.deleteOne({ accountId: userId });
+            } else {
+                // If the user is not logged in, remove their cart from the session
+                req.session.cart = null;
+            }
 
             res.json({ id: PP_order.result.id });
 
             // Save order to db
             const order = {
-                created_by: 'guest',
+                created_by: userId,
                 payment_id: PP_order.result.id,
                 firstname: shippingInfo.firstname,
                 lastname: shippingInfo.lastname,
