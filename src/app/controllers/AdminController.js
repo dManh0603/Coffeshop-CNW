@@ -4,7 +4,9 @@ class AdminController {
 
     // [GET] /admin
     index(req, res, next) {
-        res.end('admin page - index')
+        res.render('admin/adminpage',{
+            layout: 'blank',
+        })
     }
     // [GET] /admin/stored/products
     storedProducts(req, res, next) {
