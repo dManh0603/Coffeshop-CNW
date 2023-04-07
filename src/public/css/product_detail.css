@@ -57,6 +57,14 @@
 }
 
 .show_img img {
-  width: 88vw;
+  width: 46vw;
   box-shadow: 3px 6px 22px -6px rgba(66, 68, 90, 0.5);
+}
+
+@media screen and (max-width: 992px) {
+  
+.show_img img {
+  width: 80vw;
+}
+
 }
