@@ -10,7 +10,7 @@ class MeController {
     orders(req, res, next) {
         const userId = req.session.currentUser.accountId;
         Order.find({ created_by: userId })
-            .select('order_id phone total isPaid firstname lastname')
+            .select('order_id phone total isPaid firstname lastname createdAt')
             .then(orders => {
                 const modifiedOrders = orders.map(order => {
                     const fullname = order.firstname + ' ' + order.lastname;
@@ -19,18 +19,20 @@ class MeController {
                         phone: order.phone,
                         total: order.total,
                         isPaid: order.isPaid,
-                        fullname: fullname
+                        fullname: fullname,
+                        createdAt: order.createdAt
                     };
                 });
-                console.log(multipleMongooseToObject(modifiedOrders));
-                res.render('me/orders', { orders: multipleMongooseToObject(modifiedOrders) });
+
+                res.render('me/orders', { orders: modifiedOrders });
             })
             .catch(error => {
                 console.log(error);
                 const errorMessage = 'Error retrieving orders';
-                res.status(500).render('error', { message: errorMessage });
+                res.status(500).send({ message: errorMessage });
             });
     }
+
 
 
 }

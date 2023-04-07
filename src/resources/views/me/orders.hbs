@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/products.css" />
 
-<form name="container-form" class="product_form mt-4" method="POST" action="/products/handle-form-actions">
+<form name="container-form" class="product_form mt-4" method="POST">
   <div>
     <h3 class="product_title">Đơn hàng của tôi</h3>
 
@@ -32,7 +32,9 @@
         <th scope="col">Mã đơn hàng</th>
         <th scope="col">Họ tên</th>
         <th scope="col">SDT nhận</th>
-        <th scope="col">Tổng giá trị</th>
+        <th scope="col">Tổng giá trị
+            {{sortable "total" _sort}}
+        </th>
         <th scope="col">Thời gian tạo
           {{{sortable "createdAt" _sort}}}
         </th>
@@ -53,11 +55,11 @@
         </td>
         <th scope="row">{{sum @index 1}}</th>
         <td>{{this.order_id}}</td>
-        <td>{{this.firstname}}</td>
+        <td>{{this.fullname}}</td>
         <td>{{this.phone}}</td>
         <td>{{this.total}}</td>
         <td>{{convertDate this.createdAt}}</td>
-        <td>{{this.isPaidl}}</td>
+        <td>{{convertStatus this.isPaid}}</td>
 
         <td>
           <a href="/products/{{this._id}}/edit" class="btn btn-link"<i class="fa-solid fa-eye"></i></a>
