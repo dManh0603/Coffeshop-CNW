@@ -31,7 +31,7 @@
                     </td>
                     <td class="num">{{this.totalCost}}</td>
                     <td>
-                        <a class="btn btn-outline-danger btn-sm delete-btn" data-slug="{{this.slug}}"><i class="fa-solid fa-trash-can"></i></a>
+                        <a class="btn btn-outline-danger btn-sm delete-btn" data-slug="{{this.slug}}">Xóa</i></a>
                     </td>
                 </tr>
                 {{/each}}
@@ -39,9 +39,9 @@
         </table>
         <div class="card-body text-right">
             {{#if cart_id}}
-            <a href="/cart/checkout?cart_id={{this.cart_id}}" class="btn checkoutBtn">Checkout</a>
+            <a href="/cart/checkout?cart_id={{this.cart_id}}" class="btn checkoutBtn">Đặt hàng</a>
             {{else}}
-            <a href="/cart/checkout" class="btn checkoutBtn">Checkout</a>
+            <a href="/cart/checkout" class="btn checkoutBtn">Đặt hàng</a>
             {{/if}}
         </div>
     </div>
