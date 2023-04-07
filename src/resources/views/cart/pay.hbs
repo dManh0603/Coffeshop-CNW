@@ -146,8 +146,8 @@
                     })
                     .then(() => {
                         setTimeout(() => {
-                            window.location.replace('/');
-                        }, 5000); // wait for 3 seconds before redirecting
+                            window.location.href = '/me/orders';
+                        }, 3000); // wait for 3 seconds before redirecting
                     });
             }
         }).render('#paypal-button-container');

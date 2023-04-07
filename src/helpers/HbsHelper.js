@@ -53,6 +53,10 @@ module.exports = {
   
     // join the array back into a string and return it
     return words.join(' ');
+  },
+  convertStatus: (status) => {
+    return status ? 'Hoàn thành' : 'Đã hủy';
   }
+
 
 }

@@ -1,1 +1,116 @@
-<h1>Your order</h1>
+<link rel="stylesheet" href="/css/products.css" />
+
+<form name="container-form" class="product_form mt-4 userOrder_body" method="POST">
+  <div>
+    <h3 class="product_title">Đơn hàng của tôi</h3>
+  </div>
+
+  <table class="table mt-4">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">STT</th>
+        <th scope="col">Mã đơn hàng</th>
+        <th scope="col">Họ tên</th>
+        <th scope="col">SDT nhận</th>
+        <th scope="col">Tổng giá trị
+          {{sortable "total" _sort}}
+        </th>
+        <th scope="col">Thời gian tạo
+          {{{sortable "createdAt" _sort}}}
+        </th>
+
+        <th scope="col">Trạng thái
+        </th>
+
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each orders}}
+      <tr>
+        <td>
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="orderIds[]" value="{{this.order_id}}" />
+          </div>
+        </td>
+        <th scope="row">{{sum @index 1}}</th>
+        <td>#{{this.order_id}}</td>
+        <td>{{this.fullname}}</td>
+        <td>{{this.phone}}</td>
+        <td>{{this.total}}</td>
+        <td>{{convertDate this.createdAt}}</td>
+        <td>{{convertStatus this.isPaid}}</td>
+
+        <td>
+          <a href="orders/{{this.order_id}}/v" class="btn btn-link view_order">Xem</a>
+        </td>
+      </tr>
+
+      {{else}}
+      <tr>
+        <td class="text-center border-0" colspan="5">Bạn chưa có đơn hàng nào,
+          <a href="/menu">xem và mua hàng ở đây</a>
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</form>
+
+
+{{! delete hidden form }}
+
+<script>
+  $(document).ready(function () {
+    const $containerForm = $('form[name="container-form"]');
+    const $deleteForm = $('form[name="delete-product-form"]');
+    const $deleteModal = $('#delete-product-modal');
+    const $btnDeleteCourse = $('#btn-delete-product');
+    const $checkboxAll = $('#checkbox-all');
+    const $productsCheckbox = $('input[name="productIds[]"]');
+    const $checkedSubmitBtn = $('#submit-btn');
+    let productId;
+    // When delete button was clicked
+    $deleteModal.on('show.bs.modal', event => {
+      // Button that triggered the modal
+      const button = $(event.relatedTarget);
+      // Extract info from data-bs-*attributes 
+      productId = button.attr('data-bs-id');
+    });
+    // When confirmed the delete 
+    $btnDeleteCourse.on('click', function () {
+      $deleteForm.attr('action', '/products/' + productId + '?_method=DELETE');
+      $deleteForm.submit();
+    });
+    //When checkbox all checked 
+    $checkboxAll.change(function () {
+      let isCheckAll = $(this).prop('checked');
+      $productsCheckbox.prop('checked', isCheckAll);
+      enableCheckAllSubmitBtn();
+    });
+    // When product item changes
+    $productsCheckbox.change(function () {
+      let isCheckAll = $productsCheckbox.length === $('input[name="productIds[]"]:checked').length;
+      $checkboxAll.prop('checked', isCheckAll);
+      enableCheckAllSubmitBtn();
+    });
+    //Checked submit button clicked 
+    $checkedSubmitBtn.click(function (e) {
+      let isSubmittable = !$(this).hasClass('disabled');
+      if (!isSubmittable) {
+        e.preventDefault();
+      }
+    })
+    // Enable the submit button when an item is checked
+    function enableCheckAllSubmitBtn() {
+      const checkedCount = $('input[name="productIds[]"]:checked').length;
+      if (checkedCount > 0) {
+        $checkedSubmitBtn.removeClass('disabled');
+      } else {
+        $checkedSubmitBtn.addClass('disabled');
+      }
+    }
+  }
+  );
+</script>
