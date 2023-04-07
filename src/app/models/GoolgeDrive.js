@@ -76,7 +76,7 @@ const googleDrive = {
       const deleteFile = await drive.files.delete({
         fileId: fileId
       })
-      // console.log('delete file:', deleteFile.data, deleteFile.status);
+      console.log('delete file:', deleteFile.data, deleteFile.status);
 
       next();
       // res.redirect('me/stored/products');
