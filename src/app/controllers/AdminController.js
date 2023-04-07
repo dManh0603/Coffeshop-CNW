@@ -1,12 +1,40 @@
 const Product = require('../models/Product');
-const { multipleMongooseToObject, } = require('../../util/mongoose');
+const Account = require('../models/Account');
+const Order = require('../models/Order');
+
+const { multipleMongooseToObject, mongooseToObject } = require('../../util/mongoose');
 class AdminController {
 
     // [GET] /admin
-    index(req, res, next) {
-        res.render('admin/adminpage',{
-            layout: 'blank',
-        })
+    async index(req, res, next) {
+
+        const accountAmount = await Account.countDocuments({role: 'user'});
+        const productAmount = await Product.countDocuments();
+        let orderAmount = 0;
+        let incomeAmount = 0;
+
+        // Calculate total income from orders and order amount
+        const orders = await Order.find();
+        orders.forEach(order => {
+            incomeAmount += order.total;
+            orderAmount += 1;
+        });
+
+        const accounts = await Account.find({})
+            .then(accounts => {
+                console.log(multipleMongooseToObject(accounts))
+                res.render('admin/adminpage', {
+                    layout: 'blank',
+                    accountAmount,
+                    productAmount,
+                    orderAmount,
+                    incomeAmount,
+                    accounts: multipleMongooseToObject(accounts),
+                })
+            })
+
+
+
     }
     // [GET] /admin/stored/products
     storedProducts(req, res, next) {
