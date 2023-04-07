@@ -36,7 +36,7 @@ To use the coffee shop application, follow these steps:
 ## Credits
 
 This project was created by tremendous efforts of 4:
- - [Đức Mạnh](https://github.com/dmanh6302) (team lead)
+ - [Đức Mạnh](https://github.com/dmanh6302) (project owner)
  - [Văn Hiếu](https://github.com/vanhieuhp) 
  - [Đạt Trần](https://github.com/Datitneu) 
  - [Triệu Diễn](https://github.com/DucDien2505) 
