@@ -9,7 +9,7 @@ class MeController {
 
     orders(req, res, next) {
         const userId = req.session.currentUser.accountId;
-        Order.find({ created_by: userId })
+        Order.find({ created_by: userId }).sortable(req)
             .select('order_id phone total isPaid firstname lastname createdAt')
             .then(orders => {
                 const modifiedOrders = orders.map(order => {
