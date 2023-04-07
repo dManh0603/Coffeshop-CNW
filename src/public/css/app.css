@@ -1025,7 +1025,7 @@ input {
   left: 0;
   position: absolute;
   top: -10px;
-  width: 275%;
+  width: 100%;
 }
 
 .pay__order-check {
@@ -1079,9 +1079,9 @@ input {
     width: 100%;
     margin:auto;
   }
-  .pay__order-check::before {
-    width: 225%;
-  }
+  /* .pay__order-check::before {
+    width: 100%;
+  } */
  
 }
 
@@ -1091,13 +1091,13 @@ input {
     margin:auto;
   }
 
-  .pay__order-check::before {
+  /* .pay__order-check::before {
     width: 170%;
   }
 
   .pay__order-check::before {
     width: 260%;
-  }
+  } */
 
  
 }

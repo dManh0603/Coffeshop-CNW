@@ -40,6 +40,10 @@ module.exports = {
 
     // Return the formatted date/time string
     return formattedDate;
+  },
+  convertStatus: (status) => {
+    return status ? 'Hoàn thành' : 'Đã hủy';
   }
+
 
 }

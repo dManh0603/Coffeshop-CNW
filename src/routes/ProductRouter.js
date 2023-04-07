@@ -21,10 +21,10 @@ router.get('/:slug', productController.show)
 router.post('/handle-form-actions', productController.handleFormActions)
 router.post('/store', upload.single('picture'), googleDrive.toGoogle, productController.store)
 router.put('/:id', upload.single('picture'), googleDrive.toGoogle, productController.update, googleDrive.deleteFile, (req, res) =>
-    res.redirect('/me/stored/products'));
+    res.redirect('/admin/stored/products'));
 router.patch('/:id/restore', productController.restore)
 router.delete('/:id', productController.delete)
 router.delete('/:id/destroy', productController.destroy, googleDrive.deleteFile, (req, res) =>
-    res.redirect('/me/trash/products'));
+    res.redirect('/admin/trash/products'));
 
 module.exports = router;

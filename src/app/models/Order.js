@@ -37,9 +37,5 @@ OrderSchema.query.sortable = function (req) {
 
 // Add plugin for Course models
 OrderSchema.plugin(AutoIncrement, { inc_field: 'order_id' });
-OrderSchema.plugin(mongooseDelete, {
-    overrideMethods: 'all',
-    deletedAt: true,
-});
 
 module.exports = mongoose.model('Order', OrderSchema);
