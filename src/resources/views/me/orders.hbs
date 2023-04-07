@@ -57,7 +57,7 @@
         <td>{{this.phone}}</td>
         <td>{{this.total}}</td>
         <td>{{convertDate this.createdAt}}</td>
-        <td>{{this.isPaidl}}</td>
+        <td>{{this.isPaid}}</td>
 
         <td>
           <a href="/products/{{this.order_id}}/edit" class="btn btn-link"<i class="fa-solid fa-eye"></i></a>
@@ -66,7 +66,7 @@
 
       {{else}}
       <tr>
-        <td class="text-center border-0" colspan="5">Bạn chưa có đơn hàng nào, 
+        <td class="text-center border-0 w-100" colspan="5">Bạn chưa có đơn hàng nào, 
           <a href="/menu">xem và mua hàng ở đây</a>
         </td>
       </tr>
