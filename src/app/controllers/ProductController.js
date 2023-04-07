@@ -39,7 +39,7 @@ class ProductController {
         const product = new Product(formData);
         product.save()
             .then(() => {
-                res.redirect('/me/stored/products');
+                res.redirect('/admin/stored/products');
             })
             .catch(e => {
                 console.error(e)
@@ -84,7 +84,7 @@ class ProductController {
                 if (!req.file) {
                     // no new image uploaded
                     Product.updateOne({ _id: id }, { name, description, price, isPublished })
-                        .then(() => res.redirect('/me/stored/products'))
+                        .then(() => res.redirect('/admin/stored/products'))
                         .catch(err => {
                             console.error(err);
                             res.status(500).json({ error: "Failed to update product." });
@@ -94,7 +94,7 @@ class ProductController {
                     uploadImage(req.file)
                         .then(imageId => {
                             Product.updateOne({ _id: id }, { name, description, price, isPublished, imageId })
-                                .then(() => res.redirect('/me/stored/products'))
+                                .then(() => res.redirect('/admin/stored/products'))
                                 .catch(err => {
                                     console.error(err);
                                     res.status(500).json({ error: "Failed to update product." });
