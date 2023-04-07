@@ -41,6 +41,19 @@ module.exports = {
     // Return the formatted date/time string
     return formattedDate;
   },
+  
+  TitleCase:(str) => {
+    // split the string into an array of words
+    let words = str.split(' ');
+  
+    // loop through each word and capitalize the first letter
+    for (let i = 0; i < words.length; i++) {
+      words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+    }
+  
+    // join the array back into a string and return it
+    return words.join(' ');
+  },
   convertStatus: (status) => {
     return status ? 'Hoàn thành' : 'Đã hủy';
   }
