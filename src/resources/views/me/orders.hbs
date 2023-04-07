@@ -50,7 +50,7 @@
       <tr>
         <td>
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="productIds[]" value="{{this._id}}" />
+            <input class="form-check-input" type="checkbox" name="orderIds[]" value="{{this.order_id}}" />
           </div>
         </td>
         <th scope="row">{{sum @index 1}}</th>
@@ -62,14 +62,14 @@
         <td>{{convertStatus this.isPaid}}</td>
 
         <td>
-          <a href="/products/{{this._id}}/edit" class="btn btn-link"<i class="fa-solid fa-eye"></i></a>
+          <a href="/products/{{this.order_id}}/edit" class="btn btn-link"<i class="fa-solid fa-eye"></i></a>
         </td>
       </tr>
 
       {{else}}
       <tr>
         <td class="text-center border-0" colspan="5">Bạn chưa có đơn hàng nào, 
-          <a href="/products/create">xem và mua hàng ở đây</a>
+          <a href="/menu">xem và mua hàng ở đây</a>
         </td>
       </tr>
       {{/each}}
