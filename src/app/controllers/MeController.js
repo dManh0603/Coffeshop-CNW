@@ -95,12 +95,6 @@ class MeController {
             });
         });
     }
-
-
-
-
-
-
 }
 
 module.exports = new MeController;
