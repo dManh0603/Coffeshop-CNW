@@ -1,0 +1,80 @@
+<div class="pay__page d-flex justify-content-center align-items-center">
+    <div class="container m-5">
+        <div class="row g-5 w-100">
+            <div class="col-12 col-lg-8 pay__order">
+                <h2 class="text-center m-3">THÔNG TIN<span style="color: var(--primary-1);"> ĐƠN HÀNG #{{order.order_id}}</span></h2>
+                {{#each order.items}}
+                <div class="row pay__order-info no-gutters" data-id="{{this.product_id}}"
+                    data-quantity="{{this.quantity}}">
+                    <div class="col-6 pay__order__image-left p-2">
+                        <img src="{{getImage this.imageId}}" class="w-100" alt="">
+                    </div>
+                    <div
+                        class="col-6 pay__order__content-right pl-2 d-flex justify-content-center align-items-left flex-column">
+                        <h4 class="pay__order__content-title mb-2">{{this.name}}</h4>
+                        <p class="pay__order__content-description mb-1">Số lượng: {{this.quantity}}</p>
+                        <p class="pay__order__content-description mb-1">Đơn giá: {{this.price}}</p>
+                        <p class="pay__order__content-description mb-1">Tổng tiền: {{this.totalCost}}</p>
+                    </div>
+                </div>
+                {{/each}}
+                <div class="row pay__order-check no-gutters">
+                    <table>
+                        <tr>
+                            <td>Tổng sản phẩm:</td>
+                            <td>{{order.totalQuantity}}</td>
+                        </tr>
+                        <tr>
+                            <td>Tổng hóa đơn:</td>
+                            <td>{{order.total}}</td>
+                        </tr>
+                        <tr>
+                            <td>Mã tham chiếu thanh toán:</td>
+                            <td>{{order.payment_id}}</td>
+                        </tr>
+                        {{#if order.isPaid}}
+                        <tr>
+                            <td>Hoàn thành lúc:</td>
+                            <td>{{convertDate order.updatedAt}}</td>
+                        </tr>
+                        {{else}}
+                        <tr>
+                            <td>Đã hủy lúc:</td>
+                            <td>{{convertDate order.updatedAt}}</td>
+                        </tr>
+                        {{/if}}
+                    </table>
+                </div>
+            </div>
+            <div class="col-lg-4 shipping__info">
+                <div class="card border-0">
+                    <div class="card-header border-0">
+                        <h4 class="mt-1">THÔNG TIN VẬN CHUYỂN</h4>
+                    </div>
+                    <div class="card-body border-0">
+                        <p class="text-start">
+                            Tên: {{shippingInfo.firstname}}
+                        </p>
+
+                        <p class="text-start">
+                            Họ: {{shippingInfo.lastname}}
+                        </p>
+
+                        <p class="text-start">
+                            Email: {{shippingInfo.email}}
+                        </p>
+
+                        <p class="text-start">
+                            Số điện thoại: {{shippingInfo.phone}}
+                        </p>
+
+                        <p class="text-start">
+                            Địa chỉ: {{shippingInfo.address}}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

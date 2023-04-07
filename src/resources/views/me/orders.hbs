@@ -3,25 +3,6 @@
 <form name="container-form" class="product_form mt-4 userOrder_body" method="POST">
   <div>
     <h3 class="product_title">Đơn hàng của tôi</h3>
-
-    {{!-- <div class="mt-4 d-flex align-items-center">
-      <div class="form-check d-inline">
-        <input class="form-check-input mx-2" type="checkbox" value="" id="checkbox-all" />
-        <label class="form-check-label" for="checkbox-all">
-          Tất cả
-        </label>
-
-      </div>
-
-      <select class="form-select form-select-sm select checkbox-select-all-options" name="action" required>
-        <option value="">-- Hành động --</option>
-        <option value="delete">Xóa</option>
-      </select>
-
-      <button type="submit" class="btn conduct btn-sm disabled " id="submit-btn">Thực
-        hiện</button>
-    </div> --}}
-
   </div>
 
   <table class="table mt-4">
@@ -33,7 +14,7 @@
         <th scope="col">Họ tên</th>
         <th scope="col">SDT nhận</th>
         <th scope="col">Tổng giá trị
-            {{sortable "total" _sort}}
+          {{sortable "total" _sort}}
         </th>
         <th scope="col">Thời gian tạo
           {{{sortable "createdAt" _sort}}}
@@ -62,13 +43,13 @@
         <td>{{convertStatus this.isPaid}}</td>
 
         <td>
-          <a href="/products/{{this.order_id}}/edit" class="btn btn-link view_order">Xem</a>
+          <a href="orders/{{this.order_id}}/v" class="btn btn-link view_order">Xem</a>
         </td>
       </tr>
 
       {{else}}
       <tr>
-        <td class="text-center border-0" colspan="5">Bạn chưa có đơn hàng nào, 
+        <td class="text-center border-0" colspan="5">Bạn chưa có đơn hàng nào,
           <a href="/menu">xem và mua hàng ở đây</a>
         </td>
       </tr>
