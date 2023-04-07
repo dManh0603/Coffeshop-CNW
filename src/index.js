@@ -15,7 +15,7 @@ const db = require('./config/db');
 // Generate a random UUID to use as the secret key
 const secret = uuidv4();
 const app = express();
-const port = 3030;
+const port = process.env.PORT;
 
 
 
