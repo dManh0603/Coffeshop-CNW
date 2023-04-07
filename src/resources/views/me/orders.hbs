@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="/css/products.css" />
 
-<form name="container-form" class="product_form mt-4" method="POST">
+<form name="container-form" class="product_form mt-4 userOrder_body" method="POST">
   <div>
     <h3 class="product_title">Đơn hàng của tôi</h3>
 
@@ -42,7 +42,7 @@
         <th scope="col">Trạng thái
         </th>
 
-        <th scope="col">Xem</th>
+        <th scope="col"></th>
       </tr>
     </thead>
     <tbody>
@@ -54,7 +54,7 @@
           </div>
         </td>
         <th scope="row">{{sum @index 1}}</th>
-        <td>{{this.order_id}}</td>
+        <td>#{{this.order_id}}</td>
         <td>{{this.fullname}}</td>
         <td>{{this.phone}}</td>
         <td>{{this.total}}</td>
@@ -62,7 +62,7 @@
         <td>{{convertStatus this.isPaid}}</td>
 
         <td>
-          <a href="/products/{{this.order_id}}/edit" class="btn btn-link"<i class="fa-solid fa-eye"></i></a>
+          <a href="/products/{{this.order_id}}/edit" class="btn btn-link view_order">Xem</a>
         </td>
       </tr>
 
